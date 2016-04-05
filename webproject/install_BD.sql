@@ -70,14 +70,14 @@ CREATE TABLE MJ(
 	primary key (idPerso,login)
 );
 
-DROP TABLE MJ;
-DROP TABLE EpisodeBiographie;
-DROP TABLE Paragraphe;
-DROP TABLE Resume;
-DROP TABLE Personnage;
-DROP TABLE Biographie;
-DROP TABLE Episode;
-DROP TABLE Partie;
-DROP TABLE Joueur;
-DROP TABLE Univers;
+--DROP TABLE MJ;
+--DROP TABLE EpisodeBiographie;
+--DROP TABLE Paragraphe;
+--DROP TABLE Resume;
+--DROP TABLE Personnage;
+--DROP TABLE Biographie;
+--DROP TABLE Episode;
+--DROP TABLE Partie;
+--DROP TABLE Joueur;
+--DROP TABLE Univers;
 
