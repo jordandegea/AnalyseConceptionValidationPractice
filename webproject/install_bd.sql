@@ -6,7 +6,7 @@ CREATE TABLE Univers(
 );
 
 CREATE TABLE Joueur(
- 	idUnivers int primary key,
+	idJoueur int primary key
 	login varchar(50) unique,
 	mdp varchar(256),
 	email varchar(128)
@@ -14,11 +14,12 @@ CREATE TABLE Joueur(
 
 CREATE TABLE Partie(
  	idPartie int primary key,
+	titrePartie varchar(256),
 	resumePartie varchar(1024),
 	datePartie date,
 	lieu varchar(50),
-	titrePartie varchar(256),
-	nomUnivers varchar(50),
+	termine integer, -- booléen
+	idUnivers REFERENCES Univers(idUnivers)
 	loginMJ REFERENCES Joueur(login)
 );
 
@@ -55,6 +56,8 @@ CREATE TABLE Resume(
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
+	secret integer, -- booléen
+	contenu contenu(512),
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 

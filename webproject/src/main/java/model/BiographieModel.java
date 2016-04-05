@@ -1,10 +1,10 @@
 package model;
 
-import dao.AbstractDataBaseDAO;
 import loaders.BioInitialeLoader;
 import loaders.ResumeLoader;
 
 import java.util.Set;
+import loaders.TransitionLoader;
 
 /**
  * Created by william on 05/04/16.
@@ -12,6 +12,7 @@ import java.util.Set;
 public class BiographieModel extends AbstractBaseModel {
     private BioInitialeLoader bioInitiale;
     private ResumeLoader resumes;
+    private TransitionLoader transitions;
 
     public BiographieModel(int id) {
         super(id);
@@ -25,5 +26,8 @@ public class BiographieModel extends AbstractBaseModel {
 
     public Set<ResumeModel> getResumes() {
         return resumes.get(this);
+    }
+    public Set<TransitionModel> getTransition() {
+        return transitions.get(this);
     }
 }

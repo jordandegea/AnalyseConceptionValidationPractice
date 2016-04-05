@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import model.AbstractBaseModel;
 
@@ -19,14 +20,13 @@ import model.AbstractBaseModel;
  */
 public abstract class AbstractDataBaseDAO {
 
-    protected final DataSource dataSource;
     
-    protected AbstractDataBaseDAO(DataSource ds) {
-        this.dataSource = ds;
+    protected AbstractDataBaseDAO(/*DataSource ds*/) {
+        /*this.dataSource = ds;*/
     }
 
     protected Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+        return DAOConfiguration.dataSource.getConnection();
     }
     /**
      * fermeture d'une connexion
@@ -46,9 +46,9 @@ public abstract class AbstractDataBaseDAO {
     
     public abstract     AbstractBaseModel           get(int id)             throws DAOException;
     public abstract     List<AbstractBaseModel>     getAll()                throws DAOException;
-    public abstract     void                        insert(Object object)   throws DAOException;
-    public abstract     void                        update(Object object)   throws DAOException;
-    public abstract     void                        delete(Object object)   throws DAOException;
+    public abstract     int                         insert(Object object)   throws DAOException;
+    public abstract     int                         update(Object object)   throws DAOException;
+    public abstract     int                         delete(Object object)   throws DAOException;
     
     
 }

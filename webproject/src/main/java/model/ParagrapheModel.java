@@ -1,11 +1,14 @@
 package model;
 
+import loaders.EpisodeLoader;
+
 /**
  * Created by william on 05/04/16.
  */
 public class ParagrapheModel extends AbstractBaseModel {
     private boolean secret;
     private String contenu;
+    private EpisodeLoader episode;
 
     public ParagrapheModel(int id, boolean secret, String contenu) {
         super(id);
@@ -27,5 +30,9 @@ public class ParagrapheModel extends AbstractBaseModel {
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+    
+    public EpisodeModel getEpisode(){
+        return episode.get(this);
     }
 }
