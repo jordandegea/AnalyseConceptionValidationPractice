@@ -23,8 +23,15 @@ import model.UniversModel;
  */
 public class UniversDAO extends AbstractDataBaseDAO {
 
-    public UniversDAO(DataSource ds) {
-        super(ds);
+    final private static UniversDAO instanceUnique = new UniversDAO();
+    
+    
+    static UniversDAO instance() {
+        return instanceUnique;
+    }
+    
+    private UniversDAO(/*DataSource ds*/) {
+        super(/*ds*/);
     }
 
     @Override

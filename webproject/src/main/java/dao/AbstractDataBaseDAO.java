@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import model.AbstractBaseModel;
 
@@ -19,10 +20,11 @@ import model.AbstractBaseModel;
  */
 public abstract class AbstractDataBaseDAO {
 
-    protected final DataSource dataSource;
+    @Resource(name = "jdbc/bibliography")
+    protected DataSource dataSource;
     
-    protected AbstractDataBaseDAO(DataSource ds) {
-        this.dataSource = ds;
+    protected AbstractDataBaseDAO(/*DataSource ds*/) {
+        /*this.dataSource = ds;*/
     }
 
     protected Connection getConnection() throws SQLException {
