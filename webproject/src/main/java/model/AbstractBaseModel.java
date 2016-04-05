@@ -5,20 +5,24 @@
  */
 package model;
 
+import dao.AbstractDataBaseDAO;
+
 /**
  *
  * @author JordanLeMagnifique
  */
-public class AbstractBaseModel {
-    private final int id ;
+public abstract class AbstractBaseModel {
+    private final int id;
 
     public int getId() {
         return id;
     }
 
     public AbstractBaseModel(int id) {
-        this.id = id ;
+        this.id = id;
     }
-    
-    
+
+    public static AbstractDataBaseDAO getDAO() {
+        return null;
+    }
 }
