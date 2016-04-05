@@ -1,0 +1,5 @@
+modele/Ouvrage.class
+controleur/Controleur.class
+dao/OuvrageDAO.class
+dao/AbstractDataBaseDAO.class
+dao/DAOException.class
