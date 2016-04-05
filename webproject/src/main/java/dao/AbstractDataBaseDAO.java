@@ -1,8 +1,15 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
+import model.AbstractBaseModel;
 
 /**
  * Classe abstraite permettant de factoriser du code pour les DAO
@@ -35,4 +42,12 @@ public abstract class AbstractDataBaseDAO {
         }
 
     }
+    
+    public abstract     AbstractBaseModel           get(int id)             throws DAOException;
+    public abstract     Set<AbstractBaseModel>      getAll()                throws DAOException;
+    public abstract     void                        insert(Object object)   throws DAOException;
+    public abstract     void                        update(Object object)   throws DAOException;
+    public abstract     void                        delete(Object object)   throws DAOException;
+    
+    
 }
