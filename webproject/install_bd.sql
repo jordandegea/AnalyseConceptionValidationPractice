@@ -55,6 +55,8 @@ CREATE TABLE Resume(
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
+	secret integer, -- booléen
+	contenu contenu(512),
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 
