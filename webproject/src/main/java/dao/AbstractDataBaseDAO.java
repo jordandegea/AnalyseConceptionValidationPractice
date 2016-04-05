@@ -20,15 +20,13 @@ import model.AbstractBaseModel;
  */
 public abstract class AbstractDataBaseDAO {
 
-    @Resource(name = "jdbc/bibliography")
-    protected DataSource dataSource;
     
     protected AbstractDataBaseDAO(/*DataSource ds*/) {
         /*this.dataSource = ds;*/
     }
 
     protected Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
+        return DAOConfiguration.dataSource.getConnection();
     }
     /**
      * fermeture d'une connexion
