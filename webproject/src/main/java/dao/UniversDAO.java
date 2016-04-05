@@ -24,12 +24,11 @@ import model.UniversModel;
 public class UniversDAO extends AbstractDataBaseDAO {
 
     final private static UniversDAO instanceUnique = new UniversDAO();
-    
-    
+
     static UniversDAO instance() {
         return instanceUnique;
     }
-    
+
     private UniversDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
@@ -52,7 +51,7 @@ public class UniversDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
-    
+
     public AbstractBaseModel get(String nom) throws DAOException {
         UniversModel result = null;
         Connection conn = null;
@@ -93,10 +92,11 @@ public class UniversDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public void insert(Object object) throws DAOException {
+    public int insert(Object object) throws DAOException {
         if (!(object instanceof UniversModel)) {
             throw new DAOException("Wrong object parameter in insert, require UniversModel");
         }
+        int affectedRows = 0;
         UniversModel univers = (UniversModel) object;
         Connection conn = null;
         try {
@@ -104,20 +104,21 @@ public class UniversDAO extends AbstractDataBaseDAO {
             PreparedStatement st
                     = conn.prepareStatement("INSERT INTO Univers (nomUnivers) VALUES (?)");
             st.setString(1, univers.getNom());
-            st.executeUpdate();
+            affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        return affectedRows ;
     }
-    
 
     @Override
-    public void update(Object object) throws DAOException {
+    public int update(Object object) throws DAOException {
         if (!(object instanceof UniversModel)) {
             throw new DAOException("Wrong object parameter in update, require UniversModel");
         }
+        int affectedRows = 0 ; 
         UniversModel univers = (UniversModel) object;
         Connection conn = null;
         try {
@@ -126,19 +127,21 @@ public class UniversDAO extends AbstractDataBaseDAO {
                     = conn.prepareStatement("UPDATE Univers SET nomUnivers=? WHERE idUnivers=?");
             st.setString(1, univers.getNom());
             st.setInt(2, univers.getId());
-            st.executeUpdate();
+            affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        return affectedRows ;
     }
 
     @Override
-    public void delete(Object object) throws DAOException {
+    public int delete(Object object) throws DAOException {
         if (!(object instanceof UniversModel)) {
             throw new DAOException("Wrong object parameter in delete, require UniversModel");
         }
+        int affectedRows = 0;
         UniversModel univers = (UniversModel) object;
         Connection conn = null;
         try {
@@ -152,7 +155,7 @@ public class UniversDAO extends AbstractDataBaseDAO {
         } finally {
             closeConnection(conn);
         }
+        return affectedRows ;
     }
-
 
 }

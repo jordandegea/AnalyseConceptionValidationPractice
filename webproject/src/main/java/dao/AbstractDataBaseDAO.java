@@ -46,9 +46,9 @@ public abstract class AbstractDataBaseDAO {
     
     public abstract     AbstractBaseModel           get(int id)             throws DAOException;
     public abstract     List<AbstractBaseModel>     getAll()                throws DAOException;
-    public abstract     void                        insert(Object object)   throws DAOException;
-    public abstract     void                        update(Object object)   throws DAOException;
-    public abstract     void                        delete(Object object)   throws DAOException;
+    public abstract     int                         insert(Object object)   throws DAOException;
+    public abstract     int                         update(Object object)   throws DAOException;
+    public abstract     int                         delete(Object object)   throws DAOException;
     
     
 }
