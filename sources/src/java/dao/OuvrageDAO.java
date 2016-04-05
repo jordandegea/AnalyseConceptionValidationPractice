@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
-import modele.Ouvrage;
 
 public class OuvrageDAO extends AbstractDataBaseDAO {
 
@@ -59,25 +58,21 @@ public class OuvrageDAO extends AbstractDataBaseDAO {
      * Récupère l'ouvrage d'identifiant id dans la table bibliographie.
      */
     public Ouvrage getOuvrage(int id) throws DAOException {
-        Connection conn = null ;
-        String auteur=null, titre=null;
+        Ouvrage result = null;
+        Connection conn = null;
         try {
             conn = getConnection();
-            PreparedStatement st =
-                conn.prepareStatement("SELECT auteur,titre FROM bibliographie WHERE id=?");
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                auteur = rs.getString("auteur");
-                titre = rs.getString("titre");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM bibliographie WHERE id='"+id+"'");
+            if(rs.next()) {
+                result = new Ouvrage(rs.getInt("id"), rs.getString("auteur"), rs.getString("titre"));
             }
         } catch (SQLException e) {
             throw new DAOException("Erreur BD " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
-        
-        return new Ouvrage(id, auteur, titre);
+        return result;
     }
 
     /**
@@ -89,7 +84,7 @@ public class OuvrageDAO extends AbstractDataBaseDAO {
         try {
             conn = getConnection();
             PreparedStatement st =
-                conn.prepareStatement("UPDATE bibliographie SET auteur=?, titre=? WHERE id=? ");
+                conn.prepareStatement("UPDATE bibliographie SET auteur=? , titre=? WHERE id=?");
             st.setString(1, auteur);
             st.setString(2, titre);
             st.setInt(3, id);
@@ -105,13 +100,13 @@ public class OuvrageDAO extends AbstractDataBaseDAO {
      * Supprime l'ouvrage d'identifiant id dans la table bibliographie.
      */
     public void supprimerOuvrage(int id) throws DAOException {
-        Connection conn = null ;
+         Connection conn = null ;
         try {
             conn = getConnection();
             PreparedStatement st =
-                conn.prepareStatement("DELETE FROM bibliographie WHERE id=?");
+                conn.prepareStatement("DELETE FROM bibliographie  WHERE id=?");
             st.setInt(1, id);
-            st.execute();
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("Erreur BD " + e.getMessage(), e);
         } finally {
