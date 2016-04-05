@@ -1,11 +1,13 @@
 SET AUTOCOMMIT ON;
 
 CREATE TABLE Univers(
- 	nomUnivers varchar(50) primary key
+ 	idUnivers int primary key,
+ 	nomUnivers varchar(50) unique
 );
 
 CREATE TABLE Joueur(
-	login varchar(50) primary key,
+ 	idUnivers int primary key,
+	login varchar(50) unique,
 	mdp varchar(256),
 	email varchar(128)
 );
