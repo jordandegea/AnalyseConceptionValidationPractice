@@ -6,7 +6,7 @@ CREATE TABLE Univers(
 );
 
 CREATE TABLE Joueur(
- 	idUnivers int primary key,
+	idJoueur int primary key
 	login varchar(50) unique,
 	mdp varchar(256),
 	email varchar(128)
