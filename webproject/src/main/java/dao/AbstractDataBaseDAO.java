@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public abstract class AbstractDataBaseDAO {
     }
     
     public abstract     AbstractBaseModel           get(int id)             throws DAOException;
-    public abstract     Set<AbstractBaseModel>      getAll()                throws DAOException;
+    public abstract     List<AbstractBaseModel>     getAll()                throws DAOException;
     public abstract     void                        insert(Object object)   throws DAOException;
     public abstract     void                        update(Object object)   throws DAOException;
     public abstract     void                        delete(Object object)   throws DAOException;
