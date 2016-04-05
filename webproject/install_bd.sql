@@ -14,11 +14,12 @@ CREATE TABLE Joueur(
 
 CREATE TABLE Partie(
  	idPartie int primary key,
+	titrePartie varchar(256),
 	resumePartie varchar(1024),
 	datePartie date,
 	lieu varchar(50),
-	titrePartie varchar(256),
-	nomUnivers varchar(50),
+	termine integer, -- booléen
+	idUnivers REFERENCES Univers(idUnivers)
 	loginMJ REFERENCES Joueur(login)
 );
 
