@@ -6,6 +6,7 @@ import loaders.UniversLoader;
 
 import java.sql.Date;
 import java.util.Set;
+import loaders.BiographieLoader;
 
 /**
  * Created by william on 05/04/16.
@@ -15,20 +16,20 @@ public class PersonnageModel extends AbstractBaseModel {
     private String dateNaiss;
     private String profession;
     private String portrait;
-    private boolean demande;
 
     private JoueurLoader owner;
     private UniversLoader univers;
     private PartieLoader parties;
+    private PartieLoader partie;
     private JoueurLoader MJ;
+    private BiographieLoader biographie;
 
-    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait, boolean demande) {
+    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait) {
         super(id);
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
-        this.demande = demande;
         owner = new JoueurLoader();
         univers = new UniversLoader();
         parties = new PartieLoader();
@@ -67,14 +68,10 @@ public class PersonnageModel extends AbstractBaseModel {
         this.portrait = portrait;
     }
 
-    public boolean isDemande() {
-        return demande;
+    public BiographieModel getBiographie(){
+        return biographie.get(this);
     }
-
-    public void setDemande(boolean demande) {
-        this.demande = demande;
-    }
-
+    
     public JoueurModel getOwner() {
         return owner.getOwner(this);
     }
@@ -85,6 +82,10 @@ public class PersonnageModel extends AbstractBaseModel {
 
     public Set<PartieModel> getParties() {
         return parties.get(this);
+    }
+
+    public PartieModel getPartieEnCours() {
+        return partie.getEnCours(this);
     }
 
     public JoueurModel getMJ() {

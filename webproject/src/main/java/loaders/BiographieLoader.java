@@ -27,9 +27,9 @@ public class BiographieLoader extends AbstractLoader<BiographieModel> {
         return getObject();
     }
 
-    public BiographieModel get(JoueurModel joueur) {
+    public BiographieModel get(PersonnageModel personnage) {
         if (!isLoaded())
-            setObject(JoueurModel.getDAO().getBiographie(bio));
+            setObject(PersonnageModel.getDAO().getBiographie(personnage));
 
         return getObject();
     }

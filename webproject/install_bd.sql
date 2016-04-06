@@ -42,8 +42,8 @@ CREATE TABLE Personnage(
 	dateNaissance date,
 	profession varchar(256),
 	portrait varchar(512),
-	login varchar(50) REFERENCES Joueur(login),
-	nomUnivers varchar(50) REFERENCES Univers(nomUnivers),
+	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
+	idUnivers varchar(50) REFERENCES Univers(idUnivers),
 	idPartie int REFERENCES Partie(idPartie),
 	idBiographie int REFERENCES Biographie(idBiographie)
 );

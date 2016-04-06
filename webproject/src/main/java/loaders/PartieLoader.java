@@ -21,6 +21,12 @@ public class PartieLoader extends AbstractLoader<PartieModel> {
 
         return getObjectSet();
     }
+    public PartieModel getEnCours(PersonnageModel joueur) {
+        if (!isLoaded())
+            setObject(JoueurModel.getDAO().getParties(personnage));
+
+        return getObject();
+    }
 
     public PartieModel get(ResumeModel resume) {
         if (!isLoaded())
