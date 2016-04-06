@@ -46,6 +46,10 @@ public class PartieDAO extends AbstractDataBaseDAO{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
+    public UniversModel getUnivers(PartieModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
     
     public Set<PersonnageModel> getPersonnages(PartieModel partie) throws DAOException{
         // TODO: complete that

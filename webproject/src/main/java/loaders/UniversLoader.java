@@ -1,5 +1,10 @@
 package loaders;
 
+import dao.DAOException;
+import dao.PartieDAO;
+import dao.PersonnageDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.PartieModel;
 import model.PersonnageModel;
 import model.UniversModel;
@@ -10,14 +15,22 @@ import model.UniversModel;
 public class UniversLoader extends AbstractLoader<UniversModel> {
     public UniversModel get(PartieModel partie) {
         if (!isLoaded())
-            setObject(PartieModel.getDAO().getUnivers(partie));
+            try {
+                setObject(((PartieDAO)PartieModel.getDAO()).getUnivers(partie));
+        } catch (DAOException ex) {
+            Logger.getLogger(UniversLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }
 
     public UniversModel get(PersonnageModel personnage) {
         if (!isLoaded())
-            setObject(PersonnageModel.getDAO().getUnivers(personnage));
+            try {
+                setObject(((PersonnageDAO)PersonnageModel.getDAO()).getUnivers(personnage));
+        } catch (DAOException ex) {
+            Logger.getLogger(UniversLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }
