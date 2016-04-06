@@ -12,8 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import model.AbstractBaseModel;
 import model.EpisodeModel;
+import model.JoueurModel;
+import model.ParagrapheModel;
+import model.PartieModel;
 import model.ResumeModel;
 import model.TransitionModel;
 
@@ -22,6 +26,15 @@ import model.TransitionModel;
  * @author JordanLeMagnifique
  */
 public abstract class EpisodeDAO extends AbstractDataBaseDAO{
+    
+    // Personal DAOs Methods
+    public Set<ParagrapheModel> getParagraphe(EpisodeModel episode) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
+    
+    // Override Methods
     
     public AbstractBaseModel get(int id, String by) throws DAOException {
         ResumeModel result = null;

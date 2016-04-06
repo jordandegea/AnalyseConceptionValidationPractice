@@ -13,6 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.AbstractBaseModel;
+import model.EpisodeModel;
+import model.JoueurModel;
+import model.ParagrapheModel;
 import model.PartieModel;
 
 /**
@@ -30,6 +33,14 @@ public class PartieDAO extends AbstractDataBaseDAO{
         super(/*ds*/);
     }
 
+    // Personal DAOs Methods
+    public JoueurModel getJoueur(PartieModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
+    
+    // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
         PartieModel result = null;

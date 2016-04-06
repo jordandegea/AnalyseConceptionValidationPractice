@@ -15,6 +15,7 @@ import java.util.List;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
+import model.JoueurModel;
 import model.PersonnageModel;
 
 /**
@@ -34,7 +35,15 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
 
             
     // Personal DAOs Methods
-    public BiographieModel getBiographie(PersonnageModel bio) throws DAOException{
+    public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    public JoueurModel getMJ(PersonnageModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    public JoueurModel getOwner(PersonnageModel personnage) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
