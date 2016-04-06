@@ -12,8 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import model.AbstractBaseModel;
+import model.BiographieModel;
 import model.JoueurModel;
+import model.PartieModel;
+import model.PersonnageModel;
 
 /**
  *
@@ -29,7 +33,17 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     private JoueurDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
-
+    
+    
+    // Personal DAOs Methods
+    public Set<PartieModel> getParties(JoueurModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
+    
+    
+    // Override Methods 
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
         JoueurModel result = null;

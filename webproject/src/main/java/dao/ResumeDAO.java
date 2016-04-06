@@ -15,6 +15,8 @@ import java.util.List;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
+import model.PartieModel;
+import model.PersonnageModel;
 import model.ResumeModel;
 
 /**
@@ -37,6 +39,10 @@ public class ResumeDAO extends EpisodeDAO{
     
     // Personal DAOs Methods
     public BiographieModel getBiographie(ResumeModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    public PartieModel getPartie(ResumeModel personnage) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import model.AbstractBaseModel;
 import model.EpisodeModel;
 import model.JoueurModel;
@@ -38,7 +39,6 @@ public class PartieDAO extends AbstractDataBaseDAO{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
-    
     
     // Override Methods
     @Override

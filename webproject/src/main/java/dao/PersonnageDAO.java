@@ -12,10 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
 import model.JoueurModel;
+import model.PartieModel;
 import model.PersonnageModel;
 
 /**
@@ -34,7 +36,12 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     }
 
             
+    
     // Personal DAOs Methods
+    public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
     public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
@@ -47,6 +54,11 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
+    public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
     
     
     // Override Methods    
