@@ -1,5 +1,12 @@
 package loaders;
 
+import dao.BioInitialeDAO;
+import dao.DAOException;
+import dao.PersonnageDAO;
+import dao.ResumeDAO;
+import dao.TransitionDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.*;
 
 /**
@@ -8,28 +15,43 @@ import model.*;
 public class BiographieLoader extends AbstractLoader<BiographieModel> {
     public BiographieModel get(BioInitialeModel bioInitiale) {
         if (!isLoaded())
-            setObject(BioInitialeModel.getDAO().getBiographie(bioInitiale));
-
+            try {
+                setObject(((BioInitialeDAO)BioInitialeModel.getDAO()).getBiographie(bioInitiale));
+        } catch (DAOException ex) {
+            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return getObject();
     }
 
     public BiographieModel get(TransitionModel transition) {
         if (!isLoaded())
-            setObject(TransitionModel.getDAO().getBiographie(transition));
+            try {
+                setObject(((TransitionDAO)TransitionModel.getDAO()).getBiographie(transition));
+        } catch (DAOException ex) {
+            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }
 
     public BiographieModel get(ResumeModel resume) {
         if (!isLoaded())
-            setObject(ResumeModel.getDAO().getBiographie(resume));
+            try {
+                setObject(((ResumeDAO)ResumeModel.getDAO()).getBiographie(resume));
+        } catch (DAOException ex) {
+            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }
 
     public BiographieModel get(PersonnageModel personnage) {
         if (!isLoaded())
-            setObject(PersonnageModel.getDAO().getBiographie(personnage));
+            try {
+                setObject(((PersonnageDAO)PersonnageModel.getDAO()).getBiographie(personnage));
+        } catch (DAOException ex) {
+            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }

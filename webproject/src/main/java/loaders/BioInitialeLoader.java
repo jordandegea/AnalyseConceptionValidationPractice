@@ -1,5 +1,9 @@
 package loaders;
 
+import dao.BiographieDAO;
+import dao.DAOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.BioInitialeModel;
 import model.BiographieModel;
 
@@ -9,7 +13,11 @@ import model.BiographieModel;
 public class BioInitialeLoader extends AbstractLoader<BioInitialeModel> {
     public BioInitialeModel get(BiographieModel bio) {
         if (!isLoaded())
-            setObject(BiographieModel.getDAO().getBioInitiale(bio));
+            try {
+                setObject(((BiographieDAO)BiographieModel.getDAO()).getBioInitiale(bio));
+        } catch (DAOException ex) {
+            Logger.getLogger(BioInitialeLoader.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return getObject();
     }

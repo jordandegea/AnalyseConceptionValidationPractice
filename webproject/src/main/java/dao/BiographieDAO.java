@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.AbstractBaseModel;
+import model.BioInitialeModel;
 import model.BiographieModel;
 import model.ResumeModel;
 
@@ -32,6 +33,11 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         super(/*ds*/);
     }
 
+    public BioInitialeModel getBioInitiale(BiographieModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
         BiographieModel result = null;
