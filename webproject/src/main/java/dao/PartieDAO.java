@@ -18,6 +18,8 @@ import model.EpisodeModel;
 import model.JoueurModel;
 import model.ParagrapheModel;
 import model.PartieModel;
+import model.PersonnageModel;
+import model.UniversModel;
 
 /**
  *
@@ -36,6 +38,11 @@ public class PartieDAO extends AbstractDataBaseDAO{
 
     // Personal DAOs Methods
     public JoueurModel getJoueur(PartieModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
+    public Set<PersonnageModel> getPersonnages(PartieModel partie) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }

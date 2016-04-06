@@ -18,6 +18,7 @@ import model.BiographieModel;
 import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
+import model.UniversModel;
 
 /**
  *
@@ -37,6 +38,14 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public Set<PartieModel> getParties(JoueurModel personnage) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    public Set<PersonnageModel> getPersonnagesOwned(JoueurModel joueur) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }

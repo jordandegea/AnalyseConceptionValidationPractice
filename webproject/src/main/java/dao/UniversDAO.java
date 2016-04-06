@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Set;
 import javax.sql.DataSource;
 import model.AbstractBaseModel;
+import model.JoueurModel;
+import model.PartieModel;
+import model.PersonnageModel;
 import model.UniversModel;
 
 /**
@@ -33,6 +36,13 @@ public class UniversDAO extends AbstractDataBaseDAO {
         super(/*ds*/);
     }
 
+    // Personal DAOs Methods
+    public Set<PersonnageModel> getPersonnages(UniversModel univers) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+    
+    // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
         UniversModel result = null;
