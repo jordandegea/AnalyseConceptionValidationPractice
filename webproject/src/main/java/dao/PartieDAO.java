@@ -72,7 +72,9 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         rs.getString("resumePartie"), 
                         rs.getDate("date"), 
                         rs.getString("lieu"), 
-                        rs.getBoolean("termine"));
+                        rs.getBoolean("termine"),
+                        rs.getInt("idJoueur"),
+                        rs.getInt("idUnivers"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -98,7 +100,9 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         rs.getString("resumePartie"), 
                         rs.getDate("date"), 
                         rs.getString("lieu"), 
-                        rs.getBoolean("termine"));
+                        rs.getBoolean("termine"),
+                             rs.getInt("idJoueur"),
+                        rs.getInt("idUnivers"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

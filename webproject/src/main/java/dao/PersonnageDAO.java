@@ -83,7 +83,11 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait")
+                        rs.getString("portrait"),
+                        rs.getInt("idJoueur"),
+                        rs.getInt("idUnivers"),
+                        rs.getInt("idPartie"),
+                        rs.getInt("idBiographie")
                 );
             }
         } catch (SQLException e) {
@@ -109,7 +113,11 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait") );
+                        rs.getString("portrait"),
+                        rs.getInt("idJoueur"),
+                        rs.getInt("idUnivers"),
+                        rs.getInt("idPartie"),
+                        rs.getInt("idBiographie") );
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

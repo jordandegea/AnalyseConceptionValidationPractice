@@ -50,7 +50,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idParagraphe='" + id + "'");
             if (rs.next()) {
-                result = new ParagrapheModel(id,rs.getBoolean("portrait"), rs.getString("secret"));
+                result = new ParagrapheModel(id,rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -70,7 +70,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe");
             while (rs.next()) {
                 ParagrapheModel ouvrage
-                     = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("portrait"), rs.getString("secret"));
+                     = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

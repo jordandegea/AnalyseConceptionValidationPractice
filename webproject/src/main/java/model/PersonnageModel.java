@@ -17,6 +17,11 @@ public class PersonnageModel extends AbstractBaseModel {
     private String profession;
     private String portrait;
 
+    private int idJoueur;
+    private int idUnivers ;
+    private int idPartie ;
+    private int idBiographie ;
+    
     private JoueurLoader owner;
     private UniversLoader univers;
     private PartieLoader parties;
@@ -24,12 +29,19 @@ public class PersonnageModel extends AbstractBaseModel {
     private JoueurLoader MJ;
     private BiographieLoader biographie;
 
-    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait) {
+    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait,
+    int idJoueur, int idUnivers, int idPartie, int idBiographie) {
         super(id);
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
+        
+        this.idJoueur = idJoueur;
+        this.idUnivers = idUnivers;
+        this.idPartie = idPartie;
+        this.idBiographie = idBiographie;
+        
         owner = new JoueurLoader();
         univers = new UniversLoader();
         parties = new PartieLoader();

@@ -10,11 +10,14 @@ import loaders.TransitionLoader;
  * Created by william on 05/04/16.
  */
 public class BiographieModel extends AbstractBaseModel {
+    private int idBiographie;
+    private int idBioInitiale;
+    
     private BioInitialeLoader bioInitiale;
     private ResumeLoader resumes;
     private TransitionLoader transitions;
 
-    public BiographieModel(int id) {
+    public BiographieModel(int id, int idBiographie, int idBioInitiale) {
         super(id);
         bioInitiale = new BioInitialeLoader();
         resumes = new ResumeLoader();

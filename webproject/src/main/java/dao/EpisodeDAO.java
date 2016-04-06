@@ -36,45 +36,6 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
     
     // Override Methods
     
-    public AbstractBaseModel get(int id, String by) throws DAOException {
-        ResumeModel result = null;
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='"+by+"' ");
-            if (rs.next()) {
-                result = new ResumeModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
-            }
-        } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
-        }
-        return result;
-    }
-    
-    public List<AbstractBaseModel> getAll(String by) throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='"+by+"' ");
-            while (rs.next()) {
-                ResumeModel ouvrage
-                    = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
-                result.add(ouvrage);
-            }
-        } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
-        }
-        return result;
-    }
-    
-    
     @Override
     public int insert(Object object) throws DAOException {
         if (!(object instanceof TransitionModel)) {

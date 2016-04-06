@@ -15,6 +15,7 @@ import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
 import model.ResumeModel;
+import model.TransitionModel;
 
 /**
  *
@@ -43,12 +44,42 @@ public class BioInitialeDAO extends EpisodeDAO {
     // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
-        return super.get(id, "BioInitiale");
+        BioInitialeModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='BioInitiale' ");
+            if (rs.next()) {
+                result = new BioInitialeModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     @Override
     public List<AbstractBaseModel> getAll() throws DAOException {
-        return super.getAll("BioInitiale");
+        List<AbstractBaseModel> result = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='BioInitiale' ");
+            while (rs.next()) {
+                BioInitialeModel ouvrage
+                    = new BioInitialeModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                result.add(ouvrage);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 
 }

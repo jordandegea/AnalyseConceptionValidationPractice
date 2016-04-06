@@ -48,15 +48,43 @@ public class ResumeDAO extends EpisodeDAO{
     }
     
     
-    // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
-        return super.get(id, "Resume");
+        ResumeModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='Resume' ");
+            if (rs.next()) {
+                result = new ResumeModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"),rs.getInt("idPartie"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
-    @Override
     public List<AbstractBaseModel> getAll() throws DAOException {
-        return super.getAll("Resume");
+        List<AbstractBaseModel> result = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='Resume' ");
+            while (rs.next()) {
+                ResumeModel ouvrage
+                    = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"),rs.getInt("idPartie"));
+                result.add(ouvrage);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 
     @Override

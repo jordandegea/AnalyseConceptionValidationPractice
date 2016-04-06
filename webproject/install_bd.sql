@@ -20,7 +20,7 @@ CREATE TABLE Partie(
 	lieu varchar(50),
 	termine integer, -- booléen
 	idUnivers REFERENCES Univers(idUnivers)
-	loginMJ REFERENCES Joueur(login)
+	idJoueur REFERENCES Joueur(idJoueurU)
 );
 
 CREATE TABLE Episode(
@@ -71,8 +71,8 @@ CREATE TABLE EpisodeBiographie(
 
 CREATE TABLE MJ(
 	idPerso int REFERENCES Personnage(idPersonnage),
-	login varchar(50) REFERENCES Joueur(login),
-	primary key (idPerso,login)
+	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
+	primary key (idPerso,idJoueur)
 );
 
 --DROP TABLE MJ;

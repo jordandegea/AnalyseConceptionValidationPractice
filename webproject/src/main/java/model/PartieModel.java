@@ -18,18 +18,25 @@ public class PartieModel extends AbstractBaseModel {
     private String lieu;
     private boolean partieFinie;
 
+    private int idJoueur;
+    private int idUnivers;
+    
     private UniversLoader univers;
     private JoueurLoader MJ;
     private PersonnageLoader personnages;
     private ResumeLoader resume;
 
-    public PartieModel(int id, String titrePartie, String résumé, Date date, String lieu, boolean partieFinie) {
+    public PartieModel(int id, String titrePartie, String résumé, Date date, String lieu, boolean partieFinie, int idJoueur, int idUnivers) {
         super(id);
         this.titrePartie = titrePartie;
         this.résumé = résumé;
         this.date = date;
         this.lieu = lieu;
         this.partieFinie = partieFinie;
+        
+        this.idJoueur = idJoueur;
+        this.idUnivers = idUnivers;
+        
         univers = new UniversLoader();
         MJ = new JoueurLoader();
         personnages = new PersonnageLoader();

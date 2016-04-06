@@ -41,14 +41,43 @@ public class TransitionDAO extends EpisodeDAO{
     }
     
     
-    // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
-        return super.get(id, "Transition");
+        TransitionModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='Transition' ");
+            if (rs.next()) {
+                result = new TransitionModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     @Override
     public List<AbstractBaseModel> getAll() throws DAOException {
-        return super.getAll("Transition");
+        List<AbstractBaseModel> result = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='Transition' ");
+            while (rs.next()) {
+                TransitionModel ouvrage
+                    = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                result.add(ouvrage);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 }

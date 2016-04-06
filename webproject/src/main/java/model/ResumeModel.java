@@ -9,11 +9,18 @@ import java.sql.Date;
  * Created by william on 05/04/16.
  */
 public class ResumeModel extends EpisodeModel {
+    private int idEpisode;
+    private int idPartie;
+    
     private PartieLoader partie;
     private BiographieLoader biographie;
 
-    public ResumeModel(int id, Date dateEpisode, boolean ecritureEnCours) {
+    public ResumeModel(int id, Date dateEpisode, boolean ecritureEnCours, int idEpisode, int idPartie) {
         super(id, dateEpisode, ecritureEnCours);
+        
+        this.idEpisode = idEpisode ; 
+        this.idPartie = idPartie;
+        
         partie = new PartieLoader();
         biographie = new BiographieLoader();
     }
