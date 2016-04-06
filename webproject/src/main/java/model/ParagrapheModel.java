@@ -7,6 +7,7 @@ import loaders.EpisodeLoader;
  */
 public class ParagrapheModel extends AbstractBaseModel {
     private int idEpisode;
+
     
     private boolean secret;
     private String contenu;
@@ -37,5 +38,9 @@ public class ParagrapheModel extends AbstractBaseModel {
     
     public EpisodeModel getEpisode(){
         return episode.get(this);
+    }
+    
+    public int getIdEpisode() {
+        return idEpisode;
     }
 }

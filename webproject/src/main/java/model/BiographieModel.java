@@ -19,6 +19,10 @@ public class BiographieModel extends AbstractBaseModel {
 
     public BiographieModel(int id, int idBiographie, int idBioInitiale) {
         super(id);
+        
+        this.idBioInitiale = idBioInitiale;
+        this.idBiographie = idBiographie;
+        
         bioInitiale = new BioInitialeLoader();
         resumes = new ResumeLoader();
     }
@@ -32,5 +36,12 @@ public class BiographieModel extends AbstractBaseModel {
     }
     public Set<TransitionModel> getTransition() {
         return transitions.get(this);
+    }
+    public int getIdBiographie() {
+        return idBiographie;
+    }
+
+    public int getIdBioInitiale() {
+        return idBioInitiale;
     }
 }

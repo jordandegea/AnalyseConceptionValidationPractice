@@ -11,6 +11,7 @@ import java.sql.Date;
 public class ResumeModel extends EpisodeModel {
     private int idEpisode;
     private int idPartie;
+
     
     private PartieLoader partie;
     private BiographieLoader biographie;
@@ -31,5 +32,13 @@ public class ResumeModel extends EpisodeModel {
 
     public BiographieModel getBiographie() {
         return this.biographie.get(this);
+    }
+    
+    public int getIdEpisode() {
+        return idEpisode;
+    }
+
+    public int getIdPartie() {
+        return idPartie;
     }
 }

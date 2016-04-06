@@ -18,6 +18,7 @@ public class PersonnageModel extends AbstractBaseModel {
     private String portrait;
 
     private int idJoueur;
+
     private int idUnivers ;
     private int idPartie ;
     private int idBiographie ;
@@ -102,5 +103,22 @@ public class PersonnageModel extends AbstractBaseModel {
 
     public JoueurModel getMJ() {
         return MJ.getMJ(this);
+    }
+    
+    
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public int getIdUnivers() {
+        return idUnivers;
+    }
+
+    public int getIdPartie() {
+        return idPartie;
+    }
+
+    public int getIdBiographie() {
+        return idBiographie;
     }
 }

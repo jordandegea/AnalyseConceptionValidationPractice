@@ -19,6 +19,7 @@ public class PartieModel extends AbstractBaseModel {
     private boolean partieFinie;
 
     private int idJoueur;
+
     private int idUnivers;
     
     private UniversLoader univers;
@@ -97,5 +98,13 @@ public class PartieModel extends AbstractBaseModel {
 
     public ResumeModel getResume() {
         return this.resume.get(this);
+    }
+    
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public int getIdUnivers() {
+        return idUnivers;
     }
 }
