@@ -20,6 +20,7 @@ import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
 import model.ResumeModel;
+import model.TransitionModel;
 
 /**
  *
@@ -36,13 +37,19 @@ public class BiographieDAO extends AbstractDataBaseDAO{
     private BiographieDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
-
+    
+    // Personal DAOs Methods
     public BioInitialeModel getBioInitiale(BiographieModel bio) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
      // Personal DAOs Methods
     public Set<ResumeModel> getResumes(BiographieModel bio) throws DAOException{
+        // TODO: complete that
+        throw new DAOException("Not Implemented Yet");
+    }
+     // Personal DAOs Methods
+    public Set<TransitionModel> getTransitions(BiographieModel bio) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
