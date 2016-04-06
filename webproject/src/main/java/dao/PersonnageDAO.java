@@ -41,17 +41,14 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     // Personal DAOs Methods
     
     public UniversModel getUnivers(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        return (UniversModel) UniversDAO.instance().get(personnage.getIdUnivers());
     }
     
     public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        return (PartieModel) PartieDAO.instance().get(personnage.getIdPartie());
     }
     public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        return (BiographieModel) BiographieDAO.instance().get(personnage.getIdBiographie());
     }
     public JoueurModel getMJ(PersonnageModel personnage) throws DAOException{
         // TODO: complete that

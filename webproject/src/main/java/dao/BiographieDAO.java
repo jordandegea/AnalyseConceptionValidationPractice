@@ -40,8 +40,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public BioInitialeModel getBioInitiale(BiographieModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        return (BioInitialeModel) BioInitialeDAO.instance().get(bio.getIdBioInitiale());
     }
      // Personal DAOs Methods
     public Set<ResumeModel> getResumes(BiographieModel bio) throws DAOException{
@@ -65,7 +64,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie WHERE idEpisode='" + id + "' ");
             if (rs.next()) {
-                result = new BiographieModel(id, rs.getInt("idBiographie"),rs.getInt("idBioInitiale"));
+                result = new BiographieModel(id, rs.getInt("idBioInitiale"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -85,7 +84,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie");
             while (rs.next()) {
                 BiographieModel ouvrage
-                        = new BiographieModel(rs.getInt("idBiographie"),rs.getInt("idBiographie"),rs.getInt("idBioInitiale"));
+                        = new BiographieModel(rs.getInt("idBiographie"), rs.getInt("idBioInitiale"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

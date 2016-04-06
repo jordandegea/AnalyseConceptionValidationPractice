@@ -35,7 +35,7 @@ public class TransitionDAO extends EpisodeDAO{
     }
 
     // Personal DAOs Methods
-    public BiographieModel getBiographie(TransitionModel bio) throws DAOException{
+    public BiographieModel getBiographie(TransitionModel transition) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }

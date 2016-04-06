@@ -38,13 +38,12 @@ public class ResumeDAO extends EpisodeDAO{
 
     
     // Personal DAOs Methods
-    public BiographieModel getBiographie(ResumeModel bio) throws DAOException{
-        // TODO: complete that
+    public BiographieModel getBiographie(ResumeModel resume) throws DAOException{
+// TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
-    public PartieModel getPartie(ResumeModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+    public PartieModel getPartie(ResumeModel resume) throws DAOException{
+        return (PartieModel) PartieDAO.instance().get(resume.getIdPartie());
     }
     
     

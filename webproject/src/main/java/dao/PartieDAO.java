@@ -38,17 +38,15 @@ public class PartieDAO extends AbstractDataBaseDAO{
     }
 
     // Personal DAOs Methods
-    public JoueurModel getJoueur(PartieModel bio) throws DAOException{
+    public JoueurModel getJoueur(PartieModel partie) throws DAOException{
+        return (JoueurModel) JoueurDAO.instance().get(partie.getIdJoueur());
+    }
+    public ResumeModel getResume(PartieModel partie) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
-    public ResumeModel getResume(PartieModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
-    }
-    public UniversModel getUnivers(PartieModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+    public UniversModel getUnivers(PartieModel partie) throws DAOException{
+        return (UniversModel) UniversDAO.instance().get(partie.getIdUnivers());
     }
     
     public Set<PersonnageModel> getPersonnages(PartieModel partie) throws DAOException{
