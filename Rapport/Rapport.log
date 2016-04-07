@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.1.11)  5 APR 2016 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.1.11)  7 APR 2016 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -633,31 +633,56 @@ File: images/utilisation/MJCU.png Graphic file (type png)
 <use images/utilisation/MJCU.png>
 Package pdftex.def Info: images/utilisation/MJCU.png used on input line 47.
 (pdftex.def)             Requested size: 284.52756pt x 289.61246pt.
+
+<images/sequence/DS-OrganiserPartie.png, id=5, 487.8225pt x 448.52568pt>
+File: images/sequence/DS-OrganiserPartie.png Graphic file (type png)
+
+<use images/sequence/DS-OrganiserPartie.png>
+Package pdftex.def Info: images/sequence/DS-OrganiserPartie.png used on input l
+ine 55.
+(pdftex.def)             Requested size: 284.52756pt x 261.60968pt.
+
+<images/sequence/DS-ChangerMJ.png, id=6, 388.45125pt x 329.28018pt>
+File: images/sequence/DS-ChangerMJ.png Graphic file (type png)
+
+<use images/sequence/DS-ChangerMJ.png>
+Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 61
+.
+(pdftex.def)             Requested size: 284.52756pt x 241.19151pt.
+
+<images/sequence/DS-CreerPerso.png, id=7, 462.528pt x 448.52568pt>
+File: images/sequence/DS-CreerPerso.png Graphic file (type png)
+
+<use images/sequence/DS-CreerPerso.png>
+Package pdftex.def Info: images/sequence/DS-CreerPerso.png used on input line 6
+7.
+(pdftex.def)             Requested size: 284.52756pt x 275.9272pt.
  [1
 
 {/opt/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./images/clas
 se/DiagrammeClasse.png>] [2 <./images/utilisation/UserCU.png> <./images/utilisa
-tion/JoueurCU.png>] [3 <./images/utilisation/MJCU.png>] (./Rapport.aux) ) 
+tion/JoueurCU.png>] [3 <./images/utilisation/MJCU.png> <./images/sequence/DS-Or
+ganiserPartie.png>] [4 <./images/sequence/DS-ChangerMJ.png> <./images/sequence/
+DS-CreerPerso.png>] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 4598 strings out of 493054
- 61012 string characters out of 6134766
- 135444 words of memory out of 5000000
- 8021 multiletter control sequences out of 15000+600000
+ 4614 strings out of 493054
+ 61552 string characters out of 6134766
+ 136444 words of memory out of 5000000
+ 8033 multiletter control sequences out of 15000+600000
  13572 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,6n,30p,235b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/opt/
-texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</opt/texlive/
-2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></opt/texlive/2015/tex
-mf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt/texlive/2015/texmf-dist/
-fonts/type1/public/cm-super/sfcc1000.pfb></opt/texlive/2015/texmf-dist/fonts/ty
-pe1/public/cm-super/sfrm1000.pfb></opt/texlive/2015/texmf-dist/fonts/type1/publ
-ic/cm-super/sfrm1200.pfb></opt/texlive/2015/texmf-dist/fonts/type1/public/cm-su
-per/sfrm1728.pfb>
-Output written on Rapport.pdf (3 pages, 204198 bytes).
+{/opt/texlive/2015/texmf-dist/fonts/enc/dv
+ips/cm-super/cm-super-t1.enc}</opt/texlive/2015/texmf-dist/fonts/type1/public/c
+m-super/sfbx1200.pfb></opt/texlive/2015/texmf-dist/fonts/type1/public/cm-super/
+sfbx1440.pfb></opt/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfcc1000
+.pfb></opt/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></o
+pt/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/texli
+ve/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on Rapport.pdf (4 pages, 262214 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
