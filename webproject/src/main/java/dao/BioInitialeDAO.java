@@ -36,8 +36,21 @@ public class BioInitialeDAO extends EpisodeDAO {
 
     // Personal DAOs Methods
     public BiographieModel getBiographie(BioInitialeModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        BiographieModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Biographie WHERE idBioInitiale='" + bio.getId() + "' ");
+            if (rs.next()) {
+                result = new BiographieModel(rs.getInt("idBiographie"), rs.getInt("idBBioInitiale"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     

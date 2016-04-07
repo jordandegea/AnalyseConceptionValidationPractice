@@ -33,7 +33,7 @@ CREATE TABLE Episode(
 
 CREATE TABLE Biographie(
 	idBiographie int primary key,
-	idBioIitiale int REFERENCES Episode(idEpisode)
+	idBioInitiale int REFERENCES Episode(idEpisode)
 );
 
 CREATE TABLE Personnage(
@@ -47,7 +47,7 @@ CREATE TABLE Personnage(
 	idPartie int REFERENCES Partie(idPartie),
 	idBiographie int REFERENCES Biographie(idBiographie)
 );
-
+B
 CREATE TABLE Resume(
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
