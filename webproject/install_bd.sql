@@ -1,23 +1,26 @@
 SET AUTOCOMMIT ON;
 
 CREATE TABLE Univers(
- 	nomUnivers varchar(50) primary key
+ 	idUnivers int primary key,
+ 	nomUnivers varchar(50) unique
 );
 
 CREATE TABLE Joueur(
-	login varchar(50) primary key,
+	idJoueur int primary key
+	login varchar(50) unique,
 	mdp varchar(256),
 	email varchar(128)
 );
 
 CREATE TABLE Partie(
  	idPartie int primary key,
+	titrePartie varchar(256),
 	resumePartie varchar(1024),
 	datePartie date,
 	lieu varchar(50),
-	titrePartie varchar(256),
-	nomUnivers varchar(50),
-	loginMJ REFERENCES Joueur(login)
+	termine integer, -- booléen
+	idUnivers REFERENCES Univers(idUnivers)
+	idJoueur REFERENCES Joueur(idJoueurU)
 );
 
 CREATE TABLE Episode(
@@ -30,7 +33,7 @@ CREATE TABLE Episode(
 
 CREATE TABLE Biographie(
 	idBiographie int primary key,
-	idBioIitiale int REFERENCES Episode(idEpisode)
+	idBioInitiale int REFERENCES Episode(idEpisode)
 );
 
 CREATE TABLE Personnage(
@@ -39,12 +42,12 @@ CREATE TABLE Personnage(
 	dateNaissance date,
 	profession varchar(256),
 	portrait varchar(512),
-	login varchar(50) REFERENCES Joueur(login),
-	nomUnivers varchar(50) REFERENCES Univers(nomUnivers),
+	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
+	idUnivers varchar(50) REFERENCES Univers(idUnivers),
 	idPartie int REFERENCES Partie(idPartie),
 	idBiographie int REFERENCES Biographie(idBiographie)
 );
-
+B
 CREATE TABLE Resume(
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
@@ -53,6 +56,8 @@ CREATE TABLE Resume(
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
+	secret integer, -- booléen
+	contenu contenu(512),
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 
@@ -66,8 +71,8 @@ CREATE TABLE EpisodeBiographie(
 
 CREATE TABLE MJ(
 	idPerso int REFERENCES Personnage(idPersonnage),
-	login varchar(50) REFERENCES Joueur(login),
-	primary key (idPerso,login)
+	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
+	primary key (idPerso,idJoueur)
 );
 
 --DROP TABLE MJ;
