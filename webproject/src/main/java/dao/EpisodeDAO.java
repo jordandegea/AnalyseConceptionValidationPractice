@@ -11,9 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.AbstractBaseModel;
+import model.BiographieModel;
 import model.EpisodeModel;
 import model.JoueurModel;
 import model.ParagrapheModel;
@@ -29,8 +31,23 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public Set<ParagrapheModel> getParagraphe(EpisodeModel episode) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<ParagrapheModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idEpisode='"+episode.getId()+"'");
+            while (rs.next()) {
+                ParagrapheModel ouvrage
+                        = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
+                result.add(ouvrage);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     
