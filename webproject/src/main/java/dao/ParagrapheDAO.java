@@ -12,65 +12,45 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import javax.sql.DataSource;
 import model.AbstractBaseModel;
-import model.JoueurModel;
-import model.PartieModel;
-import model.PersonnageModel;
-import model.UniversModel;
+import model.BioInitialeModel;
+import model.BiographieModel;
+import model.EpisodeModel;
+import model.ParagrapheModel;
 
 /**
  *
  * @author JordanLeMagnifique
  */
-public class UniversDAO extends AbstractDataBaseDAO {
+public class ParagrapheDAO extends AbstractDataBaseDAO{
+    final private static ParagrapheDAO instanceUnique = new ParagrapheDAO();
 
-    final private static UniversDAO instanceUnique = new UniversDAO();
-
-    static UniversDAO instance() {
+    static ParagrapheDAO instance() {
         return instanceUnique;
     }
 
-    private UniversDAO(/*DataSource ds*/) {
+    private ParagrapheDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
 
     // Personal DAOs Methods
-    public Set<PersonnageModel> getPersonnages(UniversModel univers) throws DAOException{
+    public EpisodeModel getEpisode(ParagrapheModel bio) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
     
+    
     // Override Methods
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
-        UniversModel result = null;
+        ParagrapheModel result = null;
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Univers WHERE idUnivers='" + id + "'");
+            ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idParagraphe='" + id + "'");
             if (rs.next()) {
-                result = new UniversModel(id, rs.getString("nomUnivers"));
-            }
-        } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
-        }
-        return result;
-    }
-
-    public AbstractBaseModel get(String nom) throws DAOException {
-        UniversModel result = null;
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Univers WHERE nomUnivers='" + nom + "'");
-            if (rs.next()) {
-                result = new UniversModel(rs.getInt("idUnivers"), rs.getString("nomUnivers"));
+                result = new ParagrapheModel(id,rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -87,10 +67,10 @@ public class UniversDAO extends AbstractDataBaseDAO {
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Univers");
+            ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe");
             while (rs.next()) {
-                UniversModel ouvrage
-                        = new UniversModel(rs.getInt("idUnivers"), rs.getString("nomUnivers"));
+                ParagrapheModel ouvrage
+                     = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -103,17 +83,19 @@ public class UniversDAO extends AbstractDataBaseDAO {
 
     @Override
     public int insert(Object object) throws DAOException {
-        if (!(object instanceof UniversModel)) {
-            throw new DAOException("Wrong object parameter in insert, require UniversModel");
+        if (!(object instanceof ParagrapheModel)) {
+            throw new DAOException("Wrong object parameter in insert, require ParagrapheModel");
         }
         int affectedRows = 0;
-        UniversModel univers = (UniversModel) object;
+        ParagrapheModel paragraphe = (ParagrapheModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Univers (nomUnivers) VALUES (?)");
-            st.setString(1, univers.getNom());
+                    = conn.prepareStatement("INSERT INTO Paragraphe (secret, contenu, idEpisode) VALUES (?,?,?)");
+            st.setBoolean(1, paragraphe.isSecret());
+            st.setString(2, paragraphe.getContenu());
+            st.setInt(3,  paragraphe.getEpisode().getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -125,18 +107,20 @@ public class UniversDAO extends AbstractDataBaseDAO {
 
     @Override
     public int update(Object object) throws DAOException {
-        if (!(object instanceof UniversModel)) {
-            throw new DAOException("Wrong object parameter in update, require UniversModel");
+        if (!(object instanceof ParagrapheModel)) {
+            throw new DAOException("Wrong object parameter in update, require ParagrapheModel");
         }
         int affectedRows = 0 ; 
-        UniversModel univers = (UniversModel) object;
+        ParagrapheModel paragraphe = (ParagrapheModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("UPDATE Univers SET nomUnivers=? WHERE idUnivers=?");
-            st.setString(1, univers.getNom());
-            st.setInt(2, univers.getId());
+                    = conn.prepareStatement("UPDATE Paragraphe SET secret=?, contenu=?, idEpisode=? WHERE idParagraphe=?");
+            st.setBoolean(1, paragraphe.isSecret());
+            st.setString(2, paragraphe.getContenu());
+            st.setInt(3,  paragraphe.getEpisode().getId());
+            st.setInt(4, paragraphe.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -148,17 +132,17 @@ public class UniversDAO extends AbstractDataBaseDAO {
 
     @Override
     public int delete(Object object) throws DAOException {
-        if (!(object instanceof UniversModel)) {
-            throw new DAOException("Wrong object parameter in delete, require UniversModel");
+        if (!(object instanceof ParagrapheModel)) {
+            throw new DAOException("Wrong object parameter in delete, require ParagrapheModel");
         }
         int affectedRows = 0;
-        UniversModel univers = (UniversModel) object;
+        ParagrapheModel paragraphe = (ParagrapheModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("DELETE FROM Univers  WHERE id=?");
-            st.setInt(1, univers.getId());
+                    = conn.prepareStatement("DELETE FROM Paragraphe  WHERE idParagraphe=?");
+            st.setInt(1, paragraphe.getId());
             st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -167,5 +151,4 @@ public class UniversDAO extends AbstractDataBaseDAO {
         }
         return affectedRows ;
     }
-
 }
