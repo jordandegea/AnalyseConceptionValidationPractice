@@ -27,7 +27,7 @@ import model.UniversModel;
 public class JoueurDAO extends AbstractDataBaseDAO{
     final private static JoueurDAO instanceUnique = new JoueurDAO();
 
-    static JoueurDAO instance() {
+    public static JoueurDAO instance() {
         return instanceUnique;
     }
 
@@ -51,10 +51,27 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     }
     
     
+    public JoueurModel get(String login) throws DAOException {
+        JoueurModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE login='" + login + "'");
+            if (rs.next()) {
+                result = new JoueurModel(Integer.parseInt(rs.getString("idJoueur")), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
     
     // Override Methods 
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
+    public JoueurModel get(int id) throws DAOException {
         JoueurModel result = null;
         Connection conn = null;
         try {
@@ -104,7 +121,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Joueur (login, mdp, email) VALUES (?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, ?,?,?)");
             st.setString(1, joueur.getLogin());
             st.setString(2, joueur.getPassword());
             st.setString(3, joueur.getEmail());

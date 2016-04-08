@@ -1,5 +1,6 @@
 package model;
 
+import dao.JoueurDAO;
 import loaders.PartieLoader;
 import loaders.PersonnageLoader;
 
@@ -18,6 +19,15 @@ public class JoueurModel extends AbstractBaseModel {
 
     public JoueurModel(int id, String login, String password, String email) {
         super(id);
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        personnagesManaged = new PersonnageLoader();
+        personnagesOwned = new PersonnageLoader();
+        partiesManaged = new PartieLoader();
+    }
+    
+    public JoueurModel(String login, String password, String email) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -60,5 +70,9 @@ public class JoueurModel extends AbstractBaseModel {
 
     public Set<PartieModel> getPartiesManaged() {
         return partiesManaged.get(this);
+    }
+    
+    public static JoueurDAO getDAO() {
+        return JoueurDAO.instance();
     }
 }

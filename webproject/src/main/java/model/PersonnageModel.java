@@ -49,6 +49,24 @@ public class PersonnageModel extends AbstractBaseModel {
         MJ = new JoueurLoader();
     }
 
+    public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait,
+    int idJoueur, int idUnivers, int idPartie, int idBiographie) {
+        this.nomPerso = nomPerso;
+        this.dateNaiss = dateNaiss;
+        this.profession = profession;
+        this.portrait = portrait;
+        
+        this.idJoueur = idJoueur;
+        this.idUnivers = idUnivers;
+        this.idPartie = idPartie;
+        this.idBiographie = idBiographie;
+        
+        owner = new JoueurLoader();
+        univers = new UniversLoader();
+        parties = new PartieLoader();
+        MJ = new JoueurLoader();
+    }
+
     public String getNomPerso() {
         return nomPerso;
     }

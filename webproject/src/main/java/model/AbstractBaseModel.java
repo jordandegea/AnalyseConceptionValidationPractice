@@ -12,7 +12,7 @@ import dao.AbstractDataBaseDAO;
  * @author JordanLeMagnifique
  */
 public abstract class AbstractBaseModel {
-    private final int id;
+    private int id;
 
     public int getId() {
         return id;
@@ -21,7 +21,10 @@ public abstract class AbstractBaseModel {
     public AbstractBaseModel(int id) {
         this.id = id;
     }
-
+    
+    public AbstractBaseModel() {
+    }
+    
     public static AbstractDataBaseDAO getDAO() {
         return null;
     }
