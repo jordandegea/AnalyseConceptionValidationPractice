@@ -30,7 +30,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
     final private static BiographieDAO instanceUnique = new BiographieDAO();
     
     
-    static BiographieDAO instance() {
+    public static BiographieDAO instance() {
         return instanceUnique;
     }
     

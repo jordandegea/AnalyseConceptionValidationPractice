@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.8)  7 APR 2016 22:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.8)  8 APR 2016 16:03
 entering extended mode
 **Rapport.tex
 (C:\Users\Simon\Documents\GitHub\ENSIMAG-ACVLCAWEB\Rapport\Rapport.tex
@@ -560,14 +560,14 @@ File: images/classe/DiagrammeClasse.png Graphic file (type png)
 
 <use images/classe/DiagrammeClasse.png>
 Package pdftex.def Info: images/classe/DiagrammeClasse.png used on input line 2
-8.
+7.
 (pdftex.def)             Requested size: 284.52756pt x 299.00128pt.
 
 <images/utilisation/UserCU.png, id=2, 493.24275pt x 370.38374pt>
 File: images/utilisation/UserCU.png Graphic file (type png)
 
 <use images/utilisation/UserCU.png>
-Package pdftex.def Info: images/utilisation/UserCU.png used on input line 35.
+Package pdftex.def Info: images/utilisation/UserCU.png used on input line 34.
 (pdftex.def)             Requested size: 284.52756pt x 213.66414pt.
  [1
 
@@ -578,7 +578,7 @@ g>]
 File: images/utilisation/JoueurCU.png Graphic file (type png)
 
 <use images/utilisation/JoueurCU.png>
-Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 42.
+Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 41.
 
 (pdftex.def)             Requested size: 284.52756pt x 258.43634pt.
 
@@ -586,7 +586,7 @@ Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 42.
 File: images/utilisation/MJCU.png Graphic file (type png)
 
 <use images/utilisation/MJCU.png>
-Package pdftex.def Info: images/utilisation/MJCU.png used on input line 48.
+Package pdftex.def Info: images/utilisation/MJCU.png used on input line 47.
 (pdftex.def)             Requested size: 284.52756pt x 289.61246pt.
  [2 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/utilisati
 on/UserCU.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/image
@@ -596,14 +596,14 @@ File: images/sequence/DS-OrganiserPartie.png Graphic file (type png)
 
 <use images/sequence/DS-OrganiserPartie.png>
 Package pdftex.def Info: images/sequence/DS-OrganiserPartie.png used on input l
-ine 56.
+ine 55.
 (pdftex.def)             Requested size: 284.52756pt x 261.60968pt.
 
 <images/sequence/DS-ChangerMJ.png, id=19, 388.45125pt x 329.28018pt>
 File: images/sequence/DS-ChangerMJ.png Graphic file (type png)
 
 <use images/sequence/DS-ChangerMJ.png>
-Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 62
+Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 61
 .
 (pdftex.def)             Requested size: 284.52756pt x 241.19151pt.
 
@@ -612,34 +612,43 @@ File: images/sequence/DS-CreerPerso.png Graphic file (type png)
 
 <use images/sequence/DS-CreerPerso.png>
 Package pdftex.def Info: images/sequence/DS-CreerPerso.png used on input line 6
-8.
+7.
 (pdftex.def)             Requested size: 284.52756pt x 275.9272pt.
  [3 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/utilisati
 on/MJCU.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/
 sequence/DS-OrganiserPartie.png>]
-[4 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/sequence/D
-S-ChangerMJ.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/ima
-ges/sequence/DS-CreerPerso.png>] [5]
+<images/sequence/ET-Personnage.png, id=24, 460.72125pt x 234.8775pt>
+File: images/sequence/ET-Personnage.png Graphic file (type png)
+
+<use images/sequence/ET-Personnage.png>
+Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 7
+8.
+(pdftex.def)             Requested size: 284.52756pt x 145.05269pt.
+ [4 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/sequence/
+DS-ChangerMJ.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/im
+ages/sequence/DS-CreerPerso.png>]
+[5 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/sequence/E
+T-Personnage.png>]
 (C:\Users\Simon\Documents\GitHub\ENSIMAG-ACVLCAWEB\Rapport\Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 3908 strings out of 493921
- 50232 string characters out of 3146079
+ 3913 strings out of 493921
+ 50400 string characters out of 3146079
  114713 words of memory out of 3000000
- 7121 multiletter control sequences out of 15000+200000
+ 7125 multiletter control sequences out of 15000+200000
  13572 words of font info for 39 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,6n,28p,235b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,28p,235b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\U
-sers\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1000
+sers\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000
 .pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
-0\ecrm1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
+0\eccc1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
 n\ec\dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
 ur\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fon
 ts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Local\MiKT
 eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk>
-Output written on Rapport.pdf (5 pages, 237763 bytes).
+Output written on Rapport.pdf (5 pages, 248018 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
+ 192 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

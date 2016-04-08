@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  */
 public class DAOConfiguration {
     
-    @Resource(name = "jdbc/bibliography")
+    @Resource(name = "jdbc/roleplay")
     public static DataSource dataSource;
     
 }

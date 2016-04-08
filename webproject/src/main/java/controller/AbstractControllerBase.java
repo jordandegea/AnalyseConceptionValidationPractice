@@ -7,6 +7,7 @@ package controller;
 
 import dao.DAOConfiguration;
 import dao.DAOException;
+import dao.JoueurDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Resource;
@@ -15,38 +16,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import model.JoueurModel;
 /**
  *
  * @author JordanLeMagnifique
  */
 public abstract class AbstractControllerBase extends HttpServlet{
     
-    @Resource(name = "jdbc/bibliography")
+    @Resource(name = "jdbc/roleplay")
     public static DataSource dataSource;
+    
+    public AbstractControllerBase() {
+        DAOConfiguration.dataSource = dataSource ;    
+    }
 
     /* pages d’erreurs */
-    private void invalidParameters(HttpServletRequest request,
+    protected void invalidParameters(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/controleurErreur.jsp").forward(request, response);        
     }
 
-    private void erreurBD(HttpServletRequest request,
+    protected void erreurBD(HttpServletRequest request,
                 HttpServletResponse response, DAOException e)
             throws ServletException, IOException {
         request.setAttribute("erreurMessage", e.getMessage());
         request.getRequestDispatcher("/WEB-INF/bdErreur.jsp").forward(request, response);
     }
   
-    public void doGet(HttpServletRequest request,
+    protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws IOException, ServletException {
-        DAOConfiguration.dataSource = dataSource ;
     }
 
-    public void doPost(HttpServletRequest request,
+    protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws IOException, ServletException {
-        DAOConfiguration.dataSource = dataSource ;
+    }
+    
+    /**
+     * Get the user corresponding to the login & password
+     *
+     * @param request
+     * @return
+     * @throws DAOException
+     */
+    private JoueurModel getUser(HttpServletRequest request) throws DAOException {
+        JoueurModel joueur = JoueurDAO.instance().get(Integer.parseInt((String) request.getSession().getAttribute("idUser")));
+
+        return joueur;
     }
     
 }

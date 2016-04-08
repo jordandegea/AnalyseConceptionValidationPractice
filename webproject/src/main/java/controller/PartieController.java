@@ -21,8 +21,7 @@ import javax.sql.DataSource;
  *
  * @author JordanLeMagnifique
  */
-@WebServlet(name = "Controleur", urlPatterns = {"/controleur"})
+@WebServlet(name = "PartieController", urlPatterns = {"/partie"})
 public class PartieController extends HttpServlet {
- 
 
 }

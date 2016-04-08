@@ -26,7 +26,7 @@ public class BioInitialeDAO extends EpisodeDAO {
     final private static BioInitialeDAO instanceUnique = new BioInitialeDAO();
     
     
-    static BioInitialeDAO instance() {
+    public static BioInitialeDAO instance() {
         return instanceUnique;
     }
     
