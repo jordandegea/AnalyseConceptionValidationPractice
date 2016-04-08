@@ -1,5 +1,11 @@
 SET AUTOCOMMIT ON;
 
+CREATE SEQUENCE id
+MINVALUE 1
+START WITH 1
+INCREMENT BY 1
+CACHE 10;
+
 CREATE TABLE Univers(
  	idUnivers int primary key,
  	nomUnivers varchar(50) unique
