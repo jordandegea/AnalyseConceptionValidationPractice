@@ -6,10 +6,10 @@ CREATE TABLE Univers(
 );
 
 CREATE TABLE Joueur(
-	idJoueur int primary key
-	login varchar(50) unique,
+	idJoueur int primary key,
 	mdp varchar(256),
-	email varchar(128)
+	email varchar(128),
+	login varchar(50) unique
 );
 
 CREATE TABLE Partie(
@@ -19,8 +19,8 @@ CREATE TABLE Partie(
 	datePartie date,
 	lieu varchar(50),
 	termine integer, -- booléen
-	idUnivers REFERENCES Univers(idUnivers)
-	idJoueur REFERENCES Joueur(idJoueurU)
+	idUnivers REFERENCES Univers(idUnivers),
+	idJoueur REFERENCES Joueur(idJoueur)
 );
 
 CREATE TABLE Episode(
@@ -33,7 +33,7 @@ CREATE TABLE Episode(
 
 CREATE TABLE Biographie(
 	idBiographie int primary key,
-	idBioInitiale int REFERENCES Episode(idEpisode)
+	idBioInitiale REFERENCES Episode(idEpisode)
 );
 
 CREATE TABLE Personnage(
@@ -42,12 +42,12 @@ CREATE TABLE Personnage(
 	dateNaissance date,
 	profession varchar(256),
 	portrait varchar(512),
-	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
-	idUnivers varchar(50) REFERENCES Univers(idUnivers),
+	idJoueur REFERENCES Joueur(idJoueur),
+	idUnivers REFERENCES Univers(idUnivers),
 	idPartie int REFERENCES Partie(idPartie),
 	idBiographie int REFERENCES Biographie(idBiographie)
 );
-B
+
 CREATE TABLE Resume(
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
@@ -56,8 +56,8 @@ CREATE TABLE Resume(
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
-	secret integer, -- booléen
-	contenu contenu(512),
+	secret integer,
+	contenu varchar(512),
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 
@@ -71,7 +71,7 @@ CREATE TABLE EpisodeBiographie(
 
 CREATE TABLE MJ(
 	idPerso int REFERENCES Personnage(idPersonnage),
-	idJoueur varchar(50) REFERENCES Joueur(idJoueur),
+	idJoueur REFERENCES Joueur(idJoueur),
 	primary key (idPerso,idJoueur)
 );
 
