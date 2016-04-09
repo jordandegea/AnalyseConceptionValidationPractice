@@ -83,7 +83,7 @@ public class JoueurController extends AbstractControllerBase {
         String action = request.getParameter("action");
 
         if (action == null) {
-            super.invalidParameters(request, response);
+            this.showJoueur(request, response);
         } else if (action.equals("NEW")) {
             newJoueur(request, response);
         } else if (action.equals("EDIT")) {
