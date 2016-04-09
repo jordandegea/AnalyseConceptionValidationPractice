@@ -17,7 +17,7 @@ public class ParagrapheLoader extends AbstractLoader<ParagrapheModel> {
     public Set<ParagrapheModel> get(EpisodeModel episode) {
         if (!isLoaded()) {
             try {
-                setObjectSet(EpisodeDAO.instance().getParagraphe(episode));
+                setObjectSet(EpisodeDAO.instance().getParagraphes(episode));
             } catch (DAOException ex) {
                 Logger.getLogger(ParagrapheLoader.class.getName()).log(Level.SEVERE, null, ex);
             }

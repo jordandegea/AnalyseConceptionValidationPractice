@@ -34,7 +34,7 @@ public abstract class AbstractLoader<T extends AbstractBaseModel>{
         return object;
     }
 
-    protected void setObject(T object) {
+    public void setObject(T object) {
         this.object = object;
     }
 

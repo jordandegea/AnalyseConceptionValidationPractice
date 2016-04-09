@@ -11,8 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import model.AbstractBaseModel;
 import model.BiographieModel;
 import model.JoueurModel;
@@ -42,8 +44,23 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         throw new DAOException("Not Implemented Yet");
     }
     public Set<PersonnageModel> getPersonnagesOwned(JoueurModel joueur) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<PersonnageModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Personnage WHERE idJoueur="+joueur.getId());
+            while (rs.next()) {
+                PersonnageModel resume
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                result.add(resume);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException{
         // TODO: complete that

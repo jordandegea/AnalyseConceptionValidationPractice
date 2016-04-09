@@ -1,3 +1,4 @@
+
 <jsp:include page="include/head.jsp" >
     <jsp:param name="title" value="Inscription"/>
 </jsp:include>
@@ -21,4 +22,3 @@ ${error}
 
 
 <jsp:include page="include/foot.jsp" />
-

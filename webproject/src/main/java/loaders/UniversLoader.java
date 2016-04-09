@@ -23,7 +23,7 @@ public class UniversLoader extends AbstractLoader<UniversModel> {
     public UniversModel get(PartieModel partie) {
         if (!isLoaded())
             try {
-                setObject(((PartieDAO)PartieModel.getDAO()).getUnivers(partie));
+                setObject(PartieDAO.instance().getUnivers(partie));
         } catch (DAOException ex) {
             Logger.getLogger(UniversLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -34,7 +34,7 @@ public class UniversLoader extends AbstractLoader<UniversModel> {
     public UniversModel get(PersonnageModel personnage) {
         if (!isLoaded())
             try {
-                setObject(((PersonnageDAO)PersonnageModel.getDAO()).getUnivers(personnage));
+                setObject(PersonnageDAO.instance().getUnivers(personnage));
         } catch (DAOException ex) {
             Logger.getLogger(UniversLoader.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -4,6 +4,7 @@
 <html>
     <head>
 	<meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css" />
 	<title>Références bibliographiques</title>
         <script src="formularise.js"></script>
     </head>

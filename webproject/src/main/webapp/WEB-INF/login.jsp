@@ -1,3 +1,4 @@
+
 <jsp:include page="include/head.jsp" >
     <jsp:param name="title" value="Login"/>
 </jsp:include>
@@ -17,6 +18,7 @@
             <input type="hidden" name="action" value="LOGIN" />
         </form>
         <a href="joueur?action=NEW">S'enregistrer</a>
+        
     </div>
 </div>
 

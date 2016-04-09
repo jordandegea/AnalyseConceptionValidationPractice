@@ -43,13 +43,15 @@ public class BioInitialeDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie WHERE idBioInitiale='" + bio.getId() + "' ");
             if (rs.next()) {
-                result = new BiographieModel(rs.getInt("idBiographie"), rs.getInt("idBBioInitiale"));
+                result = new BiographieModel(rs.getInt("idBiographie"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        
+        result.setBioInitiale(bio);
         return result;
     }
     

@@ -51,7 +51,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
                 result = new BioInitialeModel(rs.getInt("idEpisode"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.getBioInitiale() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -71,7 +71,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
                 result.add(resume);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -91,7 +91,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
                 result.add(resume);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.getTransitions() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -109,10 +109,10 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie WHERE idEpisode='" + id + "' ");
             if (rs.next()) {
-                result = new BiographieModel(id, rs.getInt("idBioInitiale"));
+                result = new BiographieModel(id);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.get() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -129,11 +129,11 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie");
             while (rs.next()) {
                 BiographieModel ouvrage
-                        = new BiographieModel(rs.getInt("idBiographie"), rs.getInt("idBioInitiale"));
+                        = new BiographieModel(rs.getInt("idBiographie"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.getAll() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -154,11 +154,12 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Biographie (idBiographie, idBioInitiale) VALUES (id.nextval, ?)");
-            st.setInt(1, biographie.getBioInitiale().getId());
+                    = conn.prepareStatement("INSERT INTO Biographie (idBiographie, idBioInitiale) VALUES (?, ?)");
+            st.setInt(1, id);
+            st.setInt(2, biographie.getBioInitiale().getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.insert() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -183,7 +184,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             st.setInt(2, biographie.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.update() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -205,7 +206,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             st.setInt(1, biographie.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError BiographieDAO.delete() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
