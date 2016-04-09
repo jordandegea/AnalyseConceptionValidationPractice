@@ -74,7 +74,7 @@ public class PartieController extends AbstractControllerBase {
             int idPartie = Integer.parseInt(request.getParameter("idPartie"));
             PartieModel partie = PartieDAO.instance().get(idPartie);
             if (partie != null) {
-                request.setAttribute("personnage", partie);
+                request.setAttribute("partie", partie);
                 request.getRequestDispatcher("/WEB-INF/partie/showPartie.jsp").forward(request, response);
             } else {
                 super.error404(request, response);

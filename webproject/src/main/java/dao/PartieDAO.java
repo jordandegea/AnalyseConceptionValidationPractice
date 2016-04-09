@@ -102,7 +102,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         id,
                         rs.getString("titrePartie"), 
                         rs.getString("resumePartie"), 
-                        rs.getString("date"), 
+                        rs.getString("datePartie"), 
                         rs.getString("lieu"), 
                         rs.getBoolean("termine")
                 );
@@ -129,7 +129,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         rs.getInt("idPartie"),
                         rs.getString("titrePartie"), 
                         rs.getString("resumePartie"), 
-                        rs.getString("date"), 
+                        rs.getString("datePartie"), 
                         rs.getString("lieu"), 
                         rs.getBoolean("termine")
                      );
