@@ -51,9 +51,9 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Personnage WHERE idJoueur="+joueur.getId());
             while (rs.next()) {
-                PersonnageModel resume
+                PersonnageModel perso
                         = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
-                result.add(resume);
+                result.add(perso);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);

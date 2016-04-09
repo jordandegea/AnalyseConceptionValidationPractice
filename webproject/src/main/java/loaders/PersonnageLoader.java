@@ -20,7 +20,7 @@ public class PersonnageLoader extends AbstractLoader<PersonnageModel> {
 
     public Set<PersonnageModel> get(UniversModel univers) throws DAOException {
         if (!isLoaded()) {
-            setObjectSet(((UniversDAO) UniversModel.getDAO()).getPersonnages(univers));
+            setObjectSet(UniversDAO.instance().getPersonnages(univers));
         }
 
         return getObjectSet();
@@ -28,7 +28,7 @@ public class PersonnageLoader extends AbstractLoader<PersonnageModel> {
 
     public Set<PersonnageModel> get(PartieModel partie) throws DAOException {
         if (!isLoaded()) {
-            setObjectSet(((PartieDAO) PartieModel.getDAO()).getPersonnages(partie));
+            setObjectSet(PartieDAO.instance().getPersonnages(partie));
         }
 
         return getObjectSet();
@@ -44,7 +44,7 @@ public class PersonnageLoader extends AbstractLoader<PersonnageModel> {
 
     public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException {
         if (!isLoaded()) {
-            setObjectSet(((JoueurDAO) JoueurModel.getDAO()).getPersonnagesManaged(joueur));
+            setObjectSet(JoueurDAO.instance().getPersonnagesManaged(joueur));
         }
 
         return getObjectSet();

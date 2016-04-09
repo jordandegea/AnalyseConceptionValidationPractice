@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.AbstractBaseModel;
@@ -39,19 +40,52 @@ public class PartieDAO extends AbstractDataBaseDAO{
 
     // Personal DAOs Methods
     public JoueurModel getJoueur(PartieModel partie) throws DAOException{
-        return (JoueurModel) JoueurDAO.instance().get(partie.getIdJoueur());
+        throw new DAOException("Not Implemented Yet");
     }
     public ResumeModel getResume(PartieModel partie) throws DAOException{
         // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
     public UniversModel getUnivers(PartieModel partie) throws DAOException{
-        return (UniversModel) UniversDAO.instance().get(partie.getIdUnivers());
+        UniversModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT u.idUnivers, u.nomUnivers FROM Univers u, Partie p WHERE p.idPartie="+partie.getId()+" AND u.idUnivers=p.idUnivers");
+            if (rs.next()) {
+                result = new UniversModel(rs.getInt("idUnivers"), rs.getString("nomUnivers"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError UniversDAO.getUnivers() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     public Set<PersonnageModel> getPersonnages(PartieModel partie) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<PersonnageModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            if (!partie.isPartieFinie()) 
+                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieEnCours pc WHERE pc.idPartie="+partie.getId()+" AND p.idPersonnage=pc.idPersonnage");
+            else
+                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieTerminee pt WHERE pt.idPartie="+partie.getId()+" AND p.idPersonnage=pt.idPersonnage");
+            while (rs.next()) {
+                PersonnageModel perso
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                result.add(perso);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     // Override Methods
@@ -68,11 +102,10 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         id,
                         rs.getString("titrePartie"), 
                         rs.getString("resumePartie"), 
-                        rs.getDate("date"), 
+                        rs.getString("date"), 
                         rs.getString("lieu"), 
-                        rs.getBoolean("termine"),
-                        rs.getInt("idJoueur"),
-                        rs.getInt("idUnivers"));
+                        rs.getBoolean("termine")
+                );
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -96,11 +129,10 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         rs.getInt("idPartie"),
                         rs.getString("titrePartie"), 
                         rs.getString("resumePartie"), 
-                        rs.getDate("date"), 
+                        rs.getString("date"), 
                         rs.getString("lieu"), 
-                        rs.getBoolean("termine"),
-                             rs.getInt("idJoueur"),
-                        rs.getInt("idUnivers"));
+                        rs.getBoolean("termine")
+                     );
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -125,8 +157,8 @@ public class PartieDAO extends AbstractDataBaseDAO{
             PreparedStatement st
                     = conn.prepareStatement("INSERT INTO Partie (titrePartie ,resumePartie, datePartie, lieu, termine, idUnivers, loginMJ, idPartie) VALUES (?,?,?,?,?,?,?,?)");
             st.setString(1, partie.getTitrePartie());
-            st.setString(2, partie.getRésumé());
-            st.setDate(3, partie.getDate());
+            st.setString(2, partie.getResumeInitial());
+            st.setString(3, partie.getDate());
             st.setString(4, partie.getLieu());
             st.setBoolean(5, partie.isPartieFinie());
             st.setInt(6, partie.getUnivers().getId());
@@ -156,8 +188,8 @@ public class PartieDAO extends AbstractDataBaseDAO{
             PreparedStatement st
                     = conn.prepareStatement("UPDATE Partie SET titrePartie=?, resumePartie=?, datePartie=?, lieu=?, termine=?, idUnivers=?, loginMJ=? WHERE idPartie=?");
             st.setString(1, partie.getTitrePartie());
-            st.setString(2, partie.getRésumé());
-            st.setDate(3, partie.getDate());
+            st.setString(2, partie.getResumeInitial());
+            st.setString(3, partie.getDate());
             st.setString(4, partie.getLieu());
             st.setBoolean(5, partie.isPartieFinie());
             st.setInt(6, partie.getUnivers().getId());
