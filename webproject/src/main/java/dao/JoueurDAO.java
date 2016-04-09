@@ -39,10 +39,33 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     
     
     // Personal DAOs Methods
-    public Set<PartieModel> getParties(JoueurModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+    public Set<PartieModel> getParties(JoueurModel joueur) throws DAOException{
+        Set<PartieModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Partie WHERE idMJ="+joueur.getId());
+            while (rs.next()) {
+                PartieModel partie
+                        = new PartieModel(
+                        rs.getInt("idPartie"),
+                        rs.getString("titrePartie"), 
+                        rs.getString("resumePartie"), 
+                        rs.getString("date"), 
+                        rs.getString("lieu"), 
+                        rs.getBoolean("termine")
+                     );
+                result.add(partie);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError JoueurDAO.getParties() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
+    
     public Set<PersonnageModel> getPersonnagesOwned(JoueurModel joueur) throws DAOException{
         Set<PersonnageModel> result = new HashSet<>();
         Connection conn = null;
@@ -56,7 +79,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
                 result.add(perso);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.getPersonnagesOwned() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -79,7 +102,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
                 result = new JoueurModel(Integer.parseInt(rs.getString("idJoueur")), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.get() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -99,7 +122,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
                 result = new JoueurModel(id, rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.get() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -120,7 +143,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.getAll() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -145,7 +168,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             st.setString(3, joueur.getEmail());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.insert() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -171,7 +194,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             st.setInt(4, joueur.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.update() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -193,7 +216,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             st.setInt(1, joueur.getId());
             st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError JoueurDAO.delete() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

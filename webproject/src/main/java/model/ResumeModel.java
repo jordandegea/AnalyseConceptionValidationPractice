@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import loaders.BiographieLoader;
 import loaders.PartieLoader;
 
@@ -19,7 +20,7 @@ public class ResumeModel extends EpisodeModel {
         biographie = new BiographieLoader();
     }
 
-    public PartieModel getPartie() {
+    public PartieModel getPartie() throws DAOException {
         return partie.get(this);
     }
 

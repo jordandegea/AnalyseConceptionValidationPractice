@@ -57,7 +57,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
                 result = new UniversModel(rs.getInt("idUnivers"), rs.getString("nomUnivers"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError UniversDAO.getUnivers() " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.getUnivers() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -81,7 +81,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
                 result.add(perso);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError BiographieDAO.getResumes() " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.getPersonnages() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -90,7 +90,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
     
     // Override Methods
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
+    public PartieModel get(int id) throws DAOException {
         PartieModel result = null;
         Connection conn = null;
         try {
@@ -108,7 +108,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
                 );
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.get() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -116,15 +116,15 @@ public class PartieDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public List<PartieModel> getAll() throws DAOException {
+        List<PartieModel> result = new ArrayList<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Partie");
             while (rs.next()) {
-                PartieModel ouvrage
+                PartieModel partie
                      = new PartieModel(
                         rs.getInt("idPartie"),
                         rs.getString("titrePartie"), 
@@ -133,10 +133,10 @@ public class PartieDAO extends AbstractDataBaseDAO{
                         rs.getString("lieu"), 
                         rs.getBoolean("termine")
                      );
-                result.add(ouvrage);
+                result.add(partie);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.getAll() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -155,7 +155,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Partie (titrePartie ,resumePartie, datePartie, lieu, termine, idUnivers, loginMJ, idPartie) VALUES (?,?,?,?,?,?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Partie (titrePartie ,resumePartie, datePartie, lieu, termine, idUnivers, idMJ, idPartie) VALUES (?,?,?,?,?,?,?,?)");
             st.setString(1, partie.getTitrePartie());
             st.setString(2, partie.getResumeInitial());
             st.setString(3, partie.getDate());
@@ -166,7 +166,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
             st.setInt(8, id);
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.insert() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -197,7 +197,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
             st.setInt(8, partie.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.update() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -219,7 +219,7 @@ public class PartieDAO extends AbstractDataBaseDAO{
             st.setInt(1, partie.getId());
             st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError PartieDAO.delete() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

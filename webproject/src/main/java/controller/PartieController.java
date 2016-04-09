@@ -69,6 +69,21 @@ public class PartieController extends AbstractControllerBase {
         }
     }
 
+    private void showPartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            if (partie != null) {
+                request.setAttribute("personnage", partie);
+                request.getRequestDispatcher("/WEB-INF/partie/showPartie.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -85,9 +100,10 @@ public class PartieController extends AbstractControllerBase {
         if (action == null) {
             super.invalidParameters(request, response);
         } else if (action.equals("NEW")) {
-            newPartie(request, response);
+            this.newPartie(request, response);
         } else if (action.equals("EDIT")) {
         } else if (action.equals("SHOW")) {
+            this.showPartie(request, response);
         } else {
             super.invalidParameters(request, response);
         }
@@ -109,7 +125,7 @@ public class PartieController extends AbstractControllerBase {
         if (action == null) {
             super.invalidParameters(request, response);
         } else if (action.equals("CREATE")) {
-            createPartie(request, response);
+            this.createPartie(request, response);
         } else if (action.equals("UPDATE")) {
         } else if (action.equals("DELETE")) {
         } else {

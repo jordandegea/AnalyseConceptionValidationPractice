@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import loaders.JoueurLoader;
 import loaders.PartieLoader;
 import loaders.UniversLoader;
@@ -95,11 +96,11 @@ public class PersonnageModel extends AbstractBaseModel {
         return univers.get(this);
     }
 
-    public Set<PartieModel> getParties() {
+    public Set<PartieModel> getParties() throws DAOException {
         return parties.get(this);
     }
 
-    public PartieModel getPartieEnCours() {
+    public PartieModel getPartieEnCours() throws DAOException {
         return partie.getEnCours(this);
     }
 
