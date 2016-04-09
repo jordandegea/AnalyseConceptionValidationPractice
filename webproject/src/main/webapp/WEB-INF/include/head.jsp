@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
@@ -78,6 +79,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
                         <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="members">Espace membre<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="members">
+                                <c:choose>
+                                    <c:when test="${cookie.containsKey('username')}">
+                                        <li><a href="./bootstrap.min.css">Logout</a></li>
+                                        </c:when>    
+                                        <c:otherwise>
+                                        <li><a href="./bootstrap.min.css">Login</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </ul>
+                        </li>
                     </ul>
 
                 </div>
