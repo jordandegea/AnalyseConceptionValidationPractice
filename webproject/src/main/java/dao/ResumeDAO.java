@@ -37,13 +37,39 @@ public class ResumeDAO extends EpisodeDAO {
 
     // Personal DAOs Methods
     public BiographieModel getBiographie(ResumeModel resume) throws DAOException {
-// TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        BiographieModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT b.idBiographie  FROM Biographie b, Resume r WHERE b.idBioInitiale = r.idEpisode AND r.idEpisode= "+ resume.getId());
+            if (rs.next()) {
+                result = new BiographieModel(rs.getInt("idBiographie"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;    
     }
 
     public PartieModel getPartie(ResumeModel resume) throws DAOException {
-        throw new DAOException("Not Implemented Yet");
-    }
+        PartieModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT p.idPartie , p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idJoueur  FROM Resume r, Partie p  WHERE r.idPartie = p.idPartie AND r.idEpisode= "+ resume.getId());
+            if (rs.next()) {
+                result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getDate("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false), rs.getInt("idJoueur"), rs.getInt("idUnivers"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;     }
 
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
