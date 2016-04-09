@@ -79,10 +79,10 @@ CREATE TABLE MJ(
 	primary key (idPerso,idJoueur)
 );
 
-INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Narnia");
-INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "La Terre du Milieu");
-INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Pirates des Caraibes");
-INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Azeroth");
-INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Fondation, Trantor");
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Narnia');
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'La Terre du Milieu');
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Pirates des Caraibes');
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Azeroth');
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Trantor');
 
-INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, "william", "william", "william.duclot@gmail.com");
+INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
