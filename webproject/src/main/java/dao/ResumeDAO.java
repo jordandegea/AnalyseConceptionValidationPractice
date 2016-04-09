@@ -62,7 +62,7 @@ public class ResumeDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT p.idPartie , p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idJoueur  FROM Resume r, Partie p  WHERE r.idPartie = p.idPartie AND r.idEpisode= "+ resume.getId());
             if (rs.next()) {
-                result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getDate("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false), rs.getInt("idJoueur"), rs.getInt("idUnivers"));
+                result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
