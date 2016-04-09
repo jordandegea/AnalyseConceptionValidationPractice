@@ -88,7 +88,7 @@ public class PersonnageModel extends AbstractBaseModel {
         return biographie.get(this);
     }
     
-    public JoueurModel getOwner() {
+    public JoueurModel getOwner() throws DAOException {
         return owner.getOwner(this);
     }
 
@@ -103,8 +103,12 @@ public class PersonnageModel extends AbstractBaseModel {
     public PartieModel getPartieEnCours() throws DAOException {
         return partie.getEnCours(this);
     }
+    
+    public void setPartieEnCours(PartieModel partie) {
+        this.partie.setObject(partie);
+    }
 
-    public JoueurModel getMJ() {
+    public JoueurModel getMJ() throws DAOException {
         return MJ.getMJ(this);
     }
 }

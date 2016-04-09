@@ -7,9 +7,11 @@ package controller;
 
 import dao.DAOException;
 import dao.PartieDAO;
+import dao.PersonnageDAO;
 import dao.UniversDAO;
 import java.io.*;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -19,6 +21,7 @@ import javax.servlet.http.*;
 import javax.sql.DataSource;
 import model.JoueurModel;
 import model.PartieModel;
+import model.PersonnageModel;
 import model.UniversModel;
 import validator.PartieValidator;
 import validator.ValidatorException;
@@ -84,6 +87,48 @@ public class PartieController extends AbstractControllerBase {
         }
     }
 
+    private void addPersonnagePartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            if (partie != null) {
+                Set<PersonnageModel> enrollable = PartieDAO.instance().getEnrollablePersonnages(partie);
+                request.setAttribute("partie", partie);
+                request.setAttribute("enrollable", enrollable);
+                request.getRequestDispatcher("/WEB-INF/partie/enrollPersonnage.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
+    private void enrollPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+
+            if (partie != null && perso != null) {
+                try {
+                    PartieValidator.instance().enrollValidate(partie, perso);
+                    PartieDAO.instance().enrollPersonnage(partie, perso);
+                } catch (ValidatorException ex) {
+                    Set<PersonnageModel> enrollable = PartieDAO.instance().getEnrollablePersonnages(partie);
+                    request.setAttribute("partie", partie);
+                    request.setAttribute("enrollable", enrollable);
+                    request.getRequestDispatcher("/WEB-INF/partie/enrollPersonnage.jsp").forward(request, response);
+                }
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -104,6 +149,8 @@ public class PartieController extends AbstractControllerBase {
         } else if (action.equals("EDIT")) {
         } else if (action.equals("SHOW")) {
             this.showPartie(request, response);
+        } else if (action.equals("ADDPERSO")) {
+            this.addPersonnagePartie(request, response);
         } else {
             super.invalidParameters(request, response);
         }
@@ -128,6 +175,8 @@ public class PartieController extends AbstractControllerBase {
             this.createPartie(request, response);
         } else if (action.equals("UPDATE")) {
         } else if (action.equals("DELETE")) {
+        } else if (action.equals("ENROLL")) {
+            this.enrollPersonnage(request, response);
         } else {
             super.invalidParameters(request, response);
         }

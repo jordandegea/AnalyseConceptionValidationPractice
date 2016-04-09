@@ -28,7 +28,8 @@
         <form action="partie" method="GET" accept-charset="UTF-8">
             <input type="submit" value="Ajouter personnage" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-            <input type="hidden" name="action" value="ENROLL" />
+            <input type="hidden" name="action" value="ADDPERSO" />
+            <input type="hidden" name="idPartie" value="${partie.id}" />
         </form>
 
         <form action="joueur" method="GET" accept-charset="UTF-8">
