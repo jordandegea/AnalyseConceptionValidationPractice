@@ -10,9 +10,9 @@
 
         <h2>Personnage ${personnage.nomPerso}</h2>
 
-        <img src="${personnage.portrait}" alt="portrait"/>
+        <img src="${personnage.portrait}" alt="${personnage.portrait}"/>
         <ul>
-            <li>Nom : ${personnage.nomPerso}Nom : ${personnage.nomPerso}</li>
+            <li>Nom : ${personnage.nomPerso}</li>
             <li>Date de naissance : ${personnage.dateNaiss}</li>
             <li>Profession : ${personnage.profession}</li>
             <li>Univers : ${personnage.univers}</li>

@@ -39,7 +39,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
     }
     
     // Personal DAOs Methods
-    public Set<ParagrapheModel> getParagraphe(EpisodeModel episode) throws DAOException{
+    public Set<ParagrapheModel> getParagraphes(EpisodeModel episode) throws DAOException{
         Set<ParagrapheModel> result = new HashSet<>();
         Connection conn = null;
         try {
@@ -52,7 +52,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
                 result.add(para);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError EpisodeDAO.getParagraphes() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -73,6 +73,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
         Connection conn = null;
         try {
             conn = getConnection();
+            
             PreparedStatement st = 
                     conn.prepareStatement("INSERT INTO Episode (ecritureEnCours, typeEpisode, dateEpisode, idEpisode) VALUES (?,?,?,?)");
             st.setBoolean(1, episode.isEcritureEnCours());
@@ -86,7 +87,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
             }
 
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError EpisodeDAO.insert() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -101,7 +102,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
     
     @Override
     public int update(Object object) throws DAOException {
-        if (!(object instanceof TransitionModel)) {
+        if (!(object instanceof EpisodeModel)) {
             throw new DAOException("Wrong object parameter in update, require EpisodeModel");
         }
         int affectedRows = 0;
@@ -116,7 +117,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
             st.setInt(3, episode.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError EpisodeDAO.update() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -127,7 +128,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
 
     @Override
     public int delete(Object object) throws DAOException {
-        if (!(object instanceof TransitionModel)) {
+        if (!(object instanceof EpisodeModel)) {
             throw new DAOException("Wrong object parameter in delete, require EpisodeModel");
         }
         int affectedRows = 0;
@@ -139,7 +140,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
             st.setInt(1, episode .getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError EpisodeDAO.delete() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

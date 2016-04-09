@@ -35,14 +35,19 @@ public abstract class AbstractControllerBase extends HttpServlet{
     /* pages d’erreurs */
     protected void invalidParameters(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/controleurErreur.jsp").forward(request, response);        
+        request.getRequestDispatcher("/WEB-INF/error/controleurErreur.jsp").forward(request, response);        
+    }
+    
+    protected void error404(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/error/error404.jsp").forward(request, response);        
     }
 
     protected void erreurBD(HttpServletRequest request,
                 HttpServletResponse response, DAOException e)
             throws ServletException, IOException {
         request.setAttribute("erreurMessage", e.getMessage());
-        request.getRequestDispatcher("/WEB-INF/bdErreur.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/error/bdErreur.jsp").forward(request, response);
     }
   
     protected void doGet(HttpServletRequest request,

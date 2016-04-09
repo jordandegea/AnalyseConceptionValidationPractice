@@ -53,7 +53,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
                 result = new ParagrapheModel(id,rs.getBoolean("secret"), rs.getString("contenu"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError ParagrapheDAO.get() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -74,7 +74,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError ParagrapheDAO.getAll() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -100,7 +100,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             st.setInt(4,  id);
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError ParagrapheDAO.insert() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -126,7 +126,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             st.setInt(4, paragraphe.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError ParagrapheDAO.update() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -148,7 +148,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             st.setInt(1, paragraphe.getId());
             st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
+            throw new DAOException("DBError ParagrapheDAO.delete() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

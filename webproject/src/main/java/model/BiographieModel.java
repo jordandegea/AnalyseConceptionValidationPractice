@@ -17,7 +17,7 @@ public class BiographieModel extends AbstractBaseModel {
     private ResumeLoader resumes;
     private TransitionLoader transitions;
 
-    public BiographieModel(int id, int idBioInitiale) {
+    public BiographieModel(int id) {
         super(id);
         
         bioInitiale = new BioInitialeLoader();
@@ -33,6 +33,10 @@ public class BiographieModel extends AbstractBaseModel {
 
     public BioInitialeModel getBioInitiale() {
         return bioInitiale.get(this);
+    }
+    
+    public void setBioInitiale(BioInitialeModel bi) {
+        bioInitiale.setObject(bi);
     }
 
     public Set<ResumeModel> getResumes() throws DAOException {

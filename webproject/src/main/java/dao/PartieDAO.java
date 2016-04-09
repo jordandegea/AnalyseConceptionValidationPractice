@@ -29,7 +29,7 @@ import model.UniversModel;
 public class PartieDAO extends AbstractDataBaseDAO{
     final private static PartieDAO instanceUnique = new PartieDAO();
 
-    static PartieDAO instance() {
+    public static PartieDAO instance() {
         return instanceUnique;
     }
 

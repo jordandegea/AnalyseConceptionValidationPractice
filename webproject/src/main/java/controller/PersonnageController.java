@@ -57,12 +57,27 @@ public class PersonnageController extends AbstractControllerBase {
             try {
                 PersonnageValidator.instance().createValidate(perso);
                 PersonnageDAO.instance().insert(perso);
-                request.setAttribute("personnage", perso);
-                request.getRequestDispatcher("/WEB-INF/personnage/showPersonnage.jsp").forward(request, response);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
             } catch (ValidatorException ex) {
                 request.setAttribute("error", ex.getMessage());
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/newPersonnage.jsp").forward(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
+    private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            if (perso != null) {
+                request.setAttribute("personnage", perso);
+                request.getRequestDispatcher("/WEB-INF/personnage/showPersonnage.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
             }
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
@@ -89,7 +104,7 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("EDIT")) {
 
         } else if (action.equals("SHOW")) {
-
+            showPersonnage(request, response);
         }
     }
 
