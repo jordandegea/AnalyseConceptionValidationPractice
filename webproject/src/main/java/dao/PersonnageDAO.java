@@ -77,12 +77,38 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         return result;
     }
     public JoueurModel getMJ(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        JoueurModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPerso=" + personnage.getId() + " AND mj.idJoueur=j.idJoueur");
+            if (rs.next()) {
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     public JoueurModel getOwner(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        JoueurModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT j.* FROM Personnage p, Joueur j WHERE p.idPersonnage=" + personnage.getId() + " AND p.idJoueur=j.idJoueur");
+            if (rs.next()) {
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException{
         // TODO: complete that

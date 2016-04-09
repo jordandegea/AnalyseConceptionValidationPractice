@@ -10,7 +10,7 @@
     <body>
 
         <h2>Enrôler un personnage</h2>
-        Sélectionnez un personnage à enrôler pour la partie "${partie.titrePartie}" :
+        Sélectionnez un personnage à enrôler pour la partie "${partie.titrePartie}" (${enrollable.size()}):
         
         ${error}
         <form action="partie" method="POST" accept-charset="UTF-8">

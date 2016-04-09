@@ -7,15 +7,13 @@
 <h2>Inscription</h2>
 
 ${error}
-<form action="login" method="POST" accept-charset="UTF-8">
+<form action="register" method="POST" accept-charset="UTF-8">
     <label>Login :</label><input type="text" name="login" value="${joueur.login}" requested /><br/>
     <label>Mot de passe :</label><input type="password" name="password" requested /> <br/>
     <label>Confirmez mot de passe :</label><input type="password" name="confirm" requested /> <br/>
     <label>Email :</label><input type="email" name="email" value="${joueur.email}" requested /> <br/>
 
     <input type="submit" value="Valider" />
-    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
-    <input type="hidden" name="action" value="REGISTER" />
 </form>
 <a href="login">Vous avez déjà un compte ?</a>
 

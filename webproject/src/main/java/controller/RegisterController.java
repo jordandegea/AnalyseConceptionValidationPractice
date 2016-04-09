@@ -29,9 +29,6 @@ import validator.ValidatorException;
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 public class RegisterController extends AbstractControllerBase {
 
-
-
-    
     /**
      * Create a user. Redirect to showJoueur.jsp if success, reload register
      * page with error otherwise
