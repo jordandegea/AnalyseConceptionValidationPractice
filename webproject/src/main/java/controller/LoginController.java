@@ -86,55 +86,6 @@ public class LoginController extends AbstractControllerBase {
         }
     }
 
-    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("idUser");
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MonPremierServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MonPremierServlet at " + request.getContextPath() + "</h1>");
-            out.println("<p>Quoi ? </p>");
-            out.println("<p>Vous etes le eme visiteur</p>");
-            out.println("</body>");
-            out.println("</html>");
-            System.out.println("Oua une log");
-        }
-    }
-
-    /**
-     * Create a user. Redirect to showJoueur.jsp if success, reload register
-     * page with error otherwise
-     *
-     * @param request
-     * @param response
-     */
-    private void registerUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = (String) request.getParameter("login");
-        String password = (String) request.getParameter("password");
-        String confirm = (String) request.getParameter("confirm");
-        String email = (String) request.getParameter("email");
-
-        JoueurModel joueur = new JoueurModel(login, password, email);
-        try {
-            JoueurValidator.instance().createValidate(joueur, confirm);
-            JoueurDAO.instance().insert(joueur);
-            request.getSession().setAttribute("idUser", joueur.getId());
-            response.sendRedirect("joueur?action=SHOW");
-        } catch (ValidatorException ex) {
-            request.setAttribute("error", ex.getMessage());
-            request.setAttribute("joueur", joueur);
-            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-        } catch (DAOException ex) {
-            super.erreurBD(request, response, ex);
-        }
-    }
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -146,16 +97,8 @@ public class LoginController extends AbstractControllerBase {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
+        
         processRequest(request, response);
-        } else if (action.equals("LOGIN")) {
-            login(request, response);
-        } else if (action.equals("REGISTER")) {
-            registerUser(request, response);
-        } else if (action.equals("LOGOUT")) {
-            logout(request, response);
-        }
         
     }
 
@@ -171,16 +114,7 @@ public class LoginController extends AbstractControllerBase {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-
-        if (action == null) {
-        } else if (action.equals("LOGIN")) {
-            login(request, response);
-        } else if (action.equals("REGISTER")) {
-            registerUser(request, response);
-        } else if (action.equals("LOGOUT")) {
-            logout(request, response);
-        }
+        login(request, response);
     }
 
     /**
