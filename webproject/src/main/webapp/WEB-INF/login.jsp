@@ -1,28 +1,26 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Login</title>
-        <!-- Main CSS file -->
-        
-	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css" />
 
-    </head>
-    <body>
+<jsp:include page="include/head.jsp" >
+    <jsp:param name="title" value="Login"/>
+</jsp:include>
+
+
+<div class="row">
+    <div id="content" class="col-md-12">
         <h2>Login</h2>
 
         ${error}
         <form action="" method="post" accept-charset="UTF-8">
-            <label>LoginÂ :</label><input type="text" name="login" value="${joueur.login}" requested /><br/>
-            <label>Mot de passeÂ :</label><input type="password" name="password" requested /> <br/>
-            
+            <label>Login :</label><input type="text" name="login" value="${joueur.login}" requested /><br/>
+            <label>Mot de passe :</label><input type="password" name="password" requested /> <br/>
+
             <input type="submit" value="Valider" />
-            <!-- Pour indiquer au contrÃ´leur quelle action faire, on utilise un champ cachÃ© -->
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
             <input type="hidden" name="action" value="LOGIN" />
         </form>
         <a href="joueur?action=NEW">S'enregistrer</a>
-        <!-- JS -->
+        
+    </div>
+</div>
 
-    </body>
-</html>
+
+<jsp:include page="include/foot.jsp" />
