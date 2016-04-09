@@ -3,15 +3,85 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8" />
-        <title><%= request.getParameter("title") %></title>
-        
+        <title><%= request.getParameter("title")%></title>
+
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cerulean/bootstrap.css" >
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <style>
+            .content{
+                margin-top: 50px;
+            }
+        </style>
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </head>
     <body>
+
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="../" class="navbar-brand">ACVLRoles - FTG</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li><a href="../default/">Default</a></li>
+                                <li class="divider"></li>
+                                <li><a href="../cerulean/">Cerulean</a></li>
+                                <li><a href="../cosmo/">Cosmo</a></li>
+                                <li><a href="../cyborg/">Cyborg</a></li>
+                                <li><a href="../darkly/">Darkly</a></li>
+                                <li><a href="../flatly/">Flatly</a></li>
+                                <li><a href="../journal/">Journal</a></li>
+                                <li><a href="../lumen/">Lumen</a></li>
+                                <li><a href="../paper/">Paper</a></li>
+                                <li><a href="../readable/">Readable</a></li>
+                                <li><a href="../sandstone/">Sandstone</a></li>
+                                <li><a href="../simplex/">Simplex</a></li>
+                                <li><a href="../slate/">Slate</a></li>
+                                <li><a href="../spacelab/">Spacelab</a></li>
+                                <li><a href="../superhero/">Superhero</a></li>
+                                <li><a href="../united/">United</a></li>
+                                <li><a href="../yeti/">Yeti</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="../help/">Help</a>
+                        </li>
+                        <li>
+                            <a href="http://news.bootswatch.com">Blog</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Cerulean <span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                <li><a href="http://jsfiddle.net/bootswatch/9y480qo5/">Open Sandbox</a></li>
+                                <li class="divider"></li>
+                                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+                                <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                                <li class="divider"></li>
+                                <li><a href="./variables.less">variables.less</a></li>
+                                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                                <li class="divider"></li>
+                                <li><a href="./_variables.scss">_variables.scss</a></li>
+                                <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                        <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container content">
