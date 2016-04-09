@@ -56,7 +56,7 @@ CREATE TABLE Personnage(
 CREATE TABLE PartieEnCours(
     idPersonnage REFERENCES Personnage(idPersonnage),
     idPartie REFERENCES Partie(idPartie),
-    primary key (idJoueur)
+    primary key (idPersonnage)
 );
 
 CREATE TABLE Resume(
