@@ -61,8 +61,6 @@ CREATE TABLE Paragraphe(
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 
-
-
 CREATE TABLE EpisodeBiographie(
 	idEpisode int REFERENCES Episode(idEpisode),
 	idBiographie int REFERENCES Biographie(idBiographie),
@@ -75,14 +73,10 @@ CREATE TABLE MJ(
 	primary key (idPerso,idJoueur)
 );
 
---DROP TABLE MJ;
---DROP TABLE EpisodeBiographie;
---DROP TABLE Paragraphe;
---DROP TABLE Resume;
---DROP TABLE Personnage;
---DROP TABLE Biographie;
---DROP TABLE Episode;
---DROP TABLE Partie;
---DROP TABLE Joueur;
---DROP TABLE Univers;
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Narnia");
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "La Terre du Milieu");
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Pirates des Caraibes");
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Azeroth");
+INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, "Fondation, Trantor");
 
+INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, "william", "william", "william.duclot@gmail.com");
