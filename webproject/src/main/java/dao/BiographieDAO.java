@@ -109,7 +109,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie WHERE idEpisode='" + id + "' ");
             if (rs.next()) {
-                result = new BiographieModel(id, rs.getInt("idBioInitiale"));
+                result = new BiographieModel(id);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError BiographieDAO.get() " + e.getMessage(), e);
@@ -129,7 +129,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Biographie");
             while (rs.next()) {
                 BiographieModel ouvrage
-                        = new BiographieModel(rs.getInt("idBiographie"), rs.getInt("idBioInitiale"));
+                        = new BiographieModel(rs.getInt("idBiographie"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
