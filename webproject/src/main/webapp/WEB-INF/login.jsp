@@ -17,7 +17,7 @@
             <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
             <input type="hidden" name="action" value="LOGIN" />
         </form>
-        <a href="joueur?action=NEW">S'enregistrer</a>
+        <a href="register">S'enregistrer</a>
         
     </div>
 </div>
