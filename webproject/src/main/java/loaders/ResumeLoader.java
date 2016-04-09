@@ -24,13 +24,9 @@ public class ResumeLoader extends AbstractLoader<ResumeModel> {
         return getObject();
     }
 
-    public Set<ResumeModel> get(BiographieModel bio) {
+    public Set<ResumeModel> get(BiographieModel bio) throws DAOException {
         if (!isLoaded()) {
-            try {
                 setObjectSet(BiographieDAO.instance().getResumes(bio));
-            } catch (DAOException ex) {
-                Logger.getLogger(ResumeLoader.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
         return getObjectSet();

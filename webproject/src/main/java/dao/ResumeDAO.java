@@ -42,7 +42,7 @@ public class ResumeDAO extends EpisodeDAO {
     }
 
     public PartieModel getPartie(ResumeModel resume) throws DAOException {
-        return (PartieModel) PartieDAO.instance().get(resume.getIdPartie());
+        throw new DAOException("Not Implemented Yet");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ResumeDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='Resume' ");
             if (rs.next()) {
-                result = new ResumeModel(id, rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"), rs.getInt("idPartie"));
+                result = new ResumeModel(id, rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -73,7 +73,7 @@ public class ResumeDAO extends EpisodeDAO {
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='Resume' ");
             while (rs.next()) {
                 ResumeModel ouvrage
-                        = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"), rs.getInt("idPartie"));
+                        = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

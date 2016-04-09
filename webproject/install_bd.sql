@@ -60,7 +60,6 @@ CREATE TABLE PartieEnCours(
 );
 
 CREATE TABLE Resume(
-
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
 	primary key (idEpisode,idPartie)

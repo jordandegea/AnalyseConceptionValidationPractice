@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
@@ -40,17 +41,61 @@ public class BiographieDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public BioInitialeModel getBioInitiale(BiographieModel bio) throws DAOException{
-        throw new DAOException("Not Implemented Yet");
+        BioInitialeModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT idBioInitiale FROM Biographie WHERE idBiographie="+bio.getId());
+            if (rs.next()) {
+                result = new BioInitialeModel(rs.getInt("idEpisode"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
      // Personal DAOs Methods
     public Set<ResumeModel> getResumes(BiographieModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<ResumeModel> result = new TreeSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='Resume' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
+            while (rs.next()) {
+                ResumeModel resume
+                        = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result.add(resume);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
      // Personal DAOs Methods
     public Set<TransitionModel> getTransitions(BiographieModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<TransitionModel> result = new TreeSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='Transition' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
+            while (rs.next()) {
+                TransitionModel resume
+                        = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result.add(resume);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     

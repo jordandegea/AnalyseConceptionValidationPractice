@@ -64,7 +64,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
     
     @Override
     public int insert(Object object) throws DAOException {
-        if (!(object instanceof TransitionModel)) {
+        if (!(object instanceof EpisodeModel)) {
             throw new DAOException("Wrong object parameter in insert, require EpisodeModel");
         }
         int affectedRows = 0 ;

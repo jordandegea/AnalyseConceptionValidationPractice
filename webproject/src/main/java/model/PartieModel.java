@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import loaders.JoueurLoader;
 import loaders.PersonnageLoader;
 import loaders.ResumeLoader;
@@ -96,7 +97,7 @@ public class PartieModel extends AbstractBaseModel {
         return this.personnages.get(this);
     }
 
-    public ResumeModel getResume() {
+    public ResumeModel getResume() throws DAOException {
         return this.resume.get(this);
     }
     

@@ -13,14 +13,11 @@ import java.util.logging.Logger;
 /**
  * Created by william on 05/04/16.
  */
-public class TransitionLoader extends  AbstractLoader<TransitionModel> {
-    public Set<TransitionModel> get(BiographieModel bio) {
+public class TransitionLoader extends AbstractLoader<TransitionModel> {
+
+    public Set<TransitionModel> get(BiographieModel bio) throws DAOException {
         if (!isLoaded())
-            try {
-                setObjectSet(((BiographieDAO)BiographieModel.getDAO()).getTransitions(bio));
-        } catch (DAOException ex) {
-            Logger.getLogger(TransitionLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                setObjectSet(BiographieDAO.instance().getTransitions(bio));
 
         return getObjectSet();
     }

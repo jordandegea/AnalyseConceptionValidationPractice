@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import java.util.HashSet;
 import loaders.BioInitialeLoader;
 import loaders.ResumeLoader;
@@ -34,14 +35,14 @@ public class BiographieModel extends AbstractBaseModel {
         return bioInitiale.get(this);
     }
 
-    public Set<ResumeModel> getResumes() {
+    public Set<ResumeModel> getResumes() throws DAOException {
         return resumes.get(this);
     }
-    public Set<TransitionModel> getTransition() {
+    public Set<TransitionModel> getTransition() throws DAOException {
         return transitions.get(this);
     }
     
-    public Set<EpisodeModel> getFullBiographie() {
+    public Set<EpisodeModel> getFullBiographie() throws DAOException {
         Set<EpisodeModel> episodes = new TreeSet<>();
         episodes.add(this.getBioInitiale());
         episodes.addAll(this.getResumes());
