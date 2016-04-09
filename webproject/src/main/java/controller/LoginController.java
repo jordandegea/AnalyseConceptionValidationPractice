@@ -88,7 +88,23 @@ public class LoginController extends AbstractControllerBase {
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("idUser");
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MonPremierServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet MonPremierServlet at " + request.getContextPath() + "</h1>");
+            out.println("<p>Quoi ? </p>");
+            out.println("<p>Vous etes le eme visiteur</p>");
+            out.println("</body>");
+            out.println("</html>");
+            System.out.println("Oua une log");
+        }
     }
 
     /**
@@ -130,7 +146,17 @@ public class LoginController extends AbstractControllerBase {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
         processRequest(request, response);
+        } else if (action.equals("LOGIN")) {
+            login(request, response);
+        } else if (action.equals("REGISTER")) {
+            registerUser(request, response);
+        } else if (action.equals("LOGOUT")) {
+            logout(request, response);
+        }
+        
     }
 
     /**
