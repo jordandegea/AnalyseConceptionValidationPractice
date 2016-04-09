@@ -93,7 +93,7 @@ public class PartieModel extends AbstractBaseModel {
         return MJ.get(this);
     }
 
-    public Set<PersonnageModel> getPersonnages() {
+    public Set<PersonnageModel> getPersonnages() throws DAOException {
         return this.personnages.get(this);
     }
 

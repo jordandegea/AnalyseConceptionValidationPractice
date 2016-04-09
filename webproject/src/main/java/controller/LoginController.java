@@ -42,15 +42,8 @@ public class LoginController extends AbstractControllerBase {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("userId") != null) {
-            try {
-                int userId = Integer.parseInt((String) session.getAttribute("userId"));
-                JoueurModel joueur = JoueurModel.getDAO().get(userId);
-
-                request.setAttribute("joueur", joueur);
-                request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
-            } catch (DAOException ex) {
-                super.erreurBD(request, response, ex);
-            }
+            int userId = Integer.parseInt((String) session.getAttribute("userId"));
+            response.sendRedirect("joueur?action=SHOW");
         } else {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
@@ -83,8 +76,7 @@ public class LoginController extends AbstractControllerBase {
             try {
                 JoueurValidator.instance().loginValidate(joueur, (String) request.getParameter("password"));
                 request.getSession().setAttribute("idUser", joueur.getId());
-                request.setAttribute("joueur", joueur);
-                request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
+                response.sendRedirect("joueur?action=SHOW");
             } catch (ValidatorException ex) {
                 request.setAttribute("error", ex.getMessage());
                 request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -116,8 +108,8 @@ public class LoginController extends AbstractControllerBase {
         try {
             JoueurValidator.instance().createValidate(joueur, confirm);
             JoueurDAO.instance().insert(joueur);
-            request.setAttribute("joueur", joueur);
-            request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
+            request.getSession().setAttribute("idUser", joueur.getId());
+            response.sendRedirect("joueur?action=SHOW");
         } catch (ValidatorException ex) {
             request.setAttribute("error", ex.getMessage());
             request.setAttribute("joueur", joueur);

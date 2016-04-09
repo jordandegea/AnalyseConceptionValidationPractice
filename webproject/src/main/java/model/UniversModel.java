@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.DAOException;
 import loaders.PartieLoader;
 import loaders.PersonnageLoader;
 
@@ -32,7 +33,7 @@ public class UniversModel extends AbstractBaseModel {
         this.nom = nom;
     }
 
-    public Set<PersonnageModel> getPersonnages() {
+    public Set<PersonnageModel> getPersonnages() throws DAOException {
         return personnages.get(this);
     }
 
