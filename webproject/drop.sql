@@ -8,3 +8,4 @@ DROP TABLE Episode;
 DROP TABLE Partie;
 DROP TABLE Joueur;
 DROP TABLE Univers;
+DROP SEQUENCE id;
