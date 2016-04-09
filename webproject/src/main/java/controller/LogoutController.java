@@ -26,8 +26,8 @@ import validator.ValidatorException;
  *
  * @author william
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends AbstractControllerBase {
+@WebServlet(name = "LogoutController", urlPatterns = {"/logout"})
+public class LogoutController extends AbstractControllerBase {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,51 +40,33 @@ public class LoginController extends AbstractControllerBase {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("userId") != null) {
-            int userId = Integer.parseInt((String) session.getAttribute("userId"));
-            response.sendRedirect("joueur?action=SHOW");
-        } else {
-            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        
+        logout(request, response);
+        
+    }
+
+
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().removeAttribute("idUser");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MonPremierServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet MonPremierServlet at " + request.getContextPath() + "</h1>");
+            out.println("<p>Quoi ? </p>");
+            out.println("<p>Vous etes le eme visiteur</p>");
+            out.println("</body>");
+            out.println("</html>");
+            System.out.println("Oua une log");
         }
     }
 
-    /**
-     * Get the user corresponding to the login & password
-     *
-     * @param request
-     * @return
-     * @throws DAOException
-     */
-    private JoueurModel getJoueur(HttpServletRequest request) throws DAOException {
-        String login = (String) request.getParameter("login");
-        JoueurModel joueur = JoueurDAO.instance().get(login);
-
-        return joueur;
-    }
-
-    /**
-     * Try to find the user corresponding to the login & password Redirect to
-     * showJoueur.jsp if success, reload login page with error otherwise
-     *
-     * @param request
-     * @param response
-     */
-    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            JoueurModel joueur = getJoueur(request);
-            try {
-                JoueurValidator.instance().loginValidate(joueur, (String) request.getParameter("password"));
-                request.getSession().setAttribute("idUser", joueur.getId());
-                response.sendRedirect("joueur?action=SHOW");
-            } catch (ValidatorException ex) {
-                request.setAttribute("error", ex.getMessage());
-                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-            }
-        } catch (DAOException ex) {
-            super.erreurBD(request, response, ex);
-        }
-    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -97,9 +79,7 @@ public class LoginController extends AbstractControllerBase {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         processRequest(request, response);
-        
     }
 
     /**
@@ -114,7 +94,7 @@ public class LoginController extends AbstractControllerBase {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        login(request, response);
+        processRequest(request, response);
     }
 
     /**
