@@ -27,7 +27,16 @@ import model.TransitionModel;
  *
  * @author JordanLeMagnifique
  */
-public abstract class EpisodeDAO extends AbstractDataBaseDAO{
+public class EpisodeDAO extends AbstractDataBaseDAO{
+    final private static EpisodeDAO instanceUnique = new EpisodeDAO();
+
+    public static EpisodeDAO instance() {
+        return instanceUnique;
+    }
+
+    protected EpisodeDAO(/*DataSource ds*/) {
+        super(/*ds*/);
+    }
     
     // Personal DAOs Methods
     public Set<ParagrapheModel> getParagraphe(EpisodeModel episode) throws DAOException{
@@ -38,9 +47,9 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idEpisode='"+episode.getId()+"'");
             while (rs.next()) {
-                ParagrapheModel ouvrage
-                        = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("portrait"), rs.getString("secret"),rs.getInt("idEpisode"));
-                result.add(ouvrage);
+                ParagrapheModel para
+                        = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("secret"), rs.getString("contenu"));
+                result.add(para);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -58,16 +67,18 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
         if (!(object instanceof TransitionModel)) {
             throw new DAOException("Wrong object parameter in insert, require EpisodeModel");
         }
-        int affectedRows = 0 ; 
+        int affectedRows = 0 ;
+        int id = this.getId();
         EpisodeModel episode = (EpisodeModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st = 
-                    conn.prepareStatement("INSERT INTO Episode (dateEpisode, ecritureEnCours, typeEpisode ) VALUES (?,?,?)");
-            st.setDate(1, episode.getDateEpisode());
-            st.setBoolean(2, episode.isEcritureEnCours());
-            st.setString(3, "Transition");
+                    conn.prepareStatement("INSERT INTO Episode (ecritureEnCours, typeEpisode, dateEpisode, idEpisode) VALUES (?,?,?,?)");
+            st.setBoolean(1, episode.isEcritureEnCours());
+            st.setString(2, "Transition");
+            st.setDate(3, episode.getDate());
+            st.setInt(4, id);
             affectedRows = st.executeUpdate();
 
             if (affectedRows == 0) {
@@ -79,6 +90,10 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
+        episode.setId(id);
+        for (ParagrapheModel p : episode.getParagraphes())
+            ParagrapheDAO.instance().insert(p);
+        
         return affectedRows ;
     }
     
@@ -95,9 +110,9 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("UPDATE Episode SET dateEpisode=?, ecritureEnCours=? WHERE idEpisode=?");
-            st.setDate(1, episode.getDateEpisode());
-            st.setBoolean(2, episode.isEcritureEnCours());
+                    = conn.prepareStatement("UPDATE Episode SET ecritureEnCours=?, dateEpisode=? WHERE idEpisode=?");
+            st.setBoolean(1, episode.isEcritureEnCours());
+            st.setDate(2, episode.getDate());
             st.setInt(3, episode.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
@@ -129,5 +144,15 @@ public abstract class EpisodeDAO extends AbstractDataBaseDAO{
             closeConnection(conn);
         }
         return affectedRows ;
+    }
+
+    @Override
+    public AbstractBaseModel get(int id) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<? extends AbstractBaseModel> getAll() throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

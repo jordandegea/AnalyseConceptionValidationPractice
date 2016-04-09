@@ -17,6 +17,10 @@ public abstract class AbstractBaseModel {
     public int getId() {
         return id;
     }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public AbstractBaseModel(int id) {
         this.id = id;
@@ -28,4 +32,24 @@ public abstract class AbstractBaseModel {
     public static AbstractDataBaseDAO getDAO() {
         return null;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractBaseModel other = (AbstractBaseModel) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

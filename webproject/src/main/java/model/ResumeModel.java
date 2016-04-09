@@ -16,8 +16,8 @@ public class ResumeModel extends EpisodeModel {
     private PartieLoader partie;
     private BiographieLoader biographie;
 
-    public ResumeModel(int id, Date dateEpisode, boolean ecritureEnCours, int idEpisode, int idPartie) {
-        super(id, dateEpisode, ecritureEnCours);
+    public ResumeModel(int id, Date date, boolean ecritureEnCours, int idEpisode, int idPartie) {
+        super(id, date, ecritureEnCours);
         
         this.idEpisode = idEpisode ; 
         this.idPartie = idPartie;

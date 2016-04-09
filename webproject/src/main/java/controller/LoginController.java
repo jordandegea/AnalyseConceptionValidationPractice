@@ -47,7 +47,7 @@ public class LoginController extends AbstractControllerBase {
                 JoueurModel joueur = JoueurModel.getDAO().get(userId);
 
                 request.setAttribute("joueur", joueur);
-                request.getRequestDispatcher("/WEB-INF/showJoueur.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
             } catch (DAOException ex) {
                 super.erreurBD(request, response, ex);
             }
@@ -84,7 +84,7 @@ public class LoginController extends AbstractControllerBase {
                 JoueurValidator.instance().loginValidate(joueur, (String) request.getParameter("password"));
                 request.getSession().setAttribute("idUser", joueur.getId());
                 request.setAttribute("joueur", joueur);
-                request.getRequestDispatcher("/WEB-INF/showJoueur.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
             } catch (ValidatorException ex) {
                 request.setAttribute("error", ex.getMessage());
                 request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -116,9 +116,8 @@ public class LoginController extends AbstractControllerBase {
         try {
             JoueurValidator.instance().createValidate(joueur, confirm);
             JoueurDAO.instance().insert(joueur);
-            joueur = getJoueur(request);
             request.setAttribute("joueur", joueur);
-            request.getRequestDispatcher("/WEB-INF/showJoueur.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
         } catch (ValidatorException ex) {
             request.setAttribute("error", ex.getMessage());
             request.setAttribute("joueur", joueur);

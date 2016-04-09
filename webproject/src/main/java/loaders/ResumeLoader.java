@@ -15,23 +15,22 @@ import java.util.logging.Logger;
  * Created by william on 05/04/16.
  */
 public class ResumeLoader extends AbstractLoader<ResumeModel> {
-    public ResumeModel get(PartieModel partie) {
-        if (!isLoaded())
-            try {
-                setObject(((PartieDAO)PartieModel.getDAO()).getResume(partie));
-        } catch (DAOException ex) {
-            Logger.getLogger(ResumeLoader.class.getName()).log(Level.SEVERE, null, ex);
+
+    public ResumeModel get(PartieModel partie) throws DAOException {
+        if (!isLoaded()) {
+            setObject(((PartieDAO) PartieModel.getDAO()).getResume(partie));
         }
 
         return getObject();
     }
 
     public Set<ResumeModel> get(BiographieModel bio) {
-        if (!isLoaded())
+        if (!isLoaded()) {
             try {
-                setObjectSet(((BiographieDAO)BiographieModel.getDAO()).getResumes(bio));
-        } catch (DAOException ex) {
-            Logger.getLogger(ResumeLoader.class.getName()).log(Level.SEVERE, null, ex);
+                setObjectSet(BiographieDAO.instance().getResumes(bio));
+            } catch (DAOException ex) {
+                Logger.getLogger(ResumeLoader.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return getObjectSet();

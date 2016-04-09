@@ -35,4 +35,11 @@ public class UniversModel extends AbstractBaseModel {
     public Set<PersonnageModel> getPersonnages() {
         return personnages.get(this);
     }
+
+    @Override
+    public String toString() {
+        return this.getNom();
+    }
+    
+    
 }

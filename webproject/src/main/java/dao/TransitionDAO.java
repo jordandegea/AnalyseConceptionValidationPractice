@@ -26,7 +26,7 @@ public class TransitionDAO extends EpisodeDAO{
     final private static TransitionDAO instanceUnique = new TransitionDAO();
     
     
-    static TransitionDAO instance() {
+    public static TransitionDAO instance() {
         return instanceUnique;
     }
     
@@ -50,7 +50,7 @@ public class TransitionDAO extends EpisodeDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='Transition' ");
             if (rs.next()) {
-                result = new TransitionModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                result = new TransitionModel(id, rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -70,7 +70,7 @@ public class TransitionDAO extends EpisodeDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='Transition' ");
             while (rs.next()) {
                 TransitionModel ouvrage
-                    = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                    = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

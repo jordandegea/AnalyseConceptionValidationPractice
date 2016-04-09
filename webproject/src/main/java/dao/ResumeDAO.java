@@ -23,30 +23,28 @@ import model.ResumeModel;
  *
  * @author JordanLeMagnifique
  */
-public class ResumeDAO extends EpisodeDAO{
-    
+public class ResumeDAO extends EpisodeDAO {
+
     final private static ResumeDAO instanceUnique = new ResumeDAO();
-    
-    
-    static ResumeDAO instance() {
+
+    public static ResumeDAO instance() {
         return instanceUnique;
     }
-    
+
     private ResumeDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
 
-    
     // Personal DAOs Methods
-    public BiographieModel getBiographie(ResumeModel resume) throws DAOException{
+    public BiographieModel getBiographie(ResumeModel resume) throws DAOException {
 // TODO: complete that
         throw new DAOException("Not Implemented Yet");
     }
-    public PartieModel getPartie(ResumeModel resume) throws DAOException{
+
+    public PartieModel getPartie(ResumeModel resume) throws DAOException {
         return (PartieModel) PartieDAO.instance().get(resume.getIdPartie());
     }
-    
-    
+
     @Override
     public AbstractBaseModel get(int id) throws DAOException {
         ResumeModel result = null;
@@ -56,7 +54,7 @@ public class ResumeDAO extends EpisodeDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='Resume' ");
             if (rs.next()) {
-                result = new ResumeModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"),rs.getInt("idPartie"));
+                result = new ResumeModel(id, rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"), rs.getInt("idPartie"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -65,7 +63,7 @@ public class ResumeDAO extends EpisodeDAO{
         }
         return result;
     }
-    
+
     public List<AbstractBaseModel> getAll() throws DAOException {
         List<AbstractBaseModel> result = new ArrayList<>();
         Connection conn = null;
@@ -75,7 +73,7 @@ public class ResumeDAO extends EpisodeDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='Resume' ");
             while (rs.next()) {
                 ResumeModel ouvrage
-                    = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"),rs.getInt("idPartie"));
+                        = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"), rs.getInt("idEpisode"), rs.getInt("idPartie"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -92,39 +90,36 @@ public class ResumeDAO extends EpisodeDAO{
             throw new DAOException("Wrong object parameter in insert, require ResumeModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         ResumeModel resume = (ResumeModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
-            PreparedStatement st = 
-                    conn.prepareStatement("INSERT INTO Episode (dateEpisode, ecritureEnCours, typeEpisode ) VALUES (?,?,?)");
-            st.setDate(1, resume.getDateEpisode());
-            st.setBoolean(2, resume.isEcritureEnCours());
-            st.setString(3, "Resume");
+            PreparedStatement st
+                    = conn.prepareStatement("INSERT INTO Episode (ecritureEnCours, typeEpisode, dateEpisode, idEpisode) VALUES (?,?,?,?)");
+            st.setBoolean(1, resume.isEcritureEnCours());
+            st.setString(2, "Resume");
+            st.setDate(3, resume.getDate());
+            st.setInt(4, id);
             affectedRows = st.executeUpdate();
 
             if (affectedRows == 0) {
                 throw new DAOException("Creating Episode failed, no rows affected.");
             }
 
-            try (ResultSet generatedKeys = st.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    st = conn.prepareStatement("INSERT INTO Resume (idEpisode, idPartie ) VALUES (?,?)");
-                    st.setInt(1, generatedKeys.getInt(1));
-                    st.setInt(2, resume.getPartie().getId());
-                }else {
-                    throw new SQLException("Creating Episode failed, no ID obtained.");
-                }
-            }
-            
+            st = conn.prepareStatement("INSERT INTO Resume (idEpisode, idPartie ) VALUES (?,?)");
+            st.setInt(1, id);
+            st.setInt(2, resume.getPartie().getId());
+
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
-        return affectedRows ;
+        
+        resume.setId(id);
+        return affectedRows;
     }
-    
 
     @Override
     public int update(Object object) throws DAOException {
@@ -154,7 +149,7 @@ public class ResumeDAO extends EpisodeDAO{
         if (!(object instanceof ResumeModel)) {
             throw new DAOException("Wrong object parameter in delete, require ResumeModel");
         }
-        int affectedRows = 0 ;
+        int affectedRows = 0;
         ResumeModel resume = (ResumeModel) object;
         Connection conn = null;
         try {
@@ -162,13 +157,13 @@ public class ResumeDAO extends EpisodeDAO{
             PreparedStatement st
                     = conn.prepareStatement("DELETE FROM Resume WHERE idEpisode=?");
             st.setInt(1, resume.getId());
-            
+
             affectedRows = st.executeUpdate();
 
             if (affectedRows == 0) {
                 throw new DAOException("Creating Episode failed, no rows affected.");
             }
-            
+
             st = conn.prepareStatement("DELETE FROM Episode WHERE idEpisode=?");
             st.setInt(1, resume.getId());
             st.executeUpdate();

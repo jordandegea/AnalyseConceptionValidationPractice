@@ -44,17 +44,23 @@ CREATE TABLE Biographie(
 
 CREATE TABLE Personnage(
 	idPersonnage int primary key,
-	nomPerso varchar(50),
-	dateNaissance date,
+	nomPerso varchar(128),
+	dateNaissance varchar(128),
 	profession varchar(256),
 	portrait varchar(512),
 	idJoueur REFERENCES Joueur(idJoueur),
 	idUnivers REFERENCES Univers(idUnivers),
-	idPartie int REFERENCES Partie(idPartie),
 	idBiographie int REFERENCES Biographie(idBiographie)
 );
 
+CREATE TABLE PartieEnCours(
+    idPersonnage REFERENCES Personnage(idPersonnage),
+    idPartie REFERENCES Partie(idPartie),
+    primary key (idJoueur)
+);
+
 CREATE TABLE Resume(
+
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
 	primary key (idEpisode,idPartie)
@@ -63,7 +69,7 @@ CREATE TABLE Resume(
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
 	secret integer,
-	contenu varchar(512),
+	contenu varchar(2048),
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 

@@ -117,12 +117,13 @@ public class PartieDAO extends AbstractDataBaseDAO{
             throw new DAOException("Wrong object parameter in insert, require PartieModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         PartieModel partie = (PartieModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Partie (titrePartie ,resumePartie, datePartie, lieu, termine, idUnivers, loginMJ) VALUES (?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Partie (titrePartie ,resumePartie, datePartie, lieu, termine, idUnivers, loginMJ, idPartie) VALUES (?,?,?,?,?,?,?,?)");
             st.setString(1, partie.getTitrePartie());
             st.setString(2, partie.getRésumé());
             st.setDate(3, partie.getDate());
@@ -130,12 +131,15 @@ public class PartieDAO extends AbstractDataBaseDAO{
             st.setBoolean(5, partie.isPartieFinie());
             st.setInt(6, partie.getUnivers().getId());
             st.setInt(7, partie.getMJ().getId());
+            st.setInt(8, id);
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        
+        partie.setId(id);
         return affectedRows ;
     }
 

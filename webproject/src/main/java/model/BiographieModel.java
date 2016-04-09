@@ -1,17 +1,17 @@
 package model;
 
+import java.util.HashSet;
 import loaders.BioInitialeLoader;
 import loaders.ResumeLoader;
 
 import java.util.Set;
+import java.util.TreeSet;
 import loaders.TransitionLoader;
 
 /**
  * Created by william on 05/04/16.
  */
 public class BiographieModel extends AbstractBaseModel {
-    private int idBioInitiale;
-    
     private BioInitialeLoader bioInitiale;
     private ResumeLoader resumes;
     private TransitionLoader transitions;
@@ -19,10 +19,15 @@ public class BiographieModel extends AbstractBaseModel {
     public BiographieModel(int id, int idBioInitiale) {
         super(id);
         
-        this.idBioInitiale = idBioInitiale;
-        
         bioInitiale = new BioInitialeLoader();
         resumes = new ResumeLoader();
+        transitions = new TransitionLoader();
+    }
+
+    public BiographieModel(BioInitialeModel bioInitiale) {
+        this.bioInitiale = new BioInitialeLoader(bioInitiale);
+        resumes = new ResumeLoader();
+        transitions = new TransitionLoader();
     }
 
     public BioInitialeModel getBioInitiale() {
@@ -35,7 +40,12 @@ public class BiographieModel extends AbstractBaseModel {
     public Set<TransitionModel> getTransition() {
         return transitions.get(this);
     }
-    public int getIdBioInitiale() {
-        return idBioInitiale;
+    
+    public Set<EpisodeModel> getFullBiographie() {
+        Set<EpisodeModel> episodes = new TreeSet<>();
+        episodes.add(this.getBioInitiale());
+        episodes.addAll(this.getResumes());
+        episodes.addAll(this.getTransition());
+        return episodes;
     }
 }

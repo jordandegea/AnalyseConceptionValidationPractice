@@ -16,12 +16,6 @@ public class PersonnageModel extends AbstractBaseModel {
     private String dateNaiss;
     private String profession;
     private String portrait;
-
-    private int idJoueur;
-
-    private int idUnivers ;
-    private int idPartie ;
-    private int idBiographie ;
     
     private JoueurLoader owner;
     private UniversLoader univers;
@@ -30,18 +24,12 @@ public class PersonnageModel extends AbstractBaseModel {
     private JoueurLoader MJ;
     private BiographieLoader biographie;
 
-    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait,
-    int idJoueur, int idUnivers, int idPartie, int idBiographie) {
+    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait) {
         super(id);
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
-        
-        this.idJoueur = idJoueur;
-        this.idUnivers = idUnivers;
-        this.idPartie = idPartie;
-        this.idBiographie = idBiographie;
         
         owner = new JoueurLoader();
         univers = new UniversLoader();
@@ -49,22 +37,18 @@ public class PersonnageModel extends AbstractBaseModel {
         MJ = new JoueurLoader();
     }
 
-    public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait,
-    int idJoueur, int idUnivers, int idPartie, int idBiographie) {
+    public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait, BioInitialeModel bioInitiale, JoueurModel Joueur, UniversModel univers) {
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
         
-        this.idJoueur = idJoueur;
-        this.idUnivers = idUnivers;
-        this.idPartie = idPartie;
-        this.idBiographie = idBiographie;
-        
-        owner = new JoueurLoader();
-        univers = new UniversLoader();
+        owner = new JoueurLoader(Joueur);
+        this.univers = new UniversLoader(univers);
         parties = new PartieLoader();
+        partie = new PartieLoader();
         MJ = new JoueurLoader();
+        biographie = new BiographieLoader(bioInitiale);
     }
 
     public String getNomPerso() {
@@ -121,22 +105,5 @@ public class PersonnageModel extends AbstractBaseModel {
 
     public JoueurModel getMJ() {
         return MJ.getMJ(this);
-    }
-    
-    
-    public int getIdJoueur() {
-        return idJoueur;
-    }
-
-    public int getIdUnivers() {
-        return idUnivers;
-    }
-
-    public int getIdPartie() {
-        return idPartie;
-    }
-
-    public int getIdBiographie() {
-        return idBiographie;
     }
 }

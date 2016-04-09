@@ -40,7 +40,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public BioInitialeModel getBioInitiale(BiographieModel bio) throws DAOException{
-        return (BioInitialeModel) BioInitialeDAO.instance().get(bio.getIdBioInitiale());
+        throw new DAOException("Not Implemented Yet");
     }
      // Personal DAOs Methods
     public Set<ResumeModel> getResumes(BiographieModel bio) throws DAOException{
@@ -101,20 +101,23 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             throw new DAOException("Wrong object parameter in insert, require BiographieModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         BiographieModel biographie = (BiographieModel) object;
+        BioInitialeDAO.instance().insert(biographie.getBioInitiale());
+        
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Biographie (idBiographie, idBioInitiale) VALUES (?, ?)");
-            st.setInt(1, biographie.getId());
-            st.setInt(2, biographie.getBioInitiale().getId());
+                    = conn.prepareStatement("INSERT INTO Biographie (idBiographie, idBioInitiale) VALUES (id.nextval, ?)");
+            st.setInt(1, biographie.getBioInitiale().getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        biographie.setId(id);
         return affectedRows ;
     }
     

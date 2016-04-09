@@ -64,7 +64,7 @@ public class BioInitialeDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='BioInitiale' ");
             if (rs.next()) {
-                result = new BioInitialeModel(id, rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                result = new BioInitialeModel(id);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -84,7 +84,7 @@ public class BioInitialeDAO extends EpisodeDAO {
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='BioInitiale' ");
             while (rs.next()) {
                 BioInitialeModel ouvrage
-                    = new BioInitialeModel(rs.getInt("idEpisode"), rs.getDate("dateResume"), rs.getBoolean("ecritureEnCours"));
+                    = new BioInitialeModel(rs.getInt("idEpisode"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {

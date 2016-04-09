@@ -14,7 +14,7 @@ import model.JoueurModel;
  *
  * @author william
  */
-public class JoueurValidator extends AbstractValidator {
+public class JoueurValidator extends AbstractValidator<JoueurModel> {
     final private static JoueurValidator instance = new JoueurValidator();
     
     public static JoueurValidator instance() {
@@ -31,7 +31,7 @@ public class JoueurValidator extends AbstractValidator {
     }
     
     public void createValidate(JoueurModel joueur, String pwConfirm) throws DAOException, ValidatorException {
-        this.joueurValidate(joueur);
+        super.createValidate(joueur);
         if (!joueur.getPassword().equals(pwConfirm))
             throw new ValidatorException("Les mots de passe ne correspondent pas");
         
@@ -39,15 +39,16 @@ public class JoueurValidator extends AbstractValidator {
         if (j != null)
             throw new ValidatorException("Ce login existe déjà");
     }
-    
-    private void joueurValidate(JoueurModel j) throws ValidatorException {
-        if (j.getLogin() == null || j.getLogin().length() == 0)
+
+    @Override
+    protected void modelValidate(JoueurModel object) throws DAOException, ValidatorException {
+        if (object.getLogin() == null || object.getLogin().length() == 0)
             throw new ValidatorException("Le login ne peut être vide");
-        if (j.getPassword() == null)
+        if (object.getPassword() == null)
             throw new ValidatorException("Le mot de passe ne peut être vide");
-        if (j.getPassword().length() < 6)
+        if (object.getPassword().length() < 6)
             throw new ValidatorException("Le mot de passe doit faire 6 caractères ou plus");
-        if (j.getEmail() == null || j.getEmail().length() == 0)
+        if (object.getEmail() == null || object.getEmail().length() == 0)
             throw new ValidatorException("L'email ne peut être vide");
     }
 }

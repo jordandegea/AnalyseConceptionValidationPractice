@@ -8,7 +8,12 @@
     <body>
 
         <h2>Joueur</h2>
-
+        <ul>
+            <li>${joueur.login}</li>
+            <li>${joueur.email}</li>
+        </ul>
+        
+        
         <form action="" method="post" accept-charset="UTF-8">
             <input type="submit" value="Déconnexion" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->

@@ -90,8 +90,8 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public List<JoueurModel> getAll() throws DAOException {
+        List<JoueurModel> result = new ArrayList<>();
         Connection conn = null;
         try {
             conn = getConnection();
@@ -116,6 +116,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             throw new DAOException("Wrong object parameter in insert, require JoueurModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         JoueurModel joueur = (JoueurModel) object;
         Connection conn = null;
         try {
@@ -131,6 +132,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
+        joueur.setId(id);
         return affectedRows ;
     }
 

@@ -10,6 +10,8 @@ import dao.DAOException;
 import dao.JoueurDAO;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,9 +62,13 @@ public abstract class AbstractControllerBase extends HttpServlet{
      * @return
      * @throws DAOException
      */
-    private JoueurModel getUser(HttpServletRequest request) throws DAOException {
-        JoueurModel joueur = JoueurDAO.instance().get(Integer.parseInt((String) request.getSession().getAttribute("idUser")));
-
+    protected JoueurModel getUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        JoueurModel joueur = null;
+        try {
+            joueur = JoueurDAO.instance().get((Integer)request.getSession().getAttribute("idUser"));
+        } catch (DAOException ex) {
+            erreurBD(request, response, ex);
+        }
         return joueur;
     }
     

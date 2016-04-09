@@ -10,8 +10,8 @@ import java.sql.Date;
 public class TransitionModel extends EpisodeModel {
     private BiographieLoader biographie;
 
-    public TransitionModel(int id, Date dateEpisode, boolean ecritureEnCours) {
-        super(id, dateEpisode, ecritureEnCours);
+    public TransitionModel(int id, Date date, boolean ecritureEnCours) {
+        super(id, date, ecritureEnCours);
         biographie = new BiographieLoader();
     }
 

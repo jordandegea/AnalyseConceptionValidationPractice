@@ -52,7 +52,9 @@ public class JoueurController extends AbstractControllerBase {
         }
     }
     
-    private void showJoueur(HttpServletRequest request, HttpServletResponse response) {
+    private void showJoueur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("joueur", getUser(request, response));
+        request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
     }
     
     private void newJoueur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,15 +83,15 @@ public class JoueurController extends AbstractControllerBase {
         String action = request.getParameter("action");
 
         if (action == null) {
+            super.invalidParameters(request, response);
         } else if (action.equals("NEW")) {
             newJoueur(request, response);
-            // Traitement spécifique modifier
         } else if (action.equals("EDIT")) {
-            //Traitement spécifique supprimer 
-        } else if (action.equals("DELETE")) {
             
         } else if (action.equals("SHOW")) {
-            
+            this.showJoueur(request, response);
+        } else {
+            super.invalidParameters(request, response);
         }
     }
 
@@ -113,8 +115,8 @@ public class JoueurController extends AbstractControllerBase {
             //Traitement spécifique supprimer 
         } else if (action.equals("DELETE")) {
             
-        } else if (action.equals("SHOW")) {
-            
+        } else {
+            super.invalidParameters(request, response);
         }
     }
 

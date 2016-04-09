@@ -11,6 +11,14 @@ import model.BiographieModel;
  * Created by william on 05/04/16.
  */
 public class BioInitialeLoader extends AbstractLoader<BioInitialeModel> {
+
+    public BioInitialeLoader(BioInitialeModel bioInitiale) {
+        super(bioInitiale);
+    }
+    public BioInitialeLoader() {
+        super();
+    }
+    
     public BioInitialeModel get(BiographieModel bio) {
         if (!isLoaded())
             try {

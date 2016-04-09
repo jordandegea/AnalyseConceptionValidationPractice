@@ -13,6 +13,13 @@ import model.UniversModel;
  * Created by william on 05/04/16.
  */
 public class UniversLoader extends AbstractLoader<UniversModel> {
+    public UniversLoader(UniversModel u) {
+        super(u);
+    }
+    public UniversLoader() {
+        super();
+    }
+    
     public UniversModel get(PartieModel partie) {
         if (!isLoaded())
             try {

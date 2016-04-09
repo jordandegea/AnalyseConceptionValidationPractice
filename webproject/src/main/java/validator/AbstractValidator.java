@@ -5,17 +5,23 @@
  */
 package validator;
 
+import dao.DAOException;
 import model.AbstractBaseModel;
 
 /**
  *
  * @author william
  */
-public abstract class AbstractValidator {
-    public void createValidate(AbstractBaseModel object) throws ValidatorException {
+public abstract class AbstractValidator<T extends AbstractBaseModel> {
+    public void createValidate(T object) throws DAOException, ValidatorException {
+        modelValidate(object);
     }
-    public void editValidate(AbstractBaseModel object) throws ValidatorException {
+    public void editValidate(T object) throws DAOException, ValidatorException {
+        modelValidate(object);
     }
-    public void deleteValidate(AbstractBaseModel object) throws ValidatorException {
+    public void deleteValidate(T object) throws DAOException, ValidatorException {
+        modelValidate(object);
     }
+    
+    protected abstract void modelValidate(T object) throws DAOException, ValidatorException;
 }

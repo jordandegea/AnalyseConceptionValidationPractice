@@ -28,7 +28,7 @@ import model.UniversModel;
 public class PersonnageDAO extends AbstractDataBaseDAO{
     final private static PersonnageDAO instanceUnique = new PersonnageDAO();
 
-    static PersonnageDAO instance() {
+    public static PersonnageDAO instance() {
         return instanceUnique;
     }
 
@@ -41,14 +41,14 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     // Personal DAOs Methods
     
     public UniversModel getUnivers(PersonnageModel personnage) throws DAOException{
-        return (UniversModel) UniversDAO.instance().get(personnage.getIdUnivers());
+        throw new DAOException("Not Implemented Yet");
     }
     
     public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException{
-        return (PartieModel) PartieDAO.instance().get(personnage.getIdPartie());
+        throw new DAOException("Not Implemented Yet");
     }
     public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
-        return (BiographieModel) BiographieDAO.instance().get(personnage.getIdBiographie());
+        throw new DAOException("Not Implemented Yet");
     }
     public JoueurModel getMJ(PersonnageModel personnage) throws DAOException{
         // TODO: complete that
@@ -67,7 +67,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     
     // Override Methods    
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
+    public PersonnageModel get(int id) throws DAOException {
         PersonnageModel result = null;
         Connection conn = null;
         try {
@@ -80,11 +80,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait"),
-                        rs.getInt("idJoueur"),
-                        rs.getInt("idUnivers"),
-                        rs.getInt("idPartie"),
-                        rs.getInt("idBiographie")
+                        rs.getString("portrait")
                 );
             }
         } catch (SQLException e) {
@@ -96,8 +92,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public List<PersonnageModel> getAll() throws DAOException {
+        List<PersonnageModel> result = new ArrayList<>();
         Connection conn = null;
         try {
             conn = getConnection();
@@ -110,11 +106,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait"),
-                        rs.getInt("idJoueur"),
-                        rs.getInt("idUnivers"),
-                        rs.getInt("idPartie"),
-                        rs.getInt("idBiographie") );
+                        rs.getString("portrait")
+                     );
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -131,26 +124,30 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             throw new DAOException("Wrong object parameter in insert, require PersonnageModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         PersonnageModel personnage = (PersonnageModel) object;
+        BiographieDAO.instance().insert(personnage.getBiographie());
+        
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Personnage (nomPerso, dateNaissance, profession, portrait, idJoueur, idUnivers, idPartie, idBiographie) VALUES (?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Personnage (nomPerso, dateNaissance, profession, portrait, idJoueur, idUnivers, idBiographie, idPersonnage) VALUES (?,?,?,?,?,?,?,?)");
             st.setString(1, personnage.getNomPerso());
             st.setString(2, personnage.getDateNaiss());
             st.setString(3, personnage.getProfession());
             st.setString(4, personnage.getPortrait());
             st.setInt(5, personnage.getOwner().getId());
             st.setInt(6, personnage.getUnivers().getId());
-            st.setInt(7, personnage.getPartieEnCours().getId());
-            st.setInt(8, personnage.getBiographie().getId());
+            st.setInt(7, personnage.getBiographie().getId());
+            st.setInt(8, id);
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        personnage.setId(id);
         return affectedRows ;
     }
 

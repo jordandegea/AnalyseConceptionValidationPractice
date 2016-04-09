@@ -13,6 +13,18 @@ import model.*;
  * Created by william on 05/04/16.
  */
 public class BiographieLoader extends AbstractLoader<BiographieModel> {
+    public BiographieLoader() {
+        super();
+    }
+    
+    public BiographieLoader(BiographieModel bio) {
+        super(bio);
+    }
+    
+    public BiographieLoader(BioInitialeModel bioInitiale) {
+        super(new BiographieModel(bioInitiale));
+    }
+    
     public BiographieModel get(BioInitialeModel bioInitiale) {
         if (!isLoaded())
             try {

@@ -6,18 +6,19 @@ import loaders.EpisodeLoader;
  * Created by william on 05/04/16.
  */
 public class ParagrapheModel extends AbstractBaseModel {
-    private int idEpisode;
-
-    
     private boolean secret;
     private String contenu;
     private EpisodeLoader episode;
 
-    public ParagrapheModel(int id, boolean secret, String contenu, int idEpisode) {
+    public ParagrapheModel(int id, boolean secret, String contenu) {
         super(id);
         this.secret = secret;
         this.contenu = contenu;
-        this.idEpisode = idEpisode;
+    }
+
+    public ParagrapheModel(boolean secret, String contenu) {
+        this.secret = secret;
+        this.contenu = contenu;
     }
 
     public boolean isSecret() {
@@ -38,9 +39,5 @@ public class ParagrapheModel extends AbstractBaseModel {
     
     public EpisodeModel getEpisode(){
         return episode.get(this);
-    }
-    
-    public int getIdEpisode() {
-        return idEpisode;
     }
 }

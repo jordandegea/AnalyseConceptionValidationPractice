@@ -13,6 +13,14 @@ import model.PersonnageModel;
  * Created by william on 05/04/16.
  */
 public class JoueurLoader extends AbstractLoader<JoueurModel> {
+    public JoueurLoader(JoueurModel j) {
+        super(j);
+    }
+    
+    public JoueurLoader() {
+        super();
+    }
+    
     public JoueurModel get(PartieModel partie) {
         if (!isLoaded())
             try {

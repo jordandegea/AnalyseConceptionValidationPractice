@@ -28,7 +28,7 @@ public class UniversDAO extends AbstractDataBaseDAO {
 
     final private static UniversDAO instanceUnique = new UniversDAO();
 
-    static UniversDAO instance() {
+    public static UniversDAO instance() {
         return instanceUnique;
     }
 
@@ -44,7 +44,7 @@ public class UniversDAO extends AbstractDataBaseDAO {
     
     // Override Methods
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
+    public UniversModel get(int id) throws DAOException {
         UniversModel result = null;
         Connection conn = null;
         try {
@@ -62,7 +62,7 @@ public class UniversDAO extends AbstractDataBaseDAO {
         return result;
     }
 
-    public AbstractBaseModel get(String nom) throws DAOException {
+    public UniversModel get(String nom) throws DAOException {
         UniversModel result = null;
         Connection conn = null;
         try {
@@ -81,8 +81,8 @@ public class UniversDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public List<UniversModel> getAll() throws DAOException {
+        List<UniversModel> result = new ArrayList<>();
         Connection conn = null;
         try {
             conn = getConnection();
@@ -107,19 +107,22 @@ public class UniversDAO extends AbstractDataBaseDAO {
             throw new DAOException("Wrong object parameter in insert, require UniversModel");
         }
         int affectedRows = 0;
+        int id = this.getId();
         UniversModel univers = (UniversModel) object;
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Univers (nomUnivers) VALUES (?)");
-            st.setString(1, univers.getNom());
+                    = conn.prepareStatement("INSERT INTO Univers (nomUnivers, idUnivers) VALUES (?,?)");
             affectedRows = st.executeUpdate();
+            st.setString(1, univers.getNom());
+            st.setInt(2, id);
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
+        univers.setId(id);
         return affectedRows ;
     }
 

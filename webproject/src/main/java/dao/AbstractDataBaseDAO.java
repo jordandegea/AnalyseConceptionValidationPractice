@@ -44,8 +44,28 @@ public abstract class AbstractDataBaseDAO {
 
     }
     
+    protected int getId() throws DAOException {
+        int id = 0;
+        
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT id.nextval FROM DUAL");
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        
+        return id;
+    }
+    
     public abstract     AbstractBaseModel           get(int id)             throws DAOException;
-    public abstract     List<AbstractBaseModel>     getAll()                throws DAOException;
+    public abstract     List<? extends AbstractBaseModel>     getAll()                throws DAOException;
     public abstract     int                         insert(Object object)   throws DAOException;
     public abstract     int                         update(Object object)   throws DAOException;
     public abstract     int                         delete(Object object)   throws DAOException;

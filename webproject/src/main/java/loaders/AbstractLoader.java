@@ -1,5 +1,6 @@
 package loaders;
 
+import dao.DAOException;
 import model.AbstractBaseModel;
 
 import java.util.Set;
@@ -15,7 +16,12 @@ public abstract class AbstractLoader<T extends AbstractBaseModel>{
     public AbstractLoader() {
         this.loaded = false;
     }
-
+    
+    public AbstractLoader(T obj) {
+        object = obj;
+        loaded = true;
+    }
+    
     public void setLoaded(boolean loaded) {
         this.loaded = loaded;
     }
