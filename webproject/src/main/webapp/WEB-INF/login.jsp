@@ -10,11 +10,11 @@
 
         ${error}
         <form action="" method="post" accept-charset="UTF-8">
-            <label>Login :</label><input type="text" name="login" value="${joueur.login}" requested /><br/>
-            <label>Mot de passe :</label><input type="password" name="password" requested /> <br/>
+            <label>Login :</label><input type="text" name="login" value="${joueur.login}" requested /><br/>
+            <label>Mot de passe :</label><input type="password" name="password" requested /> <br/>
 
             <input type="submit" value="Valider" />
-            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
             <input type="hidden" name="action" value="LOGIN" />
         </form>
         <a href="register">S'enregistrer</a>

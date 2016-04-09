@@ -26,7 +26,7 @@ CREATE TABLE Partie(
 	lieu varchar(128),
 	termine integer, -- booléen
 	idUnivers REFERENCES Univers(idUnivers),
-	idJoueur REFERENCES Joueur(idJoueur)
+	idMJ REFERENCES Joueur(idJoueur)
 );
 
 CREATE TABLE Episode(

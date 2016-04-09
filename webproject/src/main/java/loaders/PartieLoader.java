@@ -15,44 +15,34 @@ import java.util.logging.Logger;
  * Created by william on 05/04/16.
  */
 public class PartieLoader extends AbstractLoader<PartieModel> {
-    public Set<PartieModel> get(PersonnageModel personnage) {
-        if (!isLoaded())
-            try {
-                setObjectSet(((PersonnageDAO)PersonnageModel.getDAO()).getParties(personnage));
-        } catch (DAOException ex) {
-            Logger.getLogger(PartieLoader.class.getName()).log(Level.SEVERE, null, ex);
+
+    public Set<PartieModel> get(PersonnageModel personnage) throws DAOException {
+        if (!isLoaded()) {
+            setObjectSet(PersonnageDAO.instance().getParties(personnage));
         }
 
         return getObjectSet();
     }
 
-    public Set<PartieModel> get(JoueurModel joueur) {
-        if (!isLoaded())
-            try {
-                setObjectSet(((JoueurDAO)JoueurModel.getDAO()).getParties(joueur));
-        } catch (DAOException ex) {
-            Logger.getLogger(PartieLoader.class.getName()).log(Level.SEVERE, null, ex);
+    public Set<PartieModel> get(JoueurModel joueur) throws DAOException {
+        if (!isLoaded()) {
+            setObjectSet(JoueurDAO.instance().getParties(joueur));
         }
 
         return getObjectSet();
     }
-    public PartieModel getEnCours(PersonnageModel personnage) {
-        if (!isLoaded())
-            try {
-                setObject(((PersonnageDAO)PersonnageModel.getDAO()).getPartieEnCours(personnage));
-        } catch (DAOException ex) {
-            Logger.getLogger(PartieLoader.class.getName()).log(Level.SEVERE, null, ex);
+
+    public PartieModel getEnCours(PersonnageModel personnage) throws DAOException {
+        if (!isLoaded()) {
+            setObject(PersonnageDAO.instance().getPartieEnCours(personnage));
         }
 
         return getObject();
     }
 
-    public PartieModel get(ResumeModel resume) {
-        if (!isLoaded())
-            try {
-                setObject(((ResumeDAO)ResumeModel.getDAO()).getPartie(resume));
-        } catch (DAOException ex) {
-            Logger.getLogger(PartieLoader.class.getName()).log(Level.SEVERE, null, ex);
+    public PartieModel get(ResumeModel resume) throws DAOException {
+        if (!isLoaded()) {
+            setObject(ResumeDAO.instance().getPartie(resume));
         }
 
         return getObject();
