@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import dao.JoueurDAO;
 import loaders.PartieLoader;
 import loaders.PersonnageLoader;
@@ -60,11 +61,11 @@ public class JoueurModel extends AbstractBaseModel {
         this.email = email;
     }
 
-    public Set<PersonnageModel> getPersonnagesOwned() {
+    public Set<PersonnageModel> getPersonnagesOwned() throws DAOException {
         return personnagesOwned.getPersonnagesOwned(this);
     }
 
-    public Set<PersonnageModel> getPersonnagesManaged() {
+    public Set<PersonnageModel> getPersonnagesManaged() throws DAOException {
         return personnagesManaged.getPersonnagesManaged(this);
     }
 

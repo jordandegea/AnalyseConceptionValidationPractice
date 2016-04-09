@@ -36,8 +36,6 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         super(/*ds*/);
     }
 
-            
-    
     // Personal DAOs Methods
     
     public UniversModel getUnivers(PersonnageModel personnage) throws DAOException{
