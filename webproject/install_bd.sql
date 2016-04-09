@@ -21,9 +21,9 @@ CREATE TABLE Joueur(
 CREATE TABLE Partie(
  	idPartie int primary key,
 	titrePartie varchar(256),
-	resumePartie varchar(1024),
-	datePartie date,
-	lieu varchar(50),
+	resumePartie varchar(2048),
+	datePartie varchar(128),
+	lieu varchar(128),
 	termine integer, -- booléen
 	idUnivers REFERENCES Univers(idUnivers),
 	idJoueur REFERENCES Joueur(idJoueur)
@@ -57,6 +57,12 @@ CREATE TABLE PartieEnCours(
     idPersonnage REFERENCES Personnage(idPersonnage),
     idPartie REFERENCES Partie(idPartie),
     primary key (idPersonnage)
+);
+
+CREATE TABLE PartieTerminee(
+    idPersonnage REFERENCES Personnage(idPersonnage),
+    idPartie REFERENCES Partie(idPartie),
+    primary key (idPersonnage, idPartie)
 );
 
 CREATE TABLE Resume(

@@ -105,6 +105,8 @@ public class PersonnageController extends AbstractControllerBase {
 
         } else if (action.equals("SHOW")) {
             showPersonnage(request, response);
+        } else {
+            super.invalidParameters(request, response);
         }
     }
 
@@ -129,6 +131,8 @@ public class PersonnageController extends AbstractControllerBase {
             //Traitement spécifique supprimer 
         } else if (action.equals("DELETE")) {
 
+        } else {
+            super.invalidParameters(request, response);
         }
     }
 

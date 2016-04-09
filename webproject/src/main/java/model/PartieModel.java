@@ -14,33 +14,39 @@ import java.util.Set;
  */
 public class PartieModel extends AbstractBaseModel {
     private String titrePartie;
-    private String résumé;
-    private Date date;
+    private String resumeInitial;
+    private String date;
     private String lieu;
     private boolean partieFinie;
-
-    private int idJoueur;
-
-    private int idUnivers;
     
     private UniversLoader univers;
     private JoueurLoader MJ;
     private PersonnageLoader personnages;
     private ResumeLoader resume;
 
-    public PartieModel(int id, String titrePartie, String résumé, Date date, String lieu, boolean partieFinie, int idJoueur, int idUnivers) {
+    public PartieModel(int id, String titrePartie, String résumé, String date, String lieu, boolean partieFinie) {
         super(id);
         this.titrePartie = titrePartie;
-        this.résumé = résumé;
+        this.resumeInitial = résumé;
         this.date = date;
         this.lieu = lieu;
         this.partieFinie = partieFinie;
         
-        this.idJoueur = idJoueur;
-        this.idUnivers = idUnivers;
-        
         univers = new UniversLoader();
         MJ = new JoueurLoader();
+        personnages = new PersonnageLoader();
+        resume = new ResumeLoader();
+    }
+
+    public PartieModel(String titrePartie, String date, String lieu, String résumé, JoueurModel MJ, UniversModel univers) {
+        this.titrePartie = titrePartie;
+        this.resumeInitial = résumé;
+        this.date = date;
+        this.lieu = lieu;
+        this.partieFinie = false;
+        
+        this.univers = new UniversLoader(univers);
+        this.MJ = new JoueurLoader(MJ);
         personnages = new PersonnageLoader();
         resume = new ResumeLoader();
     }
@@ -53,19 +59,19 @@ public class PartieModel extends AbstractBaseModel {
         this.titrePartie = titrePartie;
     }
 
-    public String getRésumé() {
-        return résumé;
+    public String getResumeInitial() {
+        return resumeInitial;
     }
 
-    public void setRésumé(String résumé) {
-        this.résumé = résumé;
+    public void setResumeInitial(String résumé) {
+        this.resumeInitial = résumé;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -99,13 +105,5 @@ public class PartieModel extends AbstractBaseModel {
 
     public ResumeModel getResume() throws DAOException {
         return this.resume.get(this);
-    }
-    
-    public int getIdJoueur() {
-        return idJoueur;
-    }
-
-    public int getIdUnivers() {
-        return idUnivers;
     }
 }

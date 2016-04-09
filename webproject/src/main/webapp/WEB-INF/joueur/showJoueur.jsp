@@ -27,6 +27,11 @@
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
             <input type="hidden" name="action" value="NEW" />
         </form>
+        <form action="partie" method="GET" accept-charset="UTF-8">
+            <input type="submit" value="Créer partie" />
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <input type="hidden" name="action" value="NEW" />
+        </form>
         <form action="" method="post" accept-charset="UTF-8">
             <input type="submit" value="Déconnexion" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
