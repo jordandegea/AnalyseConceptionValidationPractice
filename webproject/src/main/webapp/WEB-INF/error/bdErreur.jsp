@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+           <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <meta charset="UTF-8"/>
         <title>Erreur BD</title>
     </head>
