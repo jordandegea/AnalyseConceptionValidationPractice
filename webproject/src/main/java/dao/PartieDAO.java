@@ -194,8 +194,27 @@ public class PartieDAO extends AbstractDataBaseDAO {
             st.setInt(1, perso.getId());
             st.setInt(2, partie.getId());
             st.executeUpdate();
+            st = conn.prepareStatement("INSERT INTO ParticipationPartie (idPersonnage, idPartie) VALUES (?,?)");
+            st.setInt(1, perso.getId());
+            st.setInt(2, partie.getId());
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.enrollPersonnage() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+    
+    public void endPartie(PartieModel partie) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("DELETE FROM PartieEnCours WHERE idPartie=?");
+            st.setInt(1, partie.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PartieDAO.endPartie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

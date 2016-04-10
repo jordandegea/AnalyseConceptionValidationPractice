@@ -131,10 +131,17 @@ public class PartieController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
     }
-    
-    private void endPartie(HttpServletRequest request, HttpServletResponse response) {
-            int idPartie = Integer.parseInt(request.getParameter("idPartie"));
-        
+
+    private void endPartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+        try {
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            PartieDAO.instance().endPartie(partie);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/partie?action=SHOW&idPartie=" + partie.getId()));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
     }
 
     /**
@@ -163,7 +170,7 @@ public class PartieController extends AbstractControllerBase {
             super.invalidParameters(request, response);
         }
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *

@@ -4,7 +4,7 @@
     <jsp:param name="title" value="Creer une partie"/>
 </jsp:include>
 
-<h2>${partie.titrePartie}</h2>
+<h2>${partie.titrePartie} <c:if test="${partie.partieFinie}"><b>(terminée)</b></c:if></h2>
 <ul>
     <li>Titre : ${partie.titrePartie}</li>
     <li>Date : ${partie.date}</li>
