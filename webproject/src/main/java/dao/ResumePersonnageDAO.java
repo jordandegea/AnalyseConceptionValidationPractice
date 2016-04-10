@@ -43,7 +43,7 @@ public class ResumePersonnageDAO extends EpisodeDAO {
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT b.idBiographie  FROM Biographie b, ResumePersonnage r WHERE b.idBioInitiale = r.idEpisode AND r.idEpisode= "+ resume.getId());
+            ResultSet rs = st.executeQuery("SELECT b.idBiographie FROM Biographie b, ResumePersonnage r WHERE b.idBioInitiale = r.idEpisode AND r.idEpisode= "+ resume.getId());
             if (rs.next()) {
                 result = new BiographieModel(rs.getInt("idBiographie"));
             }
@@ -72,6 +72,7 @@ public class ResumePersonnageDAO extends EpisodeDAO {
         }
         return result;     
     }
+    
     public PartieModel getPartie(ResumePartieModel resume) throws DAOException {
         PartieModel result = null;
         Connection conn = null;
@@ -80,8 +81,8 @@ public class ResumePersonnageDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(
                     "SELECT p.idPartie , p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idJoueur  "
-                            + "FROM ResumePartie r JOIN Partie p ON r.idPartie = p.idPartie "
-                            + "WHERE r.idEpisode= "+ resume.getId());
+                            + "FROM Partie p ON r.idPartie = p.idPartie "
+                            + "WHERE p.idResume= "+ resume.getId());
             if (rs.next()) {
                 result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
             }
@@ -189,7 +190,7 @@ public class ResumePersonnageDAO extends EpisodeDAO {
         } finally {
             closeConnection(conn);
         }
-        return affectedRows;
+        return super.update(object);
     }
 
     @Override

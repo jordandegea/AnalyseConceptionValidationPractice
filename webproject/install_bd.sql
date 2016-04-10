@@ -25,6 +25,7 @@ CREATE TABLE Partie(
 	datePartie varchar(128),
 	lieu varchar(128),
 	termine integer, -- booléen
+	idResume int REFERENCES Episode(idEpisode),
 	idUnivers REFERENCES Univers(idUnivers),
 	idMJ REFERENCES Joueur(idJoueur)
 );
@@ -72,12 +73,6 @@ CREATE TABLE ResumePersonnage(
 	primary key (idEpisode,idPartie)
 );
 
-
-CREATE TABLE ResumePartie(
-	idPartie int REFERENCES Partie(idPartie),
-	idEpisode int REFERENCES Episode(idEpisode),
-	primary key (idPartie)
-);
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,

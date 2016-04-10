@@ -44,8 +44,8 @@ public class ResumePartieDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(
                     "SELECT p.idPartie , p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idJoueur  "
-                            + "FROM ResumePartie r JOIN Partie p ON r.idPartie = p.idPartie "
-                            + "WHERE r.idEpisode= "+ resume.getId());
+                            + "FROM Partie p "
+                            + "WHERE p.idResume="+ resume.getId());
             if (rs.next()) {
                 result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
             }
@@ -115,14 +115,6 @@ public class ResumePartieDAO extends EpisodeDAO {
             st.setInt(4, id);
             affectedRows = st.executeUpdate();
 
-            if (affectedRows == 0) {
-                throw new DAOException("Creating Episode failed, no rows affected.");
-            }
-
-            st = conn.prepareStatement("INSERT INTO ResumePartie (idEpisode, idPartie ) VALUES (?,?)");
-            st.setInt(1, id);
-            st.setInt(2, resume.getPartie().getId());
-
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
@@ -135,25 +127,7 @@ public class ResumePartieDAO extends EpisodeDAO {
 
     @Override
     public int update(Object object) throws DAOException {
-        if (!(object instanceof ResumePartieModel)) {
-            throw new DAOException("Wrong object parameter in update, require ResumeModel");
-        }
-        int affectedRows = 0;
-        ResumePartieModel resume = (ResumePartieModel) object;
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            PreparedStatement st
-                    = conn.prepareStatement("UPDATE ResumePartie SET idPartie=? WHERE idEpisode=?");
-            st.setInt(1, resume.getPartie().getId());
-            st.setInt(2, resume.getId());
-            affectedRows = st.executeUpdate();
-        } catch (SQLException e) {
-            throw new DAOException("DBError " + e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
-        }
-        return affectedRows;
+        return super.update(object);
     }
 
     @Override
@@ -166,17 +140,7 @@ public class ResumePartieDAO extends EpisodeDAO {
         Connection conn = null;
         try {
             conn = getConnection();
-            PreparedStatement st
-                    = conn.prepareStatement("DELETE FROM ResumePartie WHERE idEpisode=?");
-            st.setInt(1, resume.getId());
-
-            affectedRows = st.executeUpdate();
-
-            if (affectedRows == 0) {
-                throw new DAOException("Creating Episode failed, no rows affected.");
-            }
-
-            st = conn.prepareStatement("DELETE FROM Episode WHERE idEpisode=?");
+            PreparedStatement st = conn.prepareStatement("DELETE FROM Episode WHERE idEpisode=?");
             st.setInt(1, resume.getId());
             st.executeUpdate();
         } catch (SQLException e) {
