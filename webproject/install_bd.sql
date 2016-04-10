@@ -85,7 +85,7 @@ CREATE TABLE EpisodeBiographie(
 );
 
 CREATE TABLE MJ(
-	idPerso int REFERENCES Personnage(idPersonnage),
+	idPersonnage int REFERENCES Personnage(idPersonnage),
 	idMJ REFERENCES Joueur(idJoueur),
 	demande integer, -- booléen
 	primary key (idPerso)
