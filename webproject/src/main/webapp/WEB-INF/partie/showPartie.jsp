@@ -25,12 +25,15 @@
     <input type="hidden" name="action" value="ADDPERSO" />
     <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
+
+<c:if test="${!partie.partieFinie}">
 <form action="partie" method="POST" accept-charset="UTF-8">
     <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir terminer cette partie ?')" value="Terminer partie" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
     <input type="hidden" name="action" value="END" />
     <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
+</c:if>
 
 <form action="joueur" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Retour" />

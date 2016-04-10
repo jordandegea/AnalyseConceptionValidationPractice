@@ -18,6 +18,14 @@ CREATE TABLE Joueur(
 	login varchar(50) unique
 );
 
+CREATE TABLE Episode(
+	idEpisode int primary key,
+	dateEpisode date,
+	ecritureEnCours integer, -- booléen
+	typeEpisode varchar(200),
+	CONSTRAINT chk_typeEpisode CHECK (typeEpisode IN ('Bio Initiale', 'Transition', 'ResumePersonnage', 'ResumePartie'))
+);
+
 CREATE TABLE Partie(
  	idPartie int primary key,
 	titrePartie varchar(256),
@@ -28,14 +36,6 @@ CREATE TABLE Partie(
 	idResume int REFERENCES Episode(idEpisode),
 	idUnivers REFERENCES Univers(idUnivers),
 	idMJ REFERENCES Joueur(idJoueur)
-);
-
-CREATE TABLE Episode(
-	idEpisode int primary key,
-	dateEpisode date,
-	ecritureEnCours integer, -- booléen
-	typeEpisode varchar(200),
-	CONSTRAINT chk_typeEpisode CHECK (typeEpisode IN ('Bio Initiale', 'Transition', 'ResumePersonnage', 'ResumePartie'))
 );
 
 CREATE TABLE Biographie(
@@ -72,7 +72,6 @@ CREATE TABLE ResumePersonnage(
 	idPartie int REFERENCES Partie(idPartie),
 	primary key (idEpisode,idPartie)
 );
-
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
