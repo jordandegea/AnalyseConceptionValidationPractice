@@ -129,7 +129,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "SELECT idPersonnage FROM PartieEnCours"
                     + ") "
                     + "AND mj.idJoueur=? "
-                    + "AND mj.idPerso=p.idPersonnage");
+                    + "AND mj.idPersonnage=p.idPersonnage");
             query.setInt(1, partie.getMJ().getId());
             query.setInt(2, partie.getId());
             query.setInt(3, partie.getUnivers().getId());

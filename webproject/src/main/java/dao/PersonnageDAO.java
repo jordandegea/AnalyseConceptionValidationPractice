@@ -98,7 +98,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPerso=" + personnage.getId() + " AND mj.idJoueur=j.idJoueur");
+            ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPersonnage=" + personnage.getId() + " AND mj.idJoueur=j.idJoueur");
             if (rs.next()) {
                 result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
             }
