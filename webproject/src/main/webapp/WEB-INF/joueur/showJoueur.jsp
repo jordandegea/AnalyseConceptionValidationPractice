@@ -16,7 +16,7 @@
     <h2>Mes personnages</h2>
     <ul>
         <c:forEach items="${joueur.getPersonnagesOwned()}" var="perso">
-            <li>${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a></li>
+            <li>${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a> - <a href='personnage?action=EDIT&idPerso=${perso.id}'>modifier</a></li>
 
         </c:forEach>
     </ul>
