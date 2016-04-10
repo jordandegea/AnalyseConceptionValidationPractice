@@ -17,6 +17,8 @@ import model.BioInitialeModel;
 import model.BiographieModel;
 import model.EpisodeModel;
 import model.ParagrapheModel;
+import model.ResumeModel;
+import model.TransitionModel;
 
 /**
  *
@@ -34,9 +36,32 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
     }
 
     // Personal DAOs Methods
-    public EpisodeModel getEpisode(ParagrapheModel bio) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+    public EpisodeModel getEpisode(ParagrapheModel paragraphe) throws DAOException{
+        EpisodeModel result = null;
+        String type ;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + paragraphe.getId() + "'  ");
+            if (rs.next()) {
+                type = rs.getString("typeEpisode");
+                if(type.equals("Resume")){
+                    result = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                }else if(type.equals("Bio Initiale")){
+                    result = new BioInitialeModel(rs.getInt("idEpisode"));
+                }else if(type.equals("Transition")){
+                    result = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                }else{
+                    throw new DAOException("DBError : Episode Error");
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     

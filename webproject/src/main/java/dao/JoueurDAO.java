@@ -86,8 +86,30 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         return result;
     }
     public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<PersonnageModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * "
+                    + "FROM Personnage p JOIN MJ m ON p.idPersonnage=m.idPersonnage "
+                    + "WHERE m.idMJ="+joueur.getId());
+            while (rs.next()) {
+                PersonnageModel perso
+                        = new PersonnageModel(
+                                rs.getInt("p.idPersonnage"), 
+                                rs.getString("p.nomPerso"), 
+                                rs.getString("p.dateNaissance"), 
+                                rs.getString("p.profession"), 
+                                rs.getString("p.portrait"));
+                result.add(perso);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError JoueurDAO.getPersonnagesOwned() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     

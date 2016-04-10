@@ -86,7 +86,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                 result = new BiographieModel(rs.getInt("idBiographie"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError UniversDAO.getUnivers() " + e.getMessage(), e);
+            throw new DAOException("DBError PersonnageDAO.getBiographie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -98,12 +98,12 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPersonnage=" + personnage.getId() + " AND mj.idJoueur=j.idJoueur");
+            ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPersonnage=" + personnage.getId() + " AND mj.idMJ=j.idJoueur");
             if (rs.next()) {
                 result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
+            throw new DAOException("DBError PersonnageDAO.getMJ() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -149,7 +149,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO MJ (idPersonnage, idJoueur) VALUES (?,?)");
+                    = conn.prepareStatement("INSERT INTO MJ (idPersonnage, idMJ) VALUES (?,?)");
             st.setInt(1, perso.getId());
             st.setInt(2, mj.getId());
             st.executeUpdate();
