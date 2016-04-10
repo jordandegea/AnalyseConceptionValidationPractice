@@ -113,7 +113,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             }
             while (rs.next()) {
                 PersonnageModel perso
-                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
                 result.add(perso);
             }
         } catch (SQLException e) {
@@ -144,7 +144,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "AND p.idPersonnage NOT IN ("
                     + "SELECT idPersonnage FROM PartieEnCours"
                     + ") "
-                    + "AND mj.idJoueur=? "
+                    + "AND mj.idMJ=? "
                     + "AND mj.idPersonnage=p.idPersonnage");
             query.setInt(1, partie.getMJ().getId());
             query.setInt(2, partie.getId());
@@ -154,7 +154,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
 
             while (rs.next()) {
                 PersonnageModel perso
-                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
                 result.add(perso);
             }
         } catch (SQLException e) {

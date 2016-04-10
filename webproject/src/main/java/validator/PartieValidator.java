@@ -30,11 +30,11 @@ public class PartieValidator extends AbstractValidator<PartieModel> {
             throw new ValidatorException("Impossible d'enrôler un personnage dans une partie terminée");
         if (partie.getMJ().getId() == perso.getOwner().getId())
             throw new ValidatorException("Le MJ ne peut faire jouer un personnage");
-        if (partie.getUnivers().getId() == perso.getUnivers().getId())
+        if (partie.getUnivers().getId() != perso.getUnivers().getId())
             throw new ValidatorException("Le personnage doit être dans l'univers de la partie");
         if (perso.getPartieEnCours() != null)
             throw new ValidatorException("Le personnage est déjà engagé dans une partie");
-        if (partie.getMJ().getId() == perso.getMJ().getId())
+        if (partie.getMJ().getId() != perso.getMJ().getId())
             throw new ValidatorException("Le MJ du personnage doit être le MJ de la partie");
     }
 

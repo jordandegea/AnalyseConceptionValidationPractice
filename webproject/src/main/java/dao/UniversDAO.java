@@ -51,7 +51,8 @@ public class UniversDAO extends AbstractDataBaseDAO {
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait")
+                        rs.getString("portrait"),
+                        rs.getBoolean("demandeMJ")
                      );
                 result.add(ouvrage);
             }
