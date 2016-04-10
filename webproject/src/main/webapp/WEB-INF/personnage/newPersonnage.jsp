@@ -58,7 +58,7 @@ function addTextArea(){
         var saut2 = document.createElement("br");
         var check = document.createElement ("input");
         check.type = "checkbox";
-        check.value = "Paragraphe";
+        check.value = 1;
         check.id = "checkid" + i;
         check.name = "checkname" + i;
         var label = document.createElement('label')
