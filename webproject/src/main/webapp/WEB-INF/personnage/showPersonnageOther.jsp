@@ -25,7 +25,7 @@
         </c:choose>
     </li>
     <li>Biographie </li>
-    ${personnage.biographie.getParagraphesBiographieAll()}
+    ${personnage.biographie.getParagraphesBiographiePublic()}
 </ul>
 
 <h2>Parties</h2>
