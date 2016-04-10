@@ -53,7 +53,11 @@ public class PersonnageController extends AbstractControllerBase {
         ArrayList<Integer> checkList = new ArrayList<Integer>();
         while ((String) request.getParameter("textareaname"+i) != null) {
                textareaList.add((String) request.getParameter("textareaname"+i));
-           //    checkList.add( Integer.parseInt( (String)request.getParameter("checkname"+i)));
+               if (request.getParameter("checkname"+i) != null) {
+                    checkList.add( Integer.parseInt( request.getParameter("checkname"+i)));
+               } else {
+                   checkList.add(0);
+               }
                i++;
         }
         int idUnivers = Integer.parseInt(request.getParameter("univers"));
@@ -120,12 +124,17 @@ public class PersonnageController extends AbstractControllerBase {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             JoueurModel j = super.getUser(request, response);
-            // Si c'est un simple joueur
-            if (!j.equals(perso.getOwner())) {
+            // Si c'est le maitre du jeu.
+            if (j.equals(perso.getMJ())) {
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageMJ.jsp").forward(request, response);
             } 
-            // Si c'est le maitre du jeu.
+            // Si c'est un simple joueur
+            else if (!j.equals(perso.getOwner())) {
+                request.setAttribute("personnage", perso);
+                request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageOther.jsp").forward(request, response);
+            } 
+            // Si le personnage est au joueur
             else if (perso != null){
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnage.jsp").forward(request, response);

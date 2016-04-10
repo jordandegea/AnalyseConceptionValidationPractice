@@ -28,7 +28,7 @@ public class BioInitialeModel extends EpisodeModel {
         int i = 0;
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
-            paras.add(new ParagrapheModel (/*access.get(i)==0)?false:true */ false, p, i));
+            paras.add(new ParagrapheModel( (access.get(i)==0)?false:true, p, i));
             i++;
         }
         
