@@ -12,25 +12,25 @@
 \contentsline {subsection}{\numberline {3.2}Membre}{7}
 \contentsline {subsubsection}{\numberline {3.2.1}Connexion}{7}
 \contentsline {subsubsection}{\numberline {3.2.2}Inscription}{7}
-\contentsline {subsubsection}{\numberline {3.2.3}Profil}{7}
-\contentsline {subsection}{\numberline {3.3}Parties}{7}
-\contentsline {subsubsection}{\numberline {3.3.1}Cr\IeC {\'e}er une Partie}{7}
-\contentsline {subsubsection}{\numberline {3.3.2}Mes Parties}{7}
-\contentsline {subsubsection}{\numberline {3.3.3}Les Parties Disponibles}{7}
-\contentsline {subsubsection}{\numberline {3.3.4}Voir la Partie}{7}
-\contentsline {subsection}{\numberline {3.4}Personnages}{7}
-\contentsline {subsubsection}{\numberline {3.4.1}Cr\IeC {\'e}er un Personnage}{7}
-\contentsline {subsubsection}{\numberline {3.4.2}Modifier un Personnage}{7}
-\contentsline {subsubsection}{\numberline {3.4.3}Mes Personnages}{7}
-\contentsline {subsubsection}{\numberline {3.4.4}Les Personnages Disponibles}{7}
-\contentsline {subsubsection}{\numberline {3.4.5}Voir le Personnage}{7}
-\contentsline {subsection}{\numberline {3.5}MJ}{7}
-\contentsline {subsubsection}{\numberline {3.5.1}MJ : Les Demandes}{7}
-\contentsline {subsubsection}{\numberline {3.5.2}MJ : Les Joueurs}{7}
-\contentsline {section}{\numberline {4}Bilan}{8}
-\contentsline {subsection}{\numberline {4.1}Recherche de modeleurs UML}{8}
-\contentsline {subsection}{\numberline {4.2}Outil : LucidChart}{8}
-\contentsline {subsection}{\numberline {4.3}IDE : Netbeans}{8}
-\contentsline {subsection}{\numberline {4.4}Tomcat8 / JDBC}{8}
-\contentsline {subsection}{\numberline {4.5}Latex : TexMaker}{8}
-\contentsline {subsection}{\numberline {4.6}Versionning : GIT}{8}
+\contentsline {subsubsection}{\numberline {3.2.3}Profil}{8}
+\contentsline {subsection}{\numberline {3.3}Parties}{8}
+\contentsline {subsubsection}{\numberline {3.3.1}Cr\IeC {\'e}er une Partie}{8}
+\contentsline {subsubsection}{\numberline {3.3.2}Mes Parties}{8}
+\contentsline {subsubsection}{\numberline {3.3.3}Les Parties Disponibles}{8}
+\contentsline {subsubsection}{\numberline {3.3.4}Voir la Partie}{8}
+\contentsline {subsection}{\numberline {3.4}Personnages}{8}
+\contentsline {subsubsection}{\numberline {3.4.1}Cr\IeC {\'e}er un Personnage}{8}
+\contentsline {subsubsection}{\numberline {3.4.2}Modifier un Personnage}{8}
+\contentsline {subsubsection}{\numberline {3.4.3}Mes Personnages}{8}
+\contentsline {subsubsection}{\numberline {3.4.4}Les Personnages Disponibles}{8}
+\contentsline {subsubsection}{\numberline {3.4.5}Voir le Personnage}{8}
+\contentsline {subsection}{\numberline {3.5}MJ}{8}
+\contentsline {subsubsection}{\numberline {3.5.1}MJ : Les Demandes}{8}
+\contentsline {subsubsection}{\numberline {3.5.2}MJ : Les Joueurs}{8}
+\contentsline {section}{\numberline {4}Bilan}{9}
+\contentsline {subsection}{\numberline {4.1}Recherche de modeleurs UML}{9}
+\contentsline {subsection}{\numberline {4.2}Outil : LucidChart}{9}
+\contentsline {subsection}{\numberline {4.3}IDE : Netbeans}{9}
+\contentsline {subsection}{\numberline {4.4}Tomcat8 / JDBC}{9}
+\contentsline {subsection}{\numberline {4.5}Latex : TexMaker}{9}
+\contentsline {subsection}{\numberline {4.6}Versionning : GIT}{9}
