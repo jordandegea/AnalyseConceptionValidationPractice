@@ -1,22 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.8)  8 APR 2016 16:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 16:24
 entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
 **Rapport.tex
-(C:\Users\Simon\Documents\GitHub\ENSIMAG-ACVLCAWEB\Rapport\Rapport.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
-abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
-croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
-(C:\Users\Simon\Documents\Latex\tex\latex\base\article.cls
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(C:\Users\Simon\Documents\Latex\tex\latex\base\size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(./Rapport.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -30,20 +23,20 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\base\inputenc.sty
-Package: inputenc 2008/03/30 v1.1d Input encoding file
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(C:\Users\Simon\Documents\Latex\tex\latex\base\utf8.def
-File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2014/09/29 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(C:\Users\Simon\Documents\Latex\tex\latex\base\t1enc.dfu
-File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00AB (decimal 171)
@@ -192,8 +185,8 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(C:\Users\Simon\Documents\Latex\tex\latex\base\ot1enc.dfu
-File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00B8 (decimal 184)
@@ -223,8 +216,8 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(C:\Users\Simon\Documents\Latex\tex\latex\base\omsenc.dfu
-File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2014/09/29 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -247,31 +240,31 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(C:\Users\Simon\Documents\Latex\tex\latex\base\fontenc.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(C:\Users\Simon\Documents\Latex\tex\latex\base\t1enc.def
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-(C:\Users\Simon\Documents\Latex\tex\latex\amsmath\amsmath.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\Simon\Documents\Latex\tex\latex\amsmath\amstext.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(C:\Users\Simon\Documents\Latex\tex\latex\amsmath\amsgen.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
 \ex@=\dimen103
 ))
-(C:\Users\Simon\Documents\Latex\tex\latex\amsmath\amsbsy.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\amsmath\amsopn.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -312,45 +305,45 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\amsfonts\amssymb.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(C:\Users\Simon\Documents\Latex\tex\latex\amsfonts\amsfonts.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(C:\Users\Simon\Documents\Latex\tex\latex\preprint\fullpage.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/preprint/fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip46
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\graphics\graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Simon\Documents\Latex\tex\latex\graphics\keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\graphics\graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Simon\Documents\Latex\tex\latex\graphics\trig.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\00miktex\graphics.cfg
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 94.
 
-(C:\Users\Simon\Documents\Latex\tex\latex\pdftex-def\pdftex.def
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(C:\Users\Simon\Documents\Latex\tex\generic\oberdiek\infwarerr.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(C:\Users\Simon\Documents\Latex\tex\generic\oberdiek\ltxcmds.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count99
@@ -358,62 +351,63 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\url\url.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\tools\xspace.sty
-Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-(C:\Users\Simon\Documents\Latex\tex\generic\babel\babel.sty
-Package: babel 2008/07/08 v3.8m The Babel package
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/09/25 3.9l The Babel package
 
-*************************************
-* Local config file bblopts.cfg used
-*
-(C:\Users\Simon\Documents\Latex\tex\latex\00miktex\bblopts.cfg
-File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
-)
-(C:\Users\Simon\Documents\Latex\tex\generic\babel\frenchb.ldf
-Language: frenchb 2009/03/16 v2.3d French support from the babel system
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2015/04/10 v3.1e French support from the babel system
 
-(C:\Users\Simon\Documents\Latex\tex\generic\babel\babel.def
-File: babel.def 2008/07/08 v3.8m Babel common definitions
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/09/25 3.9l Babel common definitions
 \babel@savecnt=\count100
 \U@D=\dimen114
 )
-Package babel Info: Making : an active character on input line 120.
-Package babel Info: Making ; an active character on input line 121.
-Package babel Info: Making ! an active character on input line 122.
-Package babel Info: Making ? an active character on input line 123.
+\l@acadian = a dialect from \language\l@french 
+\l@canadien = a dialect from \language\l@french 
+\FBcolonskip=\skip47
+\FBthinskip=\skip48
+\FB@interchartokenstateORI=\count101
+Package babel Info: Making : an active character on input line 371.
+Package babel Info: Making ; an active character on input line 372.
+Package babel Info: Making ! an active character on input line 373.
+Package babel Info: Making ? an active character on input line 374.
+\FBguillskip=\skip49
+\FBguill@level=\count102
 \FB@Mht=\dimen115
-\std@mcc=\count101
-\dec@mcc=\count102
+\std@mcc=\count103
+\dec@mcc=\count104
+\listindentFB=\skip50
+\labelwidthFB=\skip51
+\leftmarginFB=\skip52
 \parindentFFN=\dimen116
-
-*************************************
-* Local config file frenchb.cfg used
-*
-(C:\Users\Simon\Documents\Latex\tex\generic\babel\frenchb.cfg)))
-(C:\Users\Simon\Documents\Latex\tex\latex\carlisle\scalefnt.sty)
-(C:\Users\Simon\Documents\Latex\tex\latex\tools\multicol.sty
-Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
-\c@tracingmulticols=\count103
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2015/03/31 v1.8m multicolumn formatting (FMi)
+\c@tracingmulticols=\count105
 \mult@box=\box28
 \multicol@leftmargin=\dimen117
-\c@unbalance=\count104
-\c@collectmore=\count105
-\doublecol@number=\count106
-\multicoltolerance=\count107
-\multicolpretolerance=\count108
+\c@unbalance=\count106
+\c@collectmore=\count107
+\doublecol@number=\count108
+\multicoltolerance=\count109
+\multicolpretolerance=\count110
 \full@width=\dimen118
 \page@free=\dimen119
 \premulticols=\dimen120
 \postmulticols=\dimen121
-\multicolsep=\skip47
-\multicolbaselineskip=\skip48
+\multicolsep=\skip53
+\multicolbaselineskip=\skip54
 \partial@page=\box29
 \last@line=\box30
+\maxbalancingoverflow=\dimen122
 \mult@rightbox=\box31
 \mult@grightbox=\box32
 \mult@gfirstbox=\box33
@@ -435,52 +429,52 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \@tempa=\box49
 \@tempa=\box50
 \@tempa=\box51
-\c@columnbadness=\count109
-\c@finalcolumnbadness=\count110
-\last@try=\dimen122
-\multicolovershoot=\dimen123
-\multicolundershoot=\dimen124
+\c@columnbadness=\count111
+\c@finalcolumnbadness=\count112
+\last@try=\dimen123
+\multicolovershoot=\dimen124
+\multicolundershoot=\dimen125
 \mult@nat@firstbox=\box52
 \colbreak@box=\box53
-\multicol@sort@counter=\count111
+\mc@col@check@num=\count113
 )
-(C:\Users\Simon\Documents\Latex\tex\latex\geometry\geometry.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(C:\Users\Simon\Documents\Latex\tex\generic\oberdiek\ifpdf.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(C:\Users\Simon\Documents\Latex\tex\generic\oberdiek\ifvtex.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(C:\Users\Simon\Documents\Latex\tex\generic\ifxetex\ifxetex.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count112
-\Gm@cntv=\count113
-\c@Gm@tempcnt=\count114
-\Gm@bindingoffset=\dimen125
-\Gm@wd@mp=\dimen126
-\Gm@odd@mp=\dimen127
-\Gm@even@mp=\dimen128
-\Gm@layoutwidth=\dimen129
-\Gm@layoutheight=\dimen130
-\Gm@layouthoffset=\dimen131
-\Gm@layoutvoffset=\dimen132
+\Gm@cnth=\count114
+\Gm@cntv=\count115
+\c@Gm@tempcnt=\count116
+\Gm@bindingoffset=\dimen126
+\Gm@wd@mp=\dimen127
+\Gm@odd@mp=\dimen128
+\Gm@even@mp=\dimen129
+\Gm@layoutwidth=\dimen130
+\Gm@layoutheight=\dimen131
+\Gm@layouthoffset=\dimen132
+\Gm@layoutvoffset=\dimen133
 \Gm@dimlist=\toks22
-
-(C:\Users\Simon\Documents\Latex\tex\latex\geometry\geometry.cfg))
-(C:\Users\Simon\Documents\Latex\tex\latex\float\float.sty
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count115
+\c@float@type=\count117
 \float@exts=\toks23
 \float@box=\box54
 \@float@everytoks=\toks24
 \@floatcapt=\box55
-)
-(C:\Users\Simon\Documents\GitHub\ENSIMAG-ACVLCAWEB\Rapport\Rapport.aux)
+) (./Rapport.aux)
+\openout1 = `Rapport.aux'.
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
 LaTeX Font Info:    ... okay on input line 19.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
@@ -494,20 +488,63 @@ LaTeX Font Info:    ... okay on input line 19.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
 LaTeX Font Info:    ... okay on input line 19.
 
-(C:\Users\Simon\Documents\Latex\tex\context\base\supp-pdf.mkii
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count116
-\scratchdimen=\dimen133
+\scratchcounter=\count118
+\scratchdimen=\dimen134
 \scratchbox=\box56
-\nofMPsegments=\count117
-\nofMParguments=\count118
+\nofMPsegments=\count119
+\nofMParguments=\count120
 \everyMPshowfont=\toks25
-\MPscratchCnt=\count119
-\MPscratchDim=\dimen134
-\MPnumerator=\count120
-\makeMPintoPDFobject=\count121
+\MPscratchCnt=\count121
+\MPscratchDim=\dimen135
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
 \everyMPtoPDFconversion=\toks26
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 LaTeX Info: Redefining \degres on input line 19.
 LaTeX Info: Redefining \dots on input line 19.
 LaTeX Info: Redefining \up on input line 19.
@@ -547,108 +584,110 @@ LaTeX Info: Redefining \up on input line 19.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 21.
-(C:\Users\Simon\Documents\Latex\tex\latex\amsfonts\umsa.fd
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
-(C:\Users\Simon\Documents\Latex\tex\latex\amsfonts\umsb.fd
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-<images/classe/DiagrammeClasse.png, id=1, 532.99126pt x 560.0925pt>
-File: images/classe/DiagrammeClasse.png Graphic file (type png)
+) (./Rapport.toc)
+\tf@toc=\write3
+\openout3 = `Rapport.toc'.
 
-<use images/classe/DiagrammeClasse.png>
-Package pdftex.def Info: images/classe/DiagrammeClasse.png used on input line 2
-7.
-(pdftex.def)             Requested size: 284.52756pt x 299.00128pt.
+[1
 
-<images/utilisation/UserCU.png, id=2, 493.24275pt x 370.38374pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/classe/DiagrammeCla
+sse.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
+owed
+<images/classe/DiagrammeClasse.pdf, id=11, 614.295pt x 794.97pt>
+File: images/classe/DiagrammeClasse.pdf Graphic file (type pdf)
+
+<use images/classe/DiagrammeClasse.pdf>
+Package pdftex.def Info: images/classe/DiagrammeClasse.pdf used on input line 3
+1.
+(pdftex.def)             Requested size: 483.69687pt x 625.9694pt.
+ [2 <./images/classe/DiagrammeClasse.pdf>] <images/utilisation/UserCU.png, id=2
+2, 493.24275pt x 370.38374pt>
 File: images/utilisation/UserCU.png Graphic file (type png)
 
 <use images/utilisation/UserCU.png>
-Package pdftex.def Info: images/utilisation/UserCU.png used on input line 34.
-(pdftex.def)             Requested size: 284.52756pt x 213.66414pt.
- [1
+Package pdftex.def Info: images/utilisation/UserCU.png used on input line 42.
+(pdftex.def)             Requested size: 290.22107pt x 217.93674pt.
 
-{C:/Users/Simon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Si
-mon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/classe/DiagrammeClasse.pn
-g>]
-<images/utilisation/JoueurCU.png, id=13, 497.30794pt x 451.6875pt>
+<images/utilisation/JoueurCU.png, id=23, 497.30794pt x 451.6875pt>
 File: images/utilisation/JoueurCU.png Graphic file (type png)
 
 <use images/utilisation/JoueurCU.png>
-Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 41.
+Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 48.
 
-(pdftex.def)             Requested size: 284.52756pt x 258.43634pt.
+(pdftex.def)             Requested size: 237.01411pt x 215.27057pt.
 
-<images/utilisation/MJCU.png, id=14, 505.89pt x 514.92375pt>
+<images/utilisation/MJCU.png, id=24, 505.89pt x 514.92375pt>
 File: images/utilisation/MJCU.png Graphic file (type png)
 
 <use images/utilisation/MJCU.png>
-Package pdftex.def Info: images/utilisation/MJCU.png used on input line 47.
-(pdftex.def)             Requested size: 284.52756pt x 289.61246pt.
- [2 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/utilisati
-on/UserCU.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/image
-s/utilisation/JoueurCU.png>]
-<images/sequence/DS-OrganiserPartie.png, id=18, 487.8225pt x 448.52568pt>
+Package pdftex.def Info: images/utilisation/MJCU.png used on input line 49.
+(pdftex.def)             Requested size: 237.01411pt x 241.25204pt.
+ [3 <./images/utilisation/UserCU.png> <./images/utilisation/JoueurCU.png> <./im
+ages/utilisation/MJCU.png>]
+<images/sequence/DS-OrganiserPartie.png, id=28, 487.8225pt x 448.52568pt>
 File: images/sequence/DS-OrganiserPartie.png Graphic file (type png)
 
 <use images/sequence/DS-OrganiserPartie.png>
 Package pdftex.def Info: images/sequence/DS-OrganiserPartie.png used on input l
-ine 55.
-(pdftex.def)             Requested size: 284.52756pt x 261.60968pt.
+ine 58.
+(pdftex.def)             Requested size: 341.43306pt x 313.93161pt.
 
-<images/sequence/DS-ChangerMJ.png, id=19, 388.45125pt x 329.28018pt>
+<images/sequence/DS-ChangerMJ.png, id=29, 388.45125pt x 329.28018pt>
 File: images/sequence/DS-ChangerMJ.png Graphic file (type png)
 
 <use images/sequence/DS-ChangerMJ.png>
-Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 61
+Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 64
 .
-(pdftex.def)             Requested size: 284.52756pt x 241.19151pt.
+(pdftex.def)             Requested size: 341.43306pt x 289.43082pt.
 
-<images/sequence/DS-CreerPerso.png, id=20, 462.528pt x 448.52568pt>
+<images/sequence/DS-CreerPerso.png, id=30, 462.528pt x 448.52568pt>
 File: images/sequence/DS-CreerPerso.png Graphic file (type png)
 
 <use images/sequence/DS-CreerPerso.png>
-Package pdftex.def Info: images/sequence/DS-CreerPerso.png used on input line 6
-7.
-(pdftex.def)             Requested size: 284.52756pt x 275.9272pt.
- [3 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/utilisati
-on/MJCU.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/
-sequence/DS-OrganiserPartie.png>]
-<images/sequence/ET-Personnage.png, id=24, 460.72125pt x 234.8775pt>
+Package pdftex.def Info: images/sequence/DS-CreerPerso.png used on input line 7
+0.
+(pdftex.def)             Requested size: 341.43306pt x 331.10991pt.
+ [4 <./images/sequence/DS-OrganiserPartie.png> <./images/sequence/DS-ChangerMJ.
+png>] [5 <./images/sequence/DS-CreerPerso.png>] <images/sequence/ET-Personnage.
+png, id=37, 460.72125pt x 234.8775pt>
 File: images/sequence/ET-Personnage.png Graphic file (type png)
 
 <use images/sequence/ET-Personnage.png>
-Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 7
-8.
-(pdftex.def)             Requested size: 284.52756pt x 145.05269pt.
- [4 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/sequence/
-DS-ChangerMJ.png> <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/im
-ages/sequence/DS-CreerPerso.png>]
-[5 <C:/Users/Simon/Documents/GitHub/ENSIMAG-ACVLCAWEB/Rapport/images/sequence/E
-T-Personnage.png>]
-(C:\Users\Simon\Documents\GitHub\ENSIMAG-ACVLCAWEB\Rapport\Rapport.aux) ) 
+Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 8
+9.
+(pdftex.def)             Requested size: 483.69687pt x 246.58922pt.
+ [6 <./images/sequence/ET-Personnage.png>] [7] [8] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 3913 strings out of 493921
- 50400 string characters out of 3146079
- 114713 words of memory out of 3000000
- 7125 multiletter control sequences out of 15000+200000
- 13572 words of font info for 39 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 27i,6n,28p,235b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\U
-sers\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000
-.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
-0\eccc1000.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\ecbx1200.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
-ur\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\Simon\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Simon\AppData\Local\MiKT
-eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk>
-Output written on Rapport.pdf (5 pages, 248018 bytes).
+ 4686 strings out of 493089
+ 63230 string characters out of 6134841
+ 141340 words of memory out of 5000000
+ 8056 multiletter control sequences out of 15000+600000
+ 16815 words of font info for 49 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,6n,30p,345b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local
+/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on Rapport.pdf (8 pages, 296729 bytes).
 PDF statistics:
- 192 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

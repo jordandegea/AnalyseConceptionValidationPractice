@@ -24,7 +24,7 @@ public class ResumeModel extends EpisodeModel {
         return partie.get(this);
     }
 
-    public BiographieModel getBiographie() {
+    public BiographieModel getBiographie() throws DAOException {
         return this.biographie.get(this);
     }
 }

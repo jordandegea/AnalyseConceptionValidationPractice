@@ -11,31 +11,16 @@
     <li>Nom : ${personnage.nomPerso}</li>
     <li>Date de naissance : ${personnage.dateNaiss}</li>
     <li>Profession : 
-        ${personnage.profession}<a class="btn btn-warning" onclick="formularise(this, event, ${personnage.id}, 'modifier');"
-           href="controleur?action=getOuvrage&view=modifier&id=${ouvrage.id}">
-            modifier
-        </a>
+        ${personnage.profession}
     </li>
     <li>Univers : ${personnage.univers}</li>
     <li>MJ : 
         <c:choose>
             <c:when test="${personnage.MJ != null}">
-                ${personnage.MJ.login} <c:if test="${personnage.demandeMJ}"><i>(en attente de validation)</i></c:if> 
-                <form action="personnage" method="POST" accept-charset="UTF-8">
-                    <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir quitter ce MJ?')" value="Quitter ce MJ" />
-                    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
-                    <input type="hidden" name="action" value="LEAVEMJ" />
-                    <input type="hidden" name="idPerso" value="${personnage.id}" />
-                </form>
+                ${personnage.MJ.login}
             </c:when>
             <c:otherwise>
                 Pas de MJ
-                <form action="personnage" method="GET" accept-charset="UTF-8">
-                    <input type="submit" value="Proposer à un MJ" />
-                    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
-                    <input type="hidden" name="action" value="FINDMJ" />
-                    <input type="hidden" name="idPerso" value="${personnage.id}" />
-                </form>
             </c:otherwise>
         </c:choose>
     </li>

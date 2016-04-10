@@ -68,7 +68,6 @@ public class JoueurModel extends AbstractBaseModel {
     public Set<PersonnageModel> getPersonnagesManaged() throws DAOException {
         return personnagesManaged.getPersonnagesManaged(this);
     }
-
     public Set<PartieModel> getPartiesManaged() throws DAOException {
         return partiesManaged.get(this);
     }

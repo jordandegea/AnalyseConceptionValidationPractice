@@ -2,6 +2,9 @@ package model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -16,15 +19,19 @@ public class BioInitialeModel extends EpisodeModel {
     
     public BioInitialeModel() {
         super(new Date(0), false);
-        this.addParagraphe(new ParagrapheModel(false, "lorem ipsum"));
+        Set<ParagrapheModel> paras = new LinkedHashSet<>();
+        paras.add(new ParagrapheModel(false, "lorem ipsum", 1));
     }
     
     public BioInitialeModel(ArrayList<String> paragraphes, ArrayList<Integer> access) {
         super(new Date(0), false);
         int i = 0;
+        Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
-            this.addParagraphe(new ParagrapheModel ((access.get(i)==0)?false:true, p));
+            paras.add(new ParagrapheModel (/*access.get(i)==0)?false:true */ false, p, i));
             i++;
         }
+        
+        super.setParagraphes(paras);
     }
 }

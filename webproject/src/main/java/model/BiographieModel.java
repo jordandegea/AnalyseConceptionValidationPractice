@@ -1,6 +1,7 @@
 package model;
 
 import dao.DAOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import loaders.BioInitialeLoader;
 import loaders.ResumeLoader;
@@ -31,7 +32,7 @@ public class BiographieModel extends AbstractBaseModel {
         transitions = new TransitionLoader();
     }
 
-    public BioInitialeModel getBioInitiale() {
+    public BioInitialeModel getBioInitiale() throws DAOException {
         return bioInitiale.get(this);
     }
     
@@ -52,5 +53,17 @@ public class BiographieModel extends AbstractBaseModel {
         episodes.addAll(this.getResumes());
         episodes.addAll(this.getTransition());
         return episodes;
+    }
+    
+    public String getParagraphesBiographieAll() throws DAOException {
+        Set<EpisodeModel> episodes = this.getFullBiographie();
+        String bio = ""; 
+        int i = 0;
+        bio += "<u> Biographie initiale </u>";
+        for(EpisodeModel e : episodes) {
+           bio += e.getAllPart();
+           i++;
+        }
+        return bio;
     }
 }

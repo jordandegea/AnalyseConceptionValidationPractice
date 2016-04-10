@@ -42,14 +42,13 @@ public class PersonnageModel extends AbstractBaseModel {
         biographie = new BiographieLoader();
     }
 
-    public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait, BioInitialeModel bioInitiale, JoueurModel Joueur, UniversModel univers) {
+    public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait, BioInitialeModel bioInitiale, JoueurModel joueur, UniversModel univers) {
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
         this.demandeMJ = false;
-        
-        this.owner = new JoueurLoader(Joueur);
+        this.owner = new JoueurLoader(joueur);
         this.univers = new UniversLoader(univers);
         this.parties = new PartieLoader();
         this.partie = new PartieLoader();
@@ -97,7 +96,7 @@ public class PersonnageModel extends AbstractBaseModel {
         this.portrait = portrait;
     }
 
-    public BiographieModel getBiographie(){
+    public BiographieModel getBiographie() throws DAOException{
         return biographie.get(this);
     }
     

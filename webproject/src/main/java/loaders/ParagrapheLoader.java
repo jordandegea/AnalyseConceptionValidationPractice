@@ -14,13 +14,9 @@ import java.util.logging.Logger;
  */
 public class ParagrapheLoader extends AbstractLoader<ParagrapheModel> {
 
-    public Set<ParagrapheModel> get(EpisodeModel episode) {
+    public Set<ParagrapheModel> get(EpisodeModel episode) throws DAOException {
         if (!isLoaded()) {
-            try {
-                setObjectSet(EpisodeDAO.instance().getParagraphes(episode));
-            } catch (DAOException ex) {
-                Logger.getLogger(ParagrapheLoader.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            setObjectSet(EpisodeDAO.instance().getParagraphes(episode));
         }
 
         return getObjectSet();
