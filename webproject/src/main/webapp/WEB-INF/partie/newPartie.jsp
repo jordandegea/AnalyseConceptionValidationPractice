@@ -2,6 +2,7 @@
 <jsp:include page="../include/head.jsp" >
     <jsp:param name="title" value="Creer une partie"/>
 </jsp:include>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h2>Créer partie</h2>
 
