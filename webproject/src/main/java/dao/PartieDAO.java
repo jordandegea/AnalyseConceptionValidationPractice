@@ -61,8 +61,24 @@ public class PartieDAO extends AbstractDataBaseDAO {
     }
 
     public ResumeModel getResume(PartieModel partie) throws DAOException {
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        ResumeModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * "
+                    + "FROM Partie p JOIN Resume r ON p.idPartie=r.idPartie "
+                    + "JOIN Episode e ON r.idEpisode=e.idEpisode "
+                    + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='Resume' ");
+            if (rs.next()) {
+                result = new ResumeModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 
     public UniversModel getUnivers(PartieModel partie) throws DAOException {

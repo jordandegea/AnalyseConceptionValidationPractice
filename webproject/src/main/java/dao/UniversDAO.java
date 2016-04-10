@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.sql.DataSource;
@@ -38,8 +39,29 @@ public class UniversDAO extends AbstractDataBaseDAO {
 
     // Personal DAOs Methods
     public Set<PersonnageModel> getPersonnages(UniversModel univers) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<PersonnageModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Personnage WHERE idUnivers="+univers.getId() );
+            while (rs.next()) {
+                PersonnageModel ouvrage
+                     = new PersonnageModel(
+                        rs.getInt("idPersonnage"),
+                        rs.getString("nomPerso"), 
+                        rs.getString("dateNaissance"), 
+                        rs.getString("profession"), 
+                        rs.getString("portrait")
+                     );
+                result.add(ouvrage);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.getAll() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     // Override Methods
