@@ -75,7 +75,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idParagraphe='" + id + "'");
             if (rs.next()) {
-                result = new ParagrapheModel(id,rs.getBoolean("secret"), rs.getString("contenu"));
+                result = new ParagrapheModel(id,rs.getBoolean("secret"), rs.getString("contenu"), rs.getInt("numeroPar"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError ParagrapheDAO.get() " + e.getMessage(), e);
@@ -95,8 +95,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe");
             while (rs.next()) {
                 ParagrapheModel ouvrage
-                     = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("secret"), rs.getString("contenu"));
-                result.add(ouvrage);
+                     = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("secret"), rs.getString("contenu"), rs.getInt("numeroPar"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError ParagrapheDAO.getAll() " + e.getMessage(), e);
@@ -118,11 +117,12 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Paragraphe (secret, contenu, idEpisode, idParagraphe) VALUES (?,?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Paragraphe (secret, contenu, idEpisode, numeroPar, idParagraphe) VALUES (?,?,?,?,?)");
             st.setBoolean(1, paragraphe.isSecret());
             st.setString(2, paragraphe.getContenu());
             st.setInt(3,  paragraphe.getEpisode().getId());
-            st.setInt(4,  id);
+            st.setInt(4,  paragraphe.getNumeroPar());
+            st.setInt(5, id);
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError ParagrapheDAO.insert() " + e.getMessage(), e);

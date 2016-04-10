@@ -53,7 +53,7 @@ public class PersonnageController extends AbstractControllerBase {
         ArrayList<Integer> checkList = new ArrayList<Integer>();
         while ((String) request.getParameter("textareaname"+i) != null) {
                textareaList.add((String) request.getParameter("textareaname"+i));
-               checkList.add( Integer.parseInt( (String)request.getParameter("checkname"+i)));
+           //    checkList.add( Integer.parseInt( (String)request.getParameter("checkname"+i)));
                i++;
         }
         int idUnivers = Integer.parseInt(request.getParameter("univers"));

@@ -48,7 +48,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT idBioInitiale FROM Biographie WHERE idBiographie="+bio.getId());
             if (rs.next()) {
-                result = new BioInitialeModel(rs.getInt("idEpisode"));
+                result = new BioInitialeModel(rs.getInt("idBioInitiale"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError BiographieDAO.getBioInitiale() " + e.getMessage(), e);

@@ -40,7 +40,8 @@
             </c:otherwise>
         </c:choose>
     </li>
-    <li>Biographie : TODO</li>
+    <li>Biographie </li>
+    ${personnage.biographie.getParagraphesBiographieAll()}
 </ul>
 
 <h2>Parties</h2>

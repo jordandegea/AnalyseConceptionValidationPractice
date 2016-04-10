@@ -15,16 +15,14 @@ public class BioInitialeLoader extends AbstractLoader<BioInitialeModel> {
     public BioInitialeLoader(BioInitialeModel bioInitiale) {
         super(bioInitiale);
     }
+
     public BioInitialeLoader() {
         super();
     }
-    
-    public BioInitialeModel get(BiographieModel bio) {
-        if (!isLoaded())
-            try {
-                setObject(((BiographieDAO)BiographieModel.getDAO()).getBioInitiale(bio));
-        } catch (DAOException ex) {
-            Logger.getLogger(BioInitialeLoader.class.getName()).log(Level.SEVERE, null, ex);
+
+    public BioInitialeModel get(BiographieModel bio) throws DAOException {
+        if (!isLoaded()) {
+            setObject(BiographieDAO.instance().getBioInitiale(bio));
         }
 
         return getObject();
