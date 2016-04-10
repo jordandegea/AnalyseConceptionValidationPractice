@@ -76,6 +76,7 @@ CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
 	secret integer,
 	contenu varchar(2048),
+	numeroPar integer,
 	idEpisode int REFERENCES Episode(idEpisode)
 );
 
