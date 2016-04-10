@@ -51,7 +51,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT j.* FROM Joueur j, Partie p WHERE p.idPartie=" + partie.getId() + " AND p.idMJ=j.idJoueur");
             if (rs.next()) {
-                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
@@ -81,7 +81,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
-    
+
     public ResumePartieModel getResumePartie(PartieModel partie) throws DAOException {
         ResumePartieModel result = null;
         Connection conn = null;
@@ -167,11 +167,13 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "SELECT idPersonnage FROM PartieEnCours"
                     + ") "
                     + "AND mj.idMJ=? "
-                    + "AND mj.idPersonnage=p.idPersonnage");
+                    + "AND mj.idPersonnage=p.idPersonnage "
+                    + "AND p.demandeMJ=?");
             query.setInt(1, partie.getMJ().getId());
             query.setInt(2, partie.getId());
             query.setInt(3, partie.getUnivers().getId());
             query.setInt(4, partie.getMJ().getId());
+            query.setBoolean(5, false);
             ResultSet rs = query.executeQuery();
 
             while (rs.next()) {
@@ -186,7 +188,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
-    
+
     public void enrollPersonnage(PartieModel partie, PersonnageModel perso) throws DAOException {
         Connection conn = null;
         try {
