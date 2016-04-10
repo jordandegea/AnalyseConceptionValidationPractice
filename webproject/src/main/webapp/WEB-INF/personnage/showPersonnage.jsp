@@ -50,6 +50,13 @@
         </c:forEach>
 </ul>
 
+<form action="personnage" method="GET" accept-charset="UTF-8">
+        <input type="submit" value="Transférer Personnage" />
+        <input type="hidden" name="action" value="TRANSFER" />
+        <input type="hidden" name="idPerso" value="${personnage.id}" />
+</form>
+
+</form>
 <form action="joueur" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Retour" />
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->

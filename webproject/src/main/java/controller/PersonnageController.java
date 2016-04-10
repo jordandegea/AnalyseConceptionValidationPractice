@@ -160,6 +160,19 @@ public class PersonnageController extends AbstractControllerBase {
 
     }
 
+    private void transferPerso (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            JoueurModel joueur = this.getUser(request, response);
+            PersonnageModel pm = PersonnageDAO.instance().get( Integer.parseInt(request.getParameter("idPerso")));
+            Set<JoueurModel> potentialJoueur = JoueurDAO.instance().getPotentialJoueur(pm );
+            request.setAttribute("potentialJoueur", potentialJoueur);
+            request.setAttribute("idPerso", Integer.parseInt(request.getParameter("idPerso")));
+            request.getRequestDispatcher("/WEB-INF/personnage/findJoueurTransfer.jsp").forward(request, response);
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+
+    }
     private void askMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
@@ -185,6 +198,10 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
+        private void askJoueurTransfer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            /* TO BE IMPLEMENTED */
+        }
+        
     public void leaveMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idPerso = Integer.parseInt(request.getParameter("idPerso"));
         try {
@@ -218,6 +235,8 @@ public class PersonnageController extends AbstractControllerBase {
             editPersonnage(request, response);
         } else if (action.equals("SHOW")) {
             this.showPersonnage(request, response);
+        } else if (action.equals("TRANSFER")) {
+            this.transferPerso(request,response);
         } else if (action.equals("FINDMJ")) {
             this.findMJ(request, response);
         } else {
@@ -245,9 +264,11 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("UPDATE")) {
             updatePersonnage(request, response);
         } else if (action.equals("DELETE")) {
-
+   
         } else if (action.equals("ASKMJ")) {
             this.askMJ(request, response);
+        } else if (action.equals("ASKJOUEURTRANSFER")) {
+            this.askJoueurTransfer(request, response);
         } else if (action.equals("LEAVEMJ")) {
             this.leaveMJ(request, response);
         } else {
