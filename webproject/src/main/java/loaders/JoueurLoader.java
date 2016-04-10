@@ -3,8 +3,6 @@ package loaders;
 import dao.DAOException;
 import dao.PartieDAO;
 import dao.PersonnageDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;

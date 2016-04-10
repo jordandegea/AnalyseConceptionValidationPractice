@@ -6,13 +6,9 @@
 package validator;
 
 import dao.DAOException;
-import dao.JoueurDAO;
 import java.util.Set;
-import model.AbstractBaseModel;
 import model.BiographieModel;
 import model.EpisodeModel;
-import model.JoueurModel;
-import model.PersonnageModel;
 
 /**
  *

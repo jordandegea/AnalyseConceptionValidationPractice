@@ -11,16 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
-import java.util.TreeSet;
-import model.AbstractBaseModel;
-import model.BiographieModel;
 import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
-import model.UniversModel;
 
 /**
  *

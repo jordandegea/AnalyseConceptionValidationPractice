@@ -1,6 +1,5 @@
 package loaders;
 
-import dao.DAOException;
 import model.AbstractBaseModel;
 
 import java.util.Set;

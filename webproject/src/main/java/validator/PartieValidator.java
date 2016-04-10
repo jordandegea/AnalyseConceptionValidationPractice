@@ -6,9 +6,6 @@
 package validator;
 
 import dao.DAOException;
-import dao.JoueurDAO;
-import model.AbstractBaseModel;
-import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
 

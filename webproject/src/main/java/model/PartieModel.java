@@ -6,7 +6,6 @@ import loaders.PersonnageLoader;
 import loaders.ResumePersonnageLoader;
 import loaders.UniversLoader;
 
-import java.sql.Date;
 import java.util.Set;
 import loaders.ResumePartieLoader;
 

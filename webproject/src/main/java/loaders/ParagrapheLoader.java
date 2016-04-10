@@ -6,8 +6,6 @@ import model.EpisodeModel;
 import model.ParagrapheModel;
 
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by william on 05/04/16.

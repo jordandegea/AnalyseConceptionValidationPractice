@@ -1,8 +1,6 @@
 package model;
 
 import dao.DAOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import loaders.BioInitialeLoader;
 import loaders.ResumePersonnageLoader;
 

@@ -12,14 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
 import java.util.TreeSet;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
-import model.JoueurModel;
-import model.PartieModel;
-import model.PersonnageModel;
 import model.ResumePersonnageModel;
 import model.TransitionModel;
 

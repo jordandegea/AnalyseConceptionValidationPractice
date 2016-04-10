@@ -12,11 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
-import javax.sql.DataSource;
-import model.AbstractBaseModel;
-import model.JoueurModel;
-import model.PartieModel;
 import model.PersonnageModel;
 import model.UniversModel;
 

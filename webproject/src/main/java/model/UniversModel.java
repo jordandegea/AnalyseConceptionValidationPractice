@@ -6,7 +6,6 @@
 package model;
 
 import dao.DAOException;
-import loaders.PartieLoader;
 import loaders.PersonnageLoader;
 
 import java.util.Set;

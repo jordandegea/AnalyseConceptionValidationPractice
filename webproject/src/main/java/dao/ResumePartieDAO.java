@@ -13,11 +13,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import model.AbstractBaseModel;
-import model.BioInitialeModel;
-import model.BiographieModel;
 import model.PartieModel;
-import model.PersonnageModel;
-import model.ResumePartieModel;
 import model.ResumePartieModel;
 
 /**
