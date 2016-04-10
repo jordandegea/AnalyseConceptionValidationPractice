@@ -23,6 +23,13 @@ public class PersonnageValidator extends AbstractValidator<PersonnageModel> {
     }
     
     private PersonnageValidator(){};
+    
+    public void askMJValidate(PersonnageModel perso, JoueurModel mj) throws DAOException, ValidatorException {
+        if (perso.getMJ() != null)
+            throw new ValidatorException("Le personnage a déjà un MJ");
+        if (perso.getOwner().equals(mj))
+            throw new ValidatorException("Un MJ ne peut jouer un personnage");
+    }
 
     @Override
     protected void modelValidate(PersonnageModel object) throws DAOException, ValidatorException {

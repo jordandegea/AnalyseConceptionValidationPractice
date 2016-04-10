@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Map;
 import java.util.Set;
 import java.lang.String;
@@ -193,8 +193,8 @@ public class PartieDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public List<PartieModel> getAll() throws DAOException {
-        List<PartieModel> result = new ArrayList<>();
+    public Set<PartieModel> getAll() throws DAOException {
+        Set<PartieModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();

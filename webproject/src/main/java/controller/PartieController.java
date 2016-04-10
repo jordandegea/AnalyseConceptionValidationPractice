@@ -37,7 +37,7 @@ public class PartieController extends AbstractControllerBase {
 
     private void newPartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<UniversModel> univers = UniversDAO.instance().getAll();
+            Set<UniversModel> univers = UniversDAO.instance().getAll();
             request.setAttribute("univers", univers);
             request.getRequestDispatcher("/WEB-INF/partie/newPartie.jsp").forward(request, response);
         } catch (DAOException ex) {

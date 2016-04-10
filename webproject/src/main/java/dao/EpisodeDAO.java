@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Set;
 import model.AbstractBaseModel;
 import model.BiographieModel;
@@ -153,7 +153,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<? extends AbstractBaseModel> getAll() throws DAOException {
+    public Set<? extends AbstractBaseModel> getAll() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

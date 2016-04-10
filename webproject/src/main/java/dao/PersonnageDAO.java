@@ -10,8 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Set;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
@@ -104,7 +104,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                 result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
+            throw new DAOException("DBError PersonnageDAO.getOwner() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -115,6 +115,21 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         throw new DAOException("Not Implemented Yet");
     }
     
+    public void setMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("INSERT INTO MJ (idPersonnage, idJoueur) VALUES (?,?)");
+            st.setInt(1, perso.getId());
+            st.setInt(2, mj.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.setMJ() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
     
     
     // Override Methods    
@@ -144,8 +159,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<PersonnageModel> getAll() throws DAOException {
-        List<PersonnageModel> result = new ArrayList<>();
+    public Set<PersonnageModel> getAll() throws DAOException {
+        Set<PersonnageModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
