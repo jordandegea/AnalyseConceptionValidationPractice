@@ -33,8 +33,10 @@ ${error}
         </select>
     </div>
 
-    TODO : ajout dynamique de paragraphes (avec option secret) pour la bio initiale<br/>
-
+    <input type="button" name="ajout" id="ajout" value="Paragraphe +" onclick="addTextArea()"/>  
+    
+    <div id="ajout"></div>
+    
     <input class="btn btn-warning btn-block" type="submit" value="Enregistrer" />
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input  type="hidden" name="action" value="CREATE" />
@@ -46,6 +48,17 @@ ${error}
     <input type="hidden" name="action" value="SHOW" />
 </form>
 
-
+<script type="text/javascript">
+function addTextArea(){
+        var input = document.createElement("textarea");
+        var saut = document.createElement("br");
+        var check = document.createElement ("checkbox");
+        check.setAttribute("check","Paragraphe privé");
+        var ajout = document.getElementById("ajout");
+        ajout.parentNode.insertBefore(saut,ajout);
+        ajout.parentNode.insertBefore(input,ajout);
+        ajout.parentNode.insertBefore(check,ajout);
+        }
+</script>
 <jsp:include page="../include/foot.jsp" />
 

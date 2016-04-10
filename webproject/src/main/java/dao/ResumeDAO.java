@@ -47,7 +47,7 @@ public class ResumeDAO extends EpisodeDAO {
                 result = new BiographieModel(rs.getInt("idBiographie"));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
+            throw new DAOException("DBError ResumeDAO.getBiographie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -65,7 +65,7 @@ public class ResumeDAO extends EpisodeDAO {
                 result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
             }
         } catch (SQLException e) {
-            throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
+            throw new DAOException("DBError ResumeDAO.getPartie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
