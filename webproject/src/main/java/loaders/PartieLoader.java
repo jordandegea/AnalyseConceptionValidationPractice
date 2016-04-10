@@ -20,7 +20,7 @@ public class PartieLoader extends AbstractLoader<PartieModel> {
         if (!isLoaded()) {
             setObjectSet(PersonnageDAO.instance().getParties(personnage));
         }
-
+        
         return getObjectSet();
     }
 
