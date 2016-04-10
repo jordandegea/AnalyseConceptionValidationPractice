@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
@@ -57,8 +58,23 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     }
     
     public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException{
-        throw new DAOException("Not Implemented Yet");
+        PartieModel result = null;
+        Connection conn = null;
+        try{
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ FROM Partie p, PartieEnCours pc WHERE p.idPartie = pc.idPartie AND pc.idPersonnage ="+personnage.getId() +" AND p.termine = 0");
+            if (rs.next()) {
+                result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.getPartieEnCours() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
+    
     public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
         BiographieModel result = null;
         Connection conn = null;
@@ -111,8 +127,21 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         return result;
     }
     public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        Set<PartieModel> result = new TreeSet<PartieModel>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ FROM Partie p, PartieEnCours pc WHERE p.idPartie = pc.idPartie AND pc.idPersonnage ="+personnage.getId());
+            while (rs.next()) {
+                result.add(new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false)));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO getParties() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
     
     
