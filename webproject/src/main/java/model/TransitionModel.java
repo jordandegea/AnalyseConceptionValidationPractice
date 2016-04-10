@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import loaders.BiographieLoader;
 
 import java.sql.Date;
@@ -15,7 +16,7 @@ public class TransitionModel extends EpisodeModel {
         biographie = new BiographieLoader();
     }
 
-    public BiographieModel getBiographie() {
+    public BiographieModel getBiographie() throws DAOException {
         return this.biographie.get(this);
     }
 }

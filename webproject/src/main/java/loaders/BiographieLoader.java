@@ -25,46 +25,29 @@ public class BiographieLoader extends AbstractLoader<BiographieModel> {
         super(new BiographieModel(bioInitiale));
     }
     
-    public BiographieModel get(BioInitialeModel bioInitiale) {
+    public BiographieModel get(BioInitialeModel bioInitiale) throws DAOException {
         if (!isLoaded())
-            try {
-                setObject(((BioInitialeDAO)BioInitialeModel.getDAO()).getBiographie(bioInitiale));
-        } catch (DAOException ex) {
-            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                setObject(BioInitialeDAO.instance().getBiographie(bioInitiale));
         return getObject();
     }
 
-    public BiographieModel get(TransitionModel transition) {
+    public BiographieModel get(TransitionModel transition) throws DAOException {
         if (!isLoaded())
-            try {
-                setObject(((TransitionDAO)TransitionModel.getDAO()).getBiographie(transition));
-        } catch (DAOException ex) {
-            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                setObject(TransitionDAO.instance().getBiographie(transition));
 
         return getObject();
     }
 
-    public BiographieModel get(ResumeModel resume) {
+    public BiographieModel get(ResumeModel resume) throws DAOException {
         if (!isLoaded())
-            try {
-                setObject(((ResumeDAO)ResumeModel.getDAO()).getBiographie(resume));
-        } catch (DAOException ex) {
-            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                setObject(ResumeDAO.instance().getBiographie(resume));
 
         return getObject();
     }
 
-    public BiographieModel get(PersonnageModel personnage) {
+    public BiographieModel get(PersonnageModel personnage) throws DAOException {
         if (!isLoaded())
-            try {
-                setObject(((PersonnageDAO)PersonnageModel.getDAO()).getBiographie(personnage));
-        } catch (DAOException ex) {
-            Logger.getLogger(BiographieLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+                setObject(PersonnageDAO.instance().getBiographie(personnage));
         return getObject();
     }
 }

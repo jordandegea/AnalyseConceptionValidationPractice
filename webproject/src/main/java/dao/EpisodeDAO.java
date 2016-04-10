@@ -92,8 +92,10 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
             closeConnection(conn);
         }
         episode.setId(id);
-        for (ParagrapheModel p : episode.getParagraphes())
+        for (ParagrapheModel p : episode.getParagraphes()) {
+            p.setEpisode(episode);
             ParagrapheDAO.instance().insert(p);
+        }
         
         return affectedRows ;
     }

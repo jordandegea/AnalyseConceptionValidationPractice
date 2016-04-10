@@ -36,6 +36,7 @@ public abstract class AbstractLoader<T extends AbstractBaseModel>{
 
     public void setObject(T object) {
         this.object = object;
+        loaded = true;
     }
 
     public Set<T> getObjectSet() {
@@ -44,5 +45,6 @@ public abstract class AbstractLoader<T extends AbstractBaseModel>{
 
     public void setObjectSet(Set<T> objectSet) {
         this.objectSet = objectSet;
+        loaded = true;
     }
 }

@@ -28,7 +28,8 @@
             </c:otherwise>
         </c:choose>
     </li>
-    <li>Biographie : TODO</li>
+    <li>Biographie </li>
+    ${personnage.biographie.getParagraphesBiographieAll()};
 </ul>
 
 <form action="personnage" method="GET" accept-charset="UTF-8">

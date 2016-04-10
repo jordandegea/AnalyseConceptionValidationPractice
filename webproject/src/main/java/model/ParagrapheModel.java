@@ -14,11 +14,13 @@ public class ParagrapheModel extends AbstractBaseModel {
         super(id);
         this.secret = secret;
         this.contenu = contenu;
+        this.episode = new EpisodeLoader();
     }
 
     public ParagrapheModel(boolean secret, String contenu) {
         this.secret = secret;
         this.contenu = contenu;
+        this.episode = new EpisodeLoader();
     }
 
     public boolean isSecret() {
@@ -39,5 +41,9 @@ public class ParagrapheModel extends AbstractBaseModel {
     
     public EpisodeModel getEpisode(){
         return episode.get(this);
+    }
+    
+    public void setEpisode(EpisodeModel e) {
+        this.episode.setObject(e);
     }
 }

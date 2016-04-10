@@ -4,6 +4,7 @@ import dao.EpisodeDAO;
 import loaders.ParagrapheLoader;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,10 +39,6 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
     public Set<ParagrapheModel> getParagraphes() {
         return paragraphes.get(this);
     }
-    
-    public void addParagraphe(ParagrapheModel paragraphe) {
-        this.getParagraphes().add(paragraphe);
-    }
 
     public Date getDate() {
         return date;
@@ -65,5 +62,17 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
     
     public static EpisodeDAO getDAO() {
         return EpisodeDAO.instance();
+    }
+    
+    public String getAllPart() {
+        String s="";
+        for ( ParagrapheModel pm: this.getParagraphes() ){
+            s += pm.getContenu();
+        }
+        return s;
+    }
+    
+    public void setParagraphes(Set<ParagrapheModel> paras){
+        this.paragraphes.setObjectSet(paras);
     }
 }
