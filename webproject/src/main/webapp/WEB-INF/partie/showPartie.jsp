@@ -4,7 +4,7 @@
     <jsp:param name="title" value="Creer une partie"/>
 </jsp:include>
 
-<h2>${partie.titrePartie} <c:if test="${partie.partieFinie}"><b>(terminée)</b></c:if></h2>
+<h2>${partie}</h2>
 <ul>
     <li>Titre : ${partie.titrePartie}</li>
     <li>Date : ${partie.date}</li>
@@ -19,6 +19,8 @@
         <li>${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a></li>
     </c:forEach>
 </ul>
+
+<c:if test="${!partie.partieFinie}">
 <form action="partie" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Ajouter personnage" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
@@ -26,7 +28,6 @@
     <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
 
-<c:if test="${!partie.partieFinie}">
 <form action="partie" method="POST" accept-charset="UTF-8">
     <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir terminer cette partie ?')" value="Terminer partie" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->

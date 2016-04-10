@@ -10,12 +10,7 @@
 <ul>
     <li>Nom : ${personnage.nomPerso}</li>
     <li>Date de naissance : ${personnage.dateNaiss}</li>
-    <li>Profession : 
-        ${personnage.profession}<a class="btn btn-warning" onclick="formularise(this, event, ${personnage.id}, 'modifier');"
-           href="controleur?action=getOuvrage&view=modifier&id=${ouvrage.id}">
-            modifier
-        </a>
-    </li>
+    <li>Profession : ${personnage.profession}</li>
     <li>Univers : ${personnage.univers}</li>
     <li>MJ : 
         <c:choose>
@@ -46,7 +41,7 @@
 <h2>Parties</h2>
 <ul>
     <c:forEach items="${personnage.parties}" var="partie">
-        <li>${partie.titrePartie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
+        <li>${partie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
         </c:forEach>
 </ul>
 

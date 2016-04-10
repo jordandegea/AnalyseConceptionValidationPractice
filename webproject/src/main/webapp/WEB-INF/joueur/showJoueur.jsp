@@ -33,7 +33,7 @@
     <h2>Mes parties</h2>
     <ul>
         <c:forEach items="${joueur.partiesManaged}" var="partie">
-            <li>${partie.titrePartie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
+            <li>${partie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
             </c:forEach>
     </ul>
     <form action="partie" method="GET" accept-charset="UTF-8">

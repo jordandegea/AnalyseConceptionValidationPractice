@@ -218,6 +218,9 @@ public class PartieDAO extends AbstractDataBaseDAO {
         } finally {
             closeConnection(conn);
         }
+        
+        partie.setPartieFinie(true);
+        this.update(partie);
     }
 
     // Override Methods
@@ -318,15 +321,13 @@ public class PartieDAO extends AbstractDataBaseDAO {
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("UPDATE Partie SET titrePartie=?, resumePartie=?, datePartie=?, lieu=?, termine=?, idUnivers=?, loginMJ=? WHERE idPartie=?");
+                    = conn.prepareStatement("UPDATE Partie SET titrePartie=?, resumePartie=?, datePartie=?, lieu=?, termine=? WHERE idPartie=?");
             st.setString(1, partie.getTitrePartie());
             st.setString(2, partie.getResumeInitial());
             st.setString(3, partie.getDate());
             st.setString(4, partie.getLieu());
             st.setBoolean(5, partie.isPartieFinie());
-            st.setInt(6, partie.getUnivers().getId());
-            st.setInt(7, partie.getMJ().getId());
-            st.setInt(8, partie.getId());
+            st.setInt(6, partie.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.update() " + e.getMessage(), e);

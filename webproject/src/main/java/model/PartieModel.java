@@ -114,4 +114,13 @@ public class PartieModel extends AbstractBaseModel {
     public Set<ResumePersonnageModel> getResumesPersonnage() throws DAOException {
         return this.resumePersonnage.get(this);
     }
+
+    @Override
+    public String toString() {
+        String s = this.getTitrePartie();
+        if (this.isPartieFinie())
+            s += " (terminée)";
+        
+        return s;
+    }
 }

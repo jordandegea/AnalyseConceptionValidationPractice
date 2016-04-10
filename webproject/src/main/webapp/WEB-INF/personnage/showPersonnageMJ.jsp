@@ -31,7 +31,7 @@
 <h2>Parties</h2>
 <ul>
     <c:forEach items="${personnage.parties}" var="partie">
-        <li>${partie.titrePartie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
+        <li>${partie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
         </c:forEach>
 </ul>
 
