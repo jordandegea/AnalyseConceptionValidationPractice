@@ -105,13 +105,14 @@ public class PersonnageController extends AbstractControllerBase {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             JoueurModel mj = JoueurDAO.instance().get(idMJ);
             PersonnageValidator.instance().askMJValidate(perso, mj);
-            PersonnageDAO.instance().setMJ(perso, mj);
+            PersonnageDAO.instance().askMJ(perso, mj);
             String contextPath = request.getContextPath();
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
         } catch (ValidatorException ex) {
             try {
                 JoueurModel joueur = this.getUser(request, response);
                 Set<JoueurModel> potentialMJ = JoueurDAO.instance().getPotentialMJ(joueur);
+                request.setAttribute("error", ex.getMessage());
                 request.setAttribute("potentialMJ", potentialMJ);
                 request.getRequestDispatcher("/WEB-INF/personnage/findMJ.jsp").forward(request, response);
             } catch (DAOException ex1) {
@@ -120,6 +121,19 @@ public class PersonnageController extends AbstractControllerBase {
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
         }
+    }
+
+    public void leaveMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        try {
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            PersonnageDAO.instance().leaveMJ(perso);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+
     }
 
     /**
@@ -173,6 +187,7 @@ public class PersonnageController extends AbstractControllerBase {
 
         } else if (action.equals("ASKMJ")) {
             this.askMJ(request, response);
+        } else if (action.equals("LEAVEMJ")) {
         } else {
             super.invalidParameters(request, response);
         }

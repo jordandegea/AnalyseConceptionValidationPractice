@@ -48,6 +48,7 @@ CREATE TABLE Personnage(
 	dateNaissance varchar(128),
 	profession varchar(256),
 	portrait varchar(512),
+	demandeMJ integer, -- booléen
 	idJoueur REFERENCES Joueur(idJoueur),
 	idUnivers REFERENCES Univers(idUnivers),
 	idBiographie int REFERENCES Biographie(idBiographie)
@@ -87,7 +88,6 @@ CREATE TABLE EpisodeBiographie(
 CREATE TABLE MJ(
 	idPersonnage int REFERENCES Personnage(idPersonnage),
 	idMJ REFERENCES Joueur(idJoueur),
-	demande integer, -- booléen
 	primary key (idPerso)
 );
 

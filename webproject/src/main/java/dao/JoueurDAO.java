@@ -26,7 +26,8 @@ import model.UniversModel;
  *
  * @author JordanLeMagnifique
  */
-public class JoueurDAO extends AbstractDataBaseDAO{
+public class JoueurDAO extends AbstractDataBaseDAO {
+
     final private static JoueurDAO instanceUnique = new JoueurDAO();
 
     public static JoueurDAO instance() {
@@ -36,26 +37,25 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     private JoueurDAO(/*DataSource ds*/) {
         super(/*ds*/);
     }
-    
-    
+
     // Personal DAOs Methods
-    public Set<PartieModel> getParties(JoueurModel joueur) throws DAOException{
+    public Set<PartieModel> getParties(JoueurModel joueur) throws DAOException {
         Set<PartieModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Partie WHERE idMJ="+joueur.getId());
+            ResultSet rs = st.executeQuery("SELECT * FROM Partie WHERE idMJ=" + joueur.getId());
             while (rs.next()) {
                 PartieModel partie
                         = new PartieModel(
-                        rs.getInt("idPartie"),
-                        rs.getString("titrePartie"), 
-                        rs.getString("resumePartie"), 
-                        rs.getString("datePartie"), 
-                        rs.getString("lieu"), 
-                        rs.getBoolean("termine")
-                     );
+                                rs.getInt("idPartie"),
+                                rs.getString("titrePartie"),
+                                rs.getString("resumePartie"),
+                                rs.getString("datePartie"),
+                                rs.getString("lieu"),
+                                rs.getBoolean("termine")
+                        );
                 result.add(partie);
             }
         } catch (SQLException e) {
@@ -65,17 +65,17 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
-    public Set<PersonnageModel> getPersonnagesOwned(JoueurModel joueur) throws DAOException{
+
+    public Set<PersonnageModel> getPersonnagesOwned(JoueurModel joueur) throws DAOException {
         Set<PersonnageModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Personnage WHERE idJoueur="+joueur.getId());
+            ResultSet rs = st.executeQuery("SELECT * FROM Personnage WHERE idJoueur=" + joueur.getId());
             while (rs.next()) {
                 PersonnageModel perso
-                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
                 result.add(perso);
             }
         } catch (SQLException e) {
@@ -85,7 +85,8 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException{
+
+    public Set<PersonnageModel> getPersonnagesManaged(JoueurModel joueur) throws DAOException {
         Set<PersonnageModel> result = new HashSet<>();
         Connection conn = null;
         try {
@@ -93,15 +94,17 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * "
                     + "FROM Personnage p JOIN MJ m ON p.idPersonnage=m.idPersonnage "
-                    + "WHERE m.idMJ="+joueur.getId());
+                    + "WHERE m.idMJ=" + joueur.getId());
             while (rs.next()) {
                 PersonnageModel perso
                         = new PersonnageModel(
-                                rs.getInt("p.idPersonnage"), 
-                                rs.getString("p.nomPerso"), 
-                                rs.getString("p.dateNaissance"), 
-                                rs.getString("p.profession"), 
-                                rs.getString("p.portrait"));
+                                rs.getInt("p.idPersonnage"),
+                                rs.getString("p.nomPerso"),
+                                rs.getString("p.dateNaissance"),
+                                rs.getString("p.profession"),
+                                rs.getString("p.portrait"),
+                                rs.getBoolean("demandeMJ")
+                        );
                 result.add(perso);
             }
         } catch (SQLException e) {
@@ -111,8 +114,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
-    
+
     public JoueurModel get(String login) throws DAOException {
         JoueurModel result = null;
         Connection conn = null;
@@ -121,7 +123,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE login='" + login + "'");
             if (rs.next()) {
-                result = new JoueurModel(Integer.parseInt(rs.getString("idJoueur")), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(Integer.parseInt(rs.getString("idJoueur")), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError JoueurDAO.get() " + e.getMessage(), e);
@@ -130,17 +132,17 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
+
     public Set<JoueurModel> getPotentialMJ(JoueurModel joueur) throws DAOException {
         Set<JoueurModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE idJoueur<>"+joueur.getId());
+            ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE idJoueur<>" + joueur.getId());
             while (rs.next()) {
                 JoueurModel mj
-                     = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                        = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
                 result.add(mj);
             }
         } catch (SQLException e) {
@@ -150,7 +152,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
+
     // Override Methods 
     @Override
     public JoueurModel get(int id) throws DAOException {
@@ -161,7 +163,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE idJoueur='" + id + "'");
             if (rs.next()) {
-                result = new JoueurModel(id, rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(id, rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError JoueurDAO.get() " + e.getMessage(), e);
@@ -181,7 +183,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Joueur");
             while (rs.next()) {
                 JoueurModel ouvrage
-                     = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                        = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -215,7 +217,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
             closeConnection(conn);
         }
         joueur.setId(id);
-        return affectedRows ;
+        return affectedRows;
     }
 
     @Override
@@ -223,7 +225,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         if (!(object instanceof JoueurModel)) {
             throw new DAOException("Wrong object parameter in update, require JoueurModel");
         }
-        int affectedRows = 0 ; 
+        int affectedRows = 0;
         JoueurModel joueur = (JoueurModel) object;
         Connection conn = null;
         try {
@@ -240,7 +242,7 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        return affectedRows ;
+        return affectedRows;
     }
 
     @Override
@@ -262,6 +264,6 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        return affectedRows ;
+        return affectedRows;
     }
 }

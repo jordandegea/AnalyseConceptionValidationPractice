@@ -113,7 +113,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             }
             while (rs.next()) {
                 PersonnageModel perso
-                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
                 result.add(perso);
             }
         } catch (SQLException e) {
@@ -154,7 +154,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
 
             while (rs.next()) {
                 PersonnageModel perso
-                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"));
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
                 result.add(perso);
             }
         } catch (SQLException e) {
