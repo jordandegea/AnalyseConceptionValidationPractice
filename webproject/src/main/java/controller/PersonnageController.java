@@ -186,7 +186,6 @@ public class PersonnageController extends AbstractControllerBase {
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
         }
-
     }
 
     /**
@@ -241,6 +240,7 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("ASKMJ")) {
             this.askMJ(request, response);
         } else if (action.equals("LEAVEMJ")) {
+            this.leaveMJ(request, response);
         } else {
             super.invalidParameters(request, response);
         }
