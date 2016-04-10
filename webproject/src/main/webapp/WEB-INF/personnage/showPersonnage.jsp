@@ -21,7 +21,7 @@
     <li>MJ : 
         <c:choose>
             <c:when test="${personnage.MJ != null}">
-                ${personnage.MJ.login}
+                ${personnage.MJ.login} <c:if test="${personnage.demandeMJ}"><i>(en attente de validation)</i></c:if> 
                 <form action="personnage" method="POST" accept-charset="UTF-8">
                     <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir quitter ce MJ?')" value="Quitter ce MJ" />
                     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
