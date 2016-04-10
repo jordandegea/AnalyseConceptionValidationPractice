@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
@@ -77,17 +77,17 @@ public class BioInitialeDAO extends EpisodeDAO {
     }
     
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public Set<BioInitialeModel> getAll() throws DAOException {
+        Set<BioInitialeModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='BioInitiale' ");
             while (rs.next()) {
-                BioInitialeModel ouvrage
+                BioInitialeModel bio
                     = new BioInitialeModel(rs.getInt("idEpisode"));
-                result.add(ouvrage);
+                result.add(bio);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);

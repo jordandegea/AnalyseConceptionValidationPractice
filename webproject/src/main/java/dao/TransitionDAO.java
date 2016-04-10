@@ -10,8 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
@@ -74,8 +74,8 @@ public class TransitionDAO extends EpisodeDAO{
     }
     
     @Override
-    public List<AbstractBaseModel> getAll() throws DAOException {
-        List<AbstractBaseModel> result = new ArrayList<>();
+    public Set<AbstractBaseModel> getAll() throws DAOException {
+        Set<AbstractBaseModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();

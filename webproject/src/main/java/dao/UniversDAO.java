@@ -10,9 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 import java.util.Set;
 import javax.sql.DataSource;
 import model.AbstractBaseModel;
@@ -103,8 +102,8 @@ public class UniversDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public List<UniversModel> getAll() throws DAOException {
-        List<UniversModel> result = new ArrayList<>();
+    public Set<UniversModel> getAll() throws DAOException {
+        Set<UniversModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();

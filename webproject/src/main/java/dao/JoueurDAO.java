@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Set;
 import java.util.TreeSet;
 import model.AbstractBaseModel;
@@ -131,6 +131,26 @@ public class JoueurDAO extends AbstractDataBaseDAO{
         return result;
     }
     
+    public Set<JoueurModel> getPotentialMJ(JoueurModel joueur) throws DAOException {
+        Set<JoueurModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Joueur WHERE idJoueur<>"+joueur.getId());
+            while (rs.next()) {
+                JoueurModel mj
+                     = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result.add(mj);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError JoueurDAO.getAll() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
+    
     // Override Methods 
     @Override
     public JoueurModel get(int id) throws DAOException {
@@ -152,8 +172,8 @@ public class JoueurDAO extends AbstractDataBaseDAO{
     }
 
     @Override
-    public List<JoueurModel> getAll() throws DAOException {
-        List<JoueurModel> result = new ArrayList<>();
+    public Set<JoueurModel> getAll() throws DAOException {
+        Set<JoueurModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
