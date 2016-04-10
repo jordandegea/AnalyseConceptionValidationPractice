@@ -40,33 +40,16 @@ public class LogoutController extends AbstractControllerBase {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        logout(request, response);
-        
-    }
 
+        logout(request, response);
+
+    }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("idUser");
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MonPremierServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MonPremierServlet at " + request.getContextPath() + "</h1>");
-            out.println("<p>Quoi ? </p>");
-            out.println("<p>Vous etes le eme visiteur</p>");
-            out.println("</body>");
-            out.println("</html>");
-            System.out.println("Oua une log");
-        }
-    }
+        response.sendRedirect("login");
 
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.

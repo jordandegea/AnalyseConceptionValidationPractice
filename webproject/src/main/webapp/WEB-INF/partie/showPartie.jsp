@@ -1,10 +1,10 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/head.jsp" >
     <jsp:param name="title" value="Creer une partie"/>
 </jsp:include>
 
 <h2>${partie.titrePartie}</h2>
-
 <ul>
     <li>Titre : ${partie.titrePartie}</li>
     <li>Date : ${partie.date}</li>
@@ -22,12 +22,13 @@
 <form action="partie" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Ajouter personnage" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-    <input type="hidden" name="action" value="ENROLL" />
+    <input type="hidden" name="action" value="ADDPERSO" />
+    <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
 
 <form action="joueur" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Retour" />
-    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input type="hidden" name="action" value="SHOW" />
 </form>
 

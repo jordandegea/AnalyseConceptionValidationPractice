@@ -95,7 +95,7 @@ public class PartieModel extends AbstractBaseModel {
         return univers.get(this);
     }
 
-    public JoueurModel getMJ() {
+    public JoueurModel getMJ() throws DAOException {
         return MJ.get(this);
     }
 

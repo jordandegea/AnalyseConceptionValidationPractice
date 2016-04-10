@@ -8,16 +8,16 @@
 
 <img src="${personnage.portrait}" alt="${personnage.portrait}"/>
 <ul>
-    <li>Nom : ${personnage.nomPerso}</li>
-    <li>Date de naissance : ${personnage.dateNaiss}</li>
-    <li>Profession : ${personnage.profession}</li>
-    <li>Univers : ${personnage.univers}</li>
-    <li>Biographie : TODO</li>
+    <li>Nom : ${personnage.nomPerso}</li>
+    <li>Date de naissance : ${personnage.dateNaiss}</li>
+    <li>Profession : ${personnage.profession}</li>
+    <li>Univers : ${personnage.univers}</li>
+    <li>Biographie : TODO</li>
 </ul>
 
 <form action="joueur" method="GET" accept-charset="UTF-8">
     <input type="submit" value="Retour" />
-    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input type="hidden" name="action" value="SHOW" />
 </form>
 
