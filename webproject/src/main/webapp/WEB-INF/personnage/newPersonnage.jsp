@@ -49,16 +49,30 @@ ${error}
 </form>
 
 <script type="text/javascript">
+    var i = 0;
 function addTextArea(){
         var input = document.createElement("textarea");
+        input.id = "textareaid" + i;
+        input.name = "textareaname" + i;
         var saut = document.createElement("br");
-        var check = document.createElement ("checkbox");
-        check.setAttribute("check","Paragraphe privé");
+        var saut2 = document.createElement("br");
+        var check = document.createElement ("input");
+        check.type = "checkbox";
+        check.value = "Paragraphe";
+        check.id = "checkid" + i;
+        check.name = "checkname" + i;
+        var label = document.createElement('label')
+        label.htmlFor = "checkid";
+        label.appendChild(document.createTextNode('Paragraphe privé'));;
         var ajout = document.getElementById("ajout");
         ajout.parentNode.insertBefore(saut,ajout);
         ajout.parentNode.insertBefore(input,ajout);
-        ajout.parentNode.insertBefore(check,ajout);
-        }
+        ajout.parentNode.insertBefore(saut2,ajout);
+        ajout.parentNode.insertBefore(check,ajout); 
+        ajout.parentNode.insertBefore(label,ajout);        
+        ajout.parentNode.insertBefore(saut,ajout);
+        i = i+1;
+}
 </script>
 <jsp:include page="../include/foot.jsp" />
 

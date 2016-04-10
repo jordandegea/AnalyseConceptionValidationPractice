@@ -10,6 +10,7 @@ import dao.JoueurDAO;
 import dao.PersonnageDAO;
 import dao.UniversDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -47,13 +48,21 @@ public class PersonnageController extends AbstractControllerBase {
         String dateNaiss = (String) request.getParameter("dateNaiss");
         String profession = (String) request.getParameter("profession");
         String portrait = (String) request.getParameter("portrait");
+        int i = 0;
+        ArrayList<String> textareaList = new ArrayList<String>();
+        ArrayList<Integer> checkList = new ArrayList<Integer>();
+        while ((String) request.getParameter("textareaname"+i) != null) {
+               textareaList.add((String) request.getParameter("textareaname"+i));
+               checkList.add( Integer.parseInt( (String)request.getParameter("checkname"+i)));
+               i++;
+        }
         int idUnivers = Integer.parseInt(request.getParameter("univers"));
 
         try {
             UniversModel univers = UniversDAO.instance().get(idUnivers);
 
             JoueurModel joueur = this.getUser(request, response);
-            BioInitialeModel bioInitiale = new BioInitialeModel();
+            BioInitialeModel bioInitiale = new BioInitialeModel(textareaList,checkList);
             PersonnageModel perso = new PersonnageModel(nom, dateNaiss, profession, portrait, bioInitiale, joueur, univers);
             try {
                 PersonnageValidator.instance().createValidate(perso);
