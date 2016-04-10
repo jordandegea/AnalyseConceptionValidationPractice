@@ -66,4 +66,16 @@ public class BiographieModel extends AbstractBaseModel {
         }
         return bio;
     }
+    
+      public String getParagraphesBiographiePublic() throws DAOException {
+        Set<EpisodeModel> episodes = this.getFullBiographie();
+        String bio = ""; 
+        int i = 0;
+        bio += "<u> Biographie initiale </u>";
+        for(EpisodeModel e : episodes) {
+           bio += e.getAllPartPublic();
+           i++;
+        }
+        return bio;
+    }
 }

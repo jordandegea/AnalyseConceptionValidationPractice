@@ -76,6 +76,18 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         return s;
     }
     
+    public String getAllPartPublic() throws DAOException {
+        String s="";
+        for ( ParagrapheModel pm: this.getParagraphes() ){
+            if (!pm.isSecret()) {
+                s += "<p style=\"margin-left:20px\"> ";
+                s += pm.getContenu();
+                s += "</p>";
+                s += "</hr>";
+            }
+        }
+        return s;
+    }
     public void setParagraphes(Set<ParagrapheModel> paras){
         this.paragraphes.setObjectSet(paras);
     }
