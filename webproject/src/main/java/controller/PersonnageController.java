@@ -180,6 +180,7 @@ public class PersonnageController extends AbstractControllerBase {
             PersonnageDAO.instance().askMJ(perso, mj);
             String contextPath = request.getContextPath();
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
+
         } catch (ValidatorException ex) {
             try {
                 JoueurModel joueur = this.getUser(request, response);
@@ -196,8 +197,30 @@ public class PersonnageController extends AbstractControllerBase {
     }
 
         private void askJoueurTransfer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            /* TO BE IMPLEMENTED */
-        }
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            int idJoueur = Integer.parseInt(request.getParameter("idJoueur"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            JoueurModel j = JoueurDAO.instance().get(idJoueur);
+            PersonnageValidator.instance().askJoueurTransferValidate(perso, j);
+            PersonnageDAO.instance().askJoueurTransfer(perso, j);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
+        } catch (ValidatorException ex) {
+            try {
+                int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+                PersonnageModel perso;
+                perso = PersonnageDAO.instance().get(idPerso);
+                Set<JoueurModel> potentialJ = JoueurDAO.instance().getPotentialJoueur(perso);
+                request.setAttribute("error", ex.getMessage());
+                request.setAttribute("potentialMJ", potentialJ);
+                request.getRequestDispatcher("/WEB-INF/personnage/findJoueurTransfer.jsp").forward(request, response);
+            } catch (DAOException ex1) {
+                super.erreurBD(request, response, ex1);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }        }
         
     public void leaveMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idPerso = Integer.parseInt(request.getParameter("idPerso"));

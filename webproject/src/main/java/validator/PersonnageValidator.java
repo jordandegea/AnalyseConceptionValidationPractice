@@ -29,6 +29,12 @@ public class PersonnageValidator extends AbstractValidator<PersonnageModel> {
             throw new ValidatorException("Un MJ ne peut jouer un personnage");
     }
 
+    public void askJoueurTransferValidate(PersonnageModel perso, JoueurModel j) throws DAOException, ValidatorException {
+        if (perso.getMJ().equals(j))
+            throw new ValidatorException("On ne pas transférer le personnage au MJ");
+        if (perso.getOwner().equals(j))
+            throw new ValidatorException("Un joueur ne pas se transférer un personnage à lui même");
+    }
     @Override
     protected void modelValidate(PersonnageModel object) throws DAOException, ValidatorException {
         if (object.getNomPerso().length() > 128)
