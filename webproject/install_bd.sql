@@ -86,8 +86,9 @@ CREATE TABLE EpisodeBiographie(
 
 CREATE TABLE MJ(
 	idPerso int REFERENCES Personnage(idPersonnage),
-	idJoueur REFERENCES Joueur(idJoueur),
-	primary key (idPerso,idJoueur)
+	idMJ REFERENCES Joueur(idJoueur),
+	demande integer, -- booléen
+	primary key (idPerso)
 );
 
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Narnia');
