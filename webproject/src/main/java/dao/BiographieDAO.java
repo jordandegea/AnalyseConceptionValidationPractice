@@ -20,7 +20,7 @@ import model.BiographieModel;
 import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
-import model.ResumeModel;
+import model.ResumePersonnageModel;
 import model.TransitionModel;
 
 /**
@@ -58,16 +58,16 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         return result;
     }
      // Personal DAOs Methods
-    public Set<ResumeModel> getResumes(BiographieModel bio) throws DAOException{
-        Set<ResumeModel> result = new TreeSet<>();
+    public Set<ResumePersonnageModel> getResumes(BiographieModel bio) throws DAOException{
+        Set<ResumePersonnageModel> result = new TreeSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='Resume' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
+            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='ResumePersonnage' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
             while (rs.next()) {
-                ResumeModel resume
-                        = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                ResumePersonnageModel resume
+                        = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
                 result.add(resume);
             }
         } catch (SQLException e) {

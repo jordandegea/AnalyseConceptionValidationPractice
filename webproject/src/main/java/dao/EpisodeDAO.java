@@ -21,7 +21,7 @@ import model.EpisodeModel;
 import model.JoueurModel;
 import model.ParagrapheModel;
 import model.PartieModel;
-import model.ResumeModel;
+import model.ResumePersonnageModel;
 import model.TransitionModel;
 
 /**

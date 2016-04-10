@@ -5,7 +5,7 @@ import dao.DAOException;
 import dao.PartieDAO;
 import model.BiographieModel;
 import model.PartieModel;
-import model.ResumeModel;
+import model.ResumePersonnageModel;
 
 import java.util.Set;
 import java.util.logging.Level;
@@ -14,17 +14,17 @@ import java.util.logging.Logger;
 /**
  * Created by william on 05/04/16.
  */
-public class ResumeLoader extends AbstractLoader<ResumeModel> {
+public class ResumePersonnageLoader extends AbstractLoader<ResumePersonnageModel> {
 
-    public ResumeModel get(PartieModel partie) throws DAOException {
+    public Set<ResumePersonnageModel> get(PartieModel partie) throws DAOException {
         if (!isLoaded()) {
-            setObject(((PartieDAO) PartieModel.getDAO()).getResume(partie));
+            setObjectSet(((PartieDAO) PartieModel.getDAO()).getResumesPersonnage(partie));
         }
 
-        return getObject();
+        return getObjectSet();
     }
 
-    public Set<ResumeModel> get(BiographieModel bio) throws DAOException {
+    public Set<ResumePersonnageModel> get(BiographieModel bio) throws DAOException {
         if (!isLoaded()) {
                 setObjectSet(BiographieDAO.instance().getResumes(bio));
         }

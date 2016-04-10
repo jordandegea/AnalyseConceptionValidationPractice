@@ -22,7 +22,8 @@ import model.JoueurModel;
 import model.ParagrapheModel;
 import model.PartieModel;
 import model.PersonnageModel;
-import model.ResumeModel;
+import model.ResumePartieModel;
+import model.ResumePersonnageModel;
 import model.UniversModel;
 
 /**
@@ -60,8 +61,8 @@ public class PartieDAO extends AbstractDataBaseDAO {
         return result;
     }
 
-    public ResumeModel getResume(PartieModel partie) throws DAOException {
-        ResumeModel result = null;
+    public Set<ResumePersonnageModel> getResumesPersonnage(PartieModel partie) throws DAOException {
+        Set<ResumePersonnageModel> result = new HashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
@@ -69,9 +70,30 @@ public class PartieDAO extends AbstractDataBaseDAO {
             ResultSet rs = st.executeQuery("SELECT * "
                     + "FROM Partie p JOIN Resume r ON p.idPartie=r.idPartie "
                     + "JOIN Episode e ON r.idEpisode=e.idEpisode "
-                    + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='Resume' ");
+                    + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='ResumePersonnage' ");
+            while (rs.next()) {
+                result.add(new ResumePersonnageModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours")));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
+    
+    public ResumePartieModel getResumePartie(PartieModel partie) throws DAOException {
+        ResumePartieModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * "
+                    + "FROM Partie p JOIN Resume r ON p.idPartie=r.idPartie "
+                    + "JOIN Episode e ON r.idEpisode=e.idEpisode "
+                    + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='ResumePartie' ");
             if (rs.next()) {
-                result = new ResumeModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result = new ResumePartieModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);

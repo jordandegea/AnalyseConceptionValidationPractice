@@ -4,7 +4,7 @@ import dao.DAOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import loaders.BioInitialeLoader;
-import loaders.ResumeLoader;
+import loaders.ResumePersonnageLoader;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -15,20 +15,20 @@ import loaders.TransitionLoader;
  */
 public class BiographieModel extends AbstractBaseModel {
     private BioInitialeLoader bioInitiale;
-    private ResumeLoader resumes;
+    private ResumePersonnageLoader resumes;
     private TransitionLoader transitions;
 
     public BiographieModel(int id) {
         super(id);
         
         bioInitiale = new BioInitialeLoader();
-        resumes = new ResumeLoader();
+        resumes = new ResumePersonnageLoader();
         transitions = new TransitionLoader();
     }
 
     public BiographieModel(BioInitialeModel bioInitiale) {
         this.bioInitiale = new BioInitialeLoader(bioInitiale);
-        resumes = new ResumeLoader();
+        resumes = new ResumePersonnageLoader();
         transitions = new TransitionLoader();
     }
 
@@ -40,7 +40,7 @@ public class BiographieModel extends AbstractBaseModel {
         bioInitiale.setObject(bi);
     }
 
-    public Set<ResumeModel> getResumes() throws DAOException {
+    public Set<ResumePersonnageModel> getResumes() throws DAOException {
         return resumes.get(this);
     }
     public Set<TransitionModel> getTransition() throws DAOException {
