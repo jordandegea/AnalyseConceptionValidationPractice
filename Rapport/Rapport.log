@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 16:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -665,29 +665,43 @@ File: images/sequence/ET-Personnage.png Graphic file (type png)
 Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 8
 9.
 (pdftex.def)             Requested size: 483.69687pt x 246.58922pt.
- [6 <./images/sequence/ET-Personnage.png>] [7] [8] (./Rapport.aux) ) 
+ [6 <./images/sequence/ET-Personnage.png>] <images/manuel/login.png, id=41, 121
+1.52625pt x 335.2525pt>
+File: images/manuel/login.png Graphic file (type png)
+
+<use images/manuel/login.png>
+Package pdftex.def Info: images/manuel/login.png used on input line 140.
+(pdftex.def)             Requested size: 483.69687pt x 133.84796pt.
+
+<images/manuel/register.png, id=43, 1208.515pt x 444.66125pt>
+File: images/manuel/register.png Graphic file (type png)
+
+<use images/manuel/register.png>
+Package pdftex.def Info: images/manuel/register.png used on input line 152.
+(pdftex.def)             Requested size: 483.69687pt x 177.9699pt.
+ [7 <./images/manuel/login.png>] [8 <./images/manuel/register.png>] [9] (./Rapp
+ort.aux) ) 
 Here is how much of TeX's memory you used:
- 4686 strings out of 493089
- 63230 string characters out of 6134841
- 141340 words of memory out of 5000000
- 8056 multiletter control sequences out of 15000+600000
+ 4698 strings out of 493089
+ 63518 string characters out of 6134841
+ 141356 words of memory out of 5000000
+ 8065 multiletter control sequences out of 15000+600000
  16815 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,30p,345b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local
-/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on Rapport.pdf (8 pages, 296729 bytes).
+ 38i,6n,30p,366b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super
+-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx100
+0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.
+pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on Rapport.pdf (9 pages, 410622 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,6 +13,18 @@
             .content{
                 margin-top: 50px;
             }
+            .footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                /* Set the fixed height of the footer here */
+                height: 60px;
+                background-color: #f5f5f5;
+            }
+
+            .container .text-muted {
+                margin: 20px 0;
+            }
         </style>
 
     </head>
@@ -61,11 +73,12 @@
                                 <%
                                     if (null == session.getAttribute("idUser")) {
                                 %>
-                                <li><a href="login">Login</a></li>
+                                <li><a href="login">Connexion</a></li>
+                                <li><a href="register">Inscription</a></li>
                                     <%
                                     } else {
                                     %>
-                                <li><a href="logout">Logout</a></li>
+                                <li><a href="logout">Deconnexion</a></li>
                                     <%
                                         }
                                     %>

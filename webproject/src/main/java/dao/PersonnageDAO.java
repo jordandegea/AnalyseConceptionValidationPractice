@@ -26,7 +26,8 @@ import model.UniversModel;
  *
  * @author JordanLeMagnifique
  */
-public class PersonnageDAO extends AbstractDataBaseDAO{
+public class PersonnageDAO extends AbstractDataBaseDAO {
+
     final private static PersonnageDAO instanceUnique = new PersonnageDAO();
 
     public static PersonnageDAO instance() {
@@ -38,14 +39,13 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
     }
 
     // Personal DAOs Methods
-    
-    public UniversModel getUnivers(PersonnageModel personnage) throws DAOException{
+    public UniversModel getUnivers(PersonnageModel personnage) throws DAOException {
         UniversModel result = null;
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT u.idUnivers, u.nomUnivers FROM Univers u, Personnage p WHERE p.idPersonnage="+personnage.getId()+" AND u.idUnivers=p.idUnivers");
+            ResultSet rs = st.executeQuery("SELECT u.idUnivers, u.nomUnivers FROM Univers u, Personnage p WHERE p.idPersonnage=" + personnage.getId() + " AND u.idUnivers=p.idUnivers");
             if (rs.next()) {
                 result = new UniversModel(rs.getInt("idUnivers"), rs.getString("nomUnivers"));
             }
@@ -56,16 +56,16 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
-    public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException{
+
+    public PartieModel getPartieEnCours(PersonnageModel personnage) throws DAOException {
         PartieModel result = null;
         Connection conn = null;
-        try{
+        try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ FROM Partie p, PartieEnCours pc WHERE p.idPartie = pc.idPartie AND pc.idPersonnage ="+personnage.getId() +" AND p.termine = 0");
+            ResultSet rs = st.executeQuery("SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ FROM Partie p, PartieEnCours pc WHERE p.idPartie = pc.idPartie AND pc.idPersonnage =" + personnage.getId() + " AND p.termine = 0");
             if (rs.next()) {
-                result = new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false));
+                result = new PartieModel(rs.getInt("idPartie"), rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine") == 1) ? true : false));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.getPartieEnCours() " + e.getMessage(), e);
@@ -74,14 +74,14 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
-    public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException{
+
+    public BiographieModel getBiographie(PersonnageModel personnage) throws DAOException {
         BiographieModel result = null;
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT idBiographie FROM Personnage p WHERE idPersonnage="+personnage.getId());
+            ResultSet rs = st.executeQuery("SELECT idBiographie FROM Personnage p WHERE idPersonnage=" + personnage.getId());
             if (rs.next()) {
                 result = new BiographieModel(rs.getInt("idBiographie"));
             }
@@ -92,7 +92,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    public JoueurModel getMJ(PersonnageModel personnage) throws DAOException{
+
+    public JoueurModel getMJ(PersonnageModel personnage) throws DAOException {
         JoueurModel result = null;
         Connection conn = null;
         try {
@@ -100,7 +101,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT j.* FROM MJ mj, Joueur j WHERE mj.idPersonnage=" + personnage.getId() + " AND mj.idMJ=j.idJoueur");
             if (rs.next()) {
-                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.getMJ() " + e.getMessage(), e);
@@ -109,7 +110,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    public JoueurModel getOwner(PersonnageModel personnage) throws DAOException{
+
+    public JoueurModel getOwner(PersonnageModel personnage) throws DAOException {
         JoueurModel result = null;
         Connection conn = null;
         try {
@@ -117,7 +119,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT j.* FROM Personnage p, Joueur j WHERE p.idPersonnage=" + personnage.getId() + " AND p.idJoueur=j.idJoueur");
             if (rs.next()) {
-                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.getOwner() " + e.getMessage(), e);
@@ -126,15 +128,29 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException{
-        Set<PartieModel> result = new TreeSet<PartieModel>();
+
+    public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException {
+        
+        Set<PartieModel> result = new HashSet<PartieModel>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ FROM Partie p, PartieEnCours pc WHERE p.idPartie = pc.idPartie AND pc.idPersonnage ="+personnage.getId());
+            ResultSet rs = st.executeQuery(
+                    "SELECT p.* "
+                    + "FROM Partie p, PartieEnCours pc WHERE "
+                    + "p.idPartie=pc.idPartie "
+                    + "AND pc.idPersonnage=" + personnage.getId()
+            );
             while (rs.next()) {
-                result.add(new PartieModel(rs.getInt("idPartie"),rs.getString("titrePartie"), rs.getString("resumePartie"), rs.getString("datePartie"), rs.getString("lieu"), ((rs.getInt("termine")==1)?true:false)));
+                result.add(new PartieModel(
+                        rs.getInt("idPartie"),
+                        rs.getString("titrePartie"),
+                        rs.getString("resumePartie"),
+                        rs.getString("datePartie"),
+                        rs.getString("lieu"),
+                        rs.getBoolean("termine")
+                ));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO getParties() " + e.getMessage(), e);
@@ -143,7 +159,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         }
         return result;
     }
-    
+
     public void askMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
         Connection conn = null;
         try {
@@ -158,11 +174,11 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        
+
         perso.setDemandeMJ(true);
         this.update(perso);
     }
-    
+
     public void leaveMJ(PersonnageModel perso) throws DAOException {
         Connection conn = null;
         try {
@@ -176,16 +192,16 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        
+
         perso.setDemandeMJ(false);
         this.update(perso);
     }
-    
+
     public void acceptDemandeMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
         perso.setDemandeMJ(false);
         this.update(perso);
     }
-    
+
     public void rejectDemandeMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
         Connection conn = null;
         try {
@@ -200,11 +216,11 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        
+
         perso.setDemandeMJ(false);
         this.update(perso);
     }
-    
+
     // Override Methods    
     @Override
     public PersonnageModel get(int id) throws DAOException {
@@ -217,9 +233,9 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             if (rs.next()) {
                 result = new PersonnageModel(
                         id,
-                        rs.getString("nomPerso"), 
-                        rs.getString("dateNaissance"), 
-                        rs.getString("profession"), 
+                        rs.getString("nomPerso"),
+                        rs.getString("dateNaissance"),
+                        rs.getString("profession"),
                         rs.getString("portrait"),
                         rs.getBoolean("demandeMJ")
                 );
@@ -242,14 +258,14 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             ResultSet rs = st.executeQuery("SELECT * FROM Personnage");
             while (rs.next()) {
                 PersonnageModel ouvrage
-                     = new PersonnageModel(
-                        rs.getInt("idPersonnage"),
-                        rs.getString("nomPerso"), 
-                        rs.getString("dateNaissance"), 
-                        rs.getString("profession"), 
-                        rs.getString("portrait"),
-                        rs.getBoolean("demandeMJ")
-                     );
+                        = new PersonnageModel(
+                                rs.getInt("idPersonnage"),
+                                rs.getString("nomPerso"),
+                                rs.getString("dateNaissance"),
+                                rs.getString("profession"),
+                                rs.getString("portrait"),
+                                rs.getBoolean("demandeMJ")
+                        );
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -269,7 +285,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         int id = this.getId();
         PersonnageModel personnage = (PersonnageModel) object;
         BiographieDAO.instance().insert(personnage.getBiographie());
-        
+
         Connection conn = null;
         try {
             conn = getConnection();
@@ -291,7 +307,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             closeConnection(conn);
         }
         personnage.setId(id);
-        return affectedRows ;
+        return affectedRows;
     }
 
     @Override
@@ -299,7 +315,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         if (!(object instanceof PersonnageModel)) {
             throw new DAOException("Wrong object parameter in update, require PersonnageModel");
         }
-        int affectedRows = 0 ; 
+        int affectedRows = 0;
         PersonnageModel personnage = (PersonnageModel) object;
         Connection conn = null;
         try {
@@ -321,7 +337,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        return affectedRows ;
+        return affectedRows;
     }
 
     @Override
@@ -343,6 +359,6 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
-        return affectedRows ;
+        return affectedRows;
     }
 }

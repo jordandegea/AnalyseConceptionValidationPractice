@@ -1,6 +1,6 @@
 DROP TABLE MJ;
 DROP TABLE PartieEnCours;
-DROP TABLE PartieTerminee;
+DROP TABLE ParticipationPartie;
 DROP TABLE EpisodeBiographie;
 DROP TABLE Paragraphe;
 DROP TABLE Resume;

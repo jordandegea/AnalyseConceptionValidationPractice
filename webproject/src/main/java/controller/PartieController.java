@@ -132,6 +132,18 @@ public class PartieController extends AbstractControllerBase {
         }
     }
 
+    private void endPartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+        try {
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            PartieDAO.instance().endPartie(partie);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/partie?action=SHOW&idPartie=" + partie.getId()));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -178,6 +190,8 @@ public class PartieController extends AbstractControllerBase {
             this.createPartie(request, response);
         } else if (action.equals("UPDATE")) {
         } else if (action.equals("DELETE")) {
+        } else if (action.equals("END")) {
+            this.endPartie(request, response);
         } else if (action.equals("ENROLL")) {
             this.enrollPersonnage(request, response);
         } else {

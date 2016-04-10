@@ -51,7 +51,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT j.* FROM Joueur j, Partie p WHERE p.idPartie=" + partie.getId() + " AND p.idMJ=j.idJoueur");
             if (rs.next()) {
-                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"),rs.getString("mdp"),rs.getString("email"));
+                result = new JoueurModel(rs.getInt("idJoueur"), rs.getString("login"), rs.getString("mdp"), rs.getString("email"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.getJoueur() " + e.getMessage(), e);
@@ -81,7 +81,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
-    
+
     public ResumePartieModel getResumePartie(PartieModel partie) throws DAOException {
         ResumePartieModel result = null;
         Connection conn = null;
@@ -128,11 +128,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs;
-            if (!partie.isPartieFinie()) {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieEnCours pc WHERE pc.idPartie=" + partie.getId() + " AND p.idPersonnage=pc.idPersonnage");
-            } else {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieTerminee pt WHERE pt.idPartie=" + partie.getId() + " AND p.idPersonnage=pt.idPersonnage");
-            }
+            rs = st.executeQuery("SELECT p.* FROM ParticipationPartie pp, Personnage p WHERE pp.idPartie=" + partie.getId() + " AND p.idPersonnage=pp.idPersonnage");
             while (rs.next()) {
                 PersonnageModel perso
                         = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
@@ -167,11 +163,13 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "SELECT idPersonnage FROM PartieEnCours"
                     + ") "
                     + "AND mj.idMJ=? "
-                    + "AND mj.idPersonnage=p.idPersonnage");
+                    + "AND mj.idPersonnage=p.idPersonnage "
+                    + "AND p.demandeMJ=?");
             query.setInt(1, partie.getMJ().getId());
             query.setInt(2, partie.getId());
             query.setInt(3, partie.getUnivers().getId());
             query.setInt(4, partie.getMJ().getId());
+            query.setBoolean(5, false);
             ResultSet rs = query.executeQuery();
 
             while (rs.next()) {
@@ -186,7 +184,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
-    
+
     public void enrollPersonnage(PartieModel partie, PersonnageModel perso) throws DAOException {
         Connection conn = null;
         try {
@@ -196,8 +194,27 @@ public class PartieDAO extends AbstractDataBaseDAO {
             st.setInt(1, perso.getId());
             st.setInt(2, partie.getId());
             st.executeUpdate();
+            st = conn.prepareStatement("INSERT INTO ParticipationPartie (idPersonnage, idPartie) VALUES (?,?)");
+            st.setInt(1, perso.getId());
+            st.setInt(2, partie.getId());
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.enrollPersonnage() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+    
+    public void endPartie(PartieModel partie) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("DELETE FROM PartieEnCours WHERE idPartie=?");
+            st.setInt(1, partie.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PartieDAO.endPartie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
