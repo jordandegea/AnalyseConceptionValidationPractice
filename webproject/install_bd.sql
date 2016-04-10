@@ -88,7 +88,7 @@ CREATE TABLE MJ(
 	idPersonnage int REFERENCES Personnage(idPersonnage),
 	idMJ REFERENCES Joueur(idJoueur),
 	demande integer, -- booléen
-	primary key (idPerso)
+	primary key (idPersonnage)
 );
 
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Narnia');
@@ -98,3 +98,4 @@ INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Azeroth');
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Trantor');
 
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
+INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'william.duclot@gmail.com');
