@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Set;
 import model.AbstractBaseModel;
@@ -40,15 +41,15 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
     
     // Personal DAOs Methods
     public Set<ParagrapheModel> getParagraphes(EpisodeModel episode) throws DAOException{
-        Set<ParagrapheModel> result = new HashSet<>();
+        Set<ParagrapheModel> result = new LinkedHashSet<>();
         Connection conn = null;
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idEpisode='"+episode.getId()+"'");
+            ResultSet rs = st.executeQuery("SELECT * FROM Paragraphe WHERE idEpisode='"+episode.getId()+"' ORDER BY numeroPar");
             while (rs.next()) {
                 ParagrapheModel para
-                        = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("secret"), rs.getString("contenu"));
+                        = new ParagrapheModel(rs.getInt("idParagraphe"),rs.getBoolean("secret"), rs.getString("contenu"), rs.getInt("numeroPar"));
                 result.add(para);
             }
         } catch (SQLException e) {

@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAOException;
 import dao.EpisodeDAO;
 import loaders.ParagrapheLoader;
 
@@ -36,7 +37,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         this.ecritureEnCours = ecritureEnCours;
     }
 
-    public Set<ParagrapheModel> getParagraphes() {
+    public Set<ParagrapheModel> getParagraphes() throws DAOException {
         return paragraphes.get(this);
     }
 
@@ -64,10 +65,13 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         return EpisodeDAO.instance();
     }
     
-    public String getAllPart() {
+    public String getAllPart() throws DAOException {
         String s="";
         for ( ParagrapheModel pm: this.getParagraphes() ){
+            s += "<p style=\"margin-left:20px\"> ";
             s += pm.getContenu();
+            s += "</p>";
+            s += "</hr>";
         }
         return s;
     }

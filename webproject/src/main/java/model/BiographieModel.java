@@ -57,10 +57,12 @@ public class BiographieModel extends AbstractBaseModel {
     
     public String getParagraphesBiographieAll() throws DAOException {
         Set<EpisodeModel> episodes = this.getFullBiographie();
-        String bio = "";
+        String bio = ""; 
+        int i = 0;
+        bio += "<u> Biographie initiale </u>";
         for(EpisodeModel e : episodes) {
            bio += e.getAllPart();
-           bio += "\n";
+           i++;
         }
         return bio;
     }

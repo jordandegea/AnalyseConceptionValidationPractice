@@ -20,7 +20,7 @@ public class BioInitialeModel extends EpisodeModel {
     public BioInitialeModel() {
         super(new Date(0), false);
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
-        paras.add(new ParagrapheModel(false, "lorem ipsum"));
+        paras.add(new ParagrapheModel(false, "lorem ipsum", 1));
     }
     
     public BioInitialeModel(ArrayList<String> paragraphes, ArrayList<Integer> access) {
@@ -28,7 +28,7 @@ public class BioInitialeModel extends EpisodeModel {
         int i = 0;
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
-            paras.add(new ParagrapheModel (/*access.get(i)==0)?false:true */ false, p));
+            paras.add(new ParagrapheModel (/*access.get(i)==0)?false:true */ false, p, i));
             i++;
         }
         
