@@ -48,6 +48,7 @@ CREATE TABLE Personnage(
 	dateNaissance varchar(128),
 	profession varchar(256),
 	portrait varchar(512),
+	demandeMJ integer, -- booléen
 	idJoueur REFERENCES Joueur(idJoueur),
 	idUnivers REFERENCES Univers(idUnivers),
 	idBiographie int REFERENCES Biographie(idBiographie)
@@ -87,8 +88,7 @@ CREATE TABLE EpisodeBiographie(
 CREATE TABLE MJ(
 	idPersonnage int REFERENCES Personnage(idPersonnage),
 	idMJ REFERENCES Joueur(idJoueur),
-	demande integer, -- booléen
-	primary key (idPerso)
+	primary key (idPersonnage)
 );
 
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Narnia');
@@ -98,3 +98,4 @@ INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Azeroth');
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Trantor');
 
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
+INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'william.duclot@gmail.com');

@@ -78,6 +78,42 @@ public class PersonnageController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
     }
+    
+    private void updatePersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String profession = (String) request.getParameter("profession");
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            if (perso != null) {
+                perso.setProfession(profession);
+                PersonnageDAO.instance().update(perso);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+        
+    }
+    
+    private void editPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            if (perso != null) {
+                request.setAttribute("personnage", perso);
+                request.setAttribute("idPerso",idPerso);
+                request.getRequestDispatcher("/WEB-INF/personnage/editPersonnage.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+        
+    }
 
     private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -114,13 +150,14 @@ public class PersonnageController extends AbstractControllerBase {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             JoueurModel mj = JoueurDAO.instance().get(idMJ);
             PersonnageValidator.instance().askMJValidate(perso, mj);
-            PersonnageDAO.instance().setMJ(perso, mj);
+            PersonnageDAO.instance().askMJ(perso, mj);
             String contextPath = request.getContextPath();
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
         } catch (ValidatorException ex) {
             try {
                 JoueurModel joueur = this.getUser(request, response);
                 Set<JoueurModel> potentialMJ = JoueurDAO.instance().getPotentialMJ(joueur);
+                request.setAttribute("error", ex.getMessage());
                 request.setAttribute("potentialMJ", potentialMJ);
                 request.getRequestDispatcher("/WEB-INF/personnage/findMJ.jsp").forward(request, response);
             } catch (DAOException ex1) {
@@ -129,6 +166,19 @@ public class PersonnageController extends AbstractControllerBase {
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
         }
+    }
+
+    public void leaveMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        try {
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            PersonnageDAO.instance().leaveMJ(perso);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + perso.getId()));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+
     }
 
     /**
@@ -149,7 +199,7 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("NEW")) {
             newPersonnage(request, response);
         } else if (action.equals("EDIT")) {
-
+            editPersonnage(request, response);
         } else if (action.equals("SHOW")) {
             this.showPersonnage(request, response);
         } else if (action.equals("FINDMJ")) {
@@ -177,11 +227,12 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("CREATE")) {
             createPersonnage(request, response);
         } else if (action.equals("UPDATE")) {
-            //Traitement spécifique supprimer 
+            updatePersonnage(request, response);
         } else if (action.equals("DELETE")) {
 
         } else if (action.equals("ASKMJ")) {
             this.askMJ(request, response);
+        } else if (action.equals("LEAVEMJ")) {
         } else {
             super.invalidParameters(request, response);
         }
