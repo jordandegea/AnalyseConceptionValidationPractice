@@ -119,10 +119,18 @@ public class PersonnageController extends AbstractControllerBase {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
-            if (perso != null) {
+            JoueurModel j = super.getUser(request, response);
+            // Si c'est un simple joueur
+            if (!j.equals(perso.getOwner())) {
+                request.setAttribute("personnage", perso);
+                request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageMJ.jsp").forward(request, response);
+            } 
+            // Si c'est le maitre du jeu.
+            else if (perso != null){
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnage.jsp").forward(request, response);
-            } else {
+            } 
+            else {
                 super.error404(request, response);
             }
         } catch (DAOException ex) {
