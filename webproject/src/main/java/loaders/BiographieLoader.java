@@ -3,7 +3,7 @@ package loaders;
 import dao.BioInitialeDAO;
 import dao.DAOException;
 import dao.PersonnageDAO;
-import dao.ResumeDAO;
+import dao.ResumePersonnageDAO;
 import dao.TransitionDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,9 +38,9 @@ public class BiographieLoader extends AbstractLoader<BiographieModel> {
         return getObject();
     }
 
-    public BiographieModel get(ResumeModel resume) throws DAOException {
+    public BiographieModel get(ResumePersonnageModel resume) throws DAOException {
         if (!isLoaded())
-                setObject(ResumeDAO.instance().getBiographie(resume));
+                setObject(ResumePersonnageDAO.instance().getBiographie(resume));
 
         return getObject();
     }

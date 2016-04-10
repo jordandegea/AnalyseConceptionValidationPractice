@@ -4,7 +4,7 @@ import dao.DAOException;
 import dao.JoueurDAO;
 import dao.PartieDAO;
 import dao.PersonnageDAO;
-import dao.ResumeDAO;
+import dao.ResumePersonnageDAO;
 import model.*;
 
 import java.util.Set;
@@ -40,9 +40,17 @@ public class PartieLoader extends AbstractLoader<PartieModel> {
         return getObject();
     }
 
-    public PartieModel get(ResumeModel resume) throws DAOException {
+    public PartieModel get(ResumePersonnageModel resume) throws DAOException {
         if (!isLoaded()) {
-            setObject(ResumeDAO.instance().getPartie(resume));
+            setObject(ResumePersonnageDAO.instance().getPartie(resume));
+        }
+
+        return getObject();
+    }
+    
+    public PartieModel get(ResumePartieModel resume) throws DAOException {
+        if (!isLoaded()) {
+            setObject(ResumePersonnageDAO.instance().getPartie(resume));
         }
 
         return getObject();

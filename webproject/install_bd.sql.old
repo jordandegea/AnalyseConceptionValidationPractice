@@ -25,7 +25,6 @@ CREATE TABLE Partie(
 	datePartie varchar(128),
 	lieu varchar(128),
 	termine integer, -- booléen
-	idResume int REFERENCES Episode(idEpisode),
 	idUnivers REFERENCES Univers(idUnivers),
 	idMJ REFERENCES Joueur(idJoueur)
 );
@@ -35,7 +34,7 @@ CREATE TABLE Episode(
 	dateEpisode date,
 	ecritureEnCours integer, -- booléen
 	typeEpisode varchar(200),
-	CONSTRAINT chk_typeEpisode CHECK (typeEpisode IN ('Bio Initiale', 'Transition', 'ResumePersonnage', 'ResumePartie'))
+	CONSTRAINT chk_typeEpisode CHECK (typeEpisode IN ('Bio Initiale', 'Transition', 'Resume'))
 );
 
 CREATE TABLE Biographie(
@@ -67,12 +66,11 @@ CREATE TABLE PartieTerminee(
     primary key (idPersonnage, idPartie)
 );
 
-CREATE TABLE ResumePersonnage(
+CREATE TABLE Resume(
 	idEpisode int REFERENCES Episode(idEpisode),
 	idPartie int REFERENCES Partie(idPartie),
 	primary key (idEpisode,idPartie)
 );
-
 
 CREATE TABLE Paragraphe(
 	idParagraphe int primary key,
@@ -102,5 +100,3 @@ INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Tran
 
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'william.duclot@gmail.com');
-
-INSERT INTO Personnage (

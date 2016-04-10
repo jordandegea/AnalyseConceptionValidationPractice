@@ -154,7 +154,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             st.setInt(2, mj.getId());
             st.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("DBError PersonnageDAO.setMJ() " + e.getMessage(), e);
+            throw new DAOException("DBError PersonnageDAO.askMJ() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -173,6 +173,30 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.delete() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        
+        perso.setDemandeMJ(false);
+        this.update(perso);
+    }
+    
+    public void acceptDemandeMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
+        perso.setDemandeMJ(false);
+        this.update(perso);
+    }
+    
+    public void rejectDemandeMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("DELETE FROM MJ WHERE idPersonnage=? AND idMJ=?");
+            st.setInt(1, perso.getId());
+            st.setInt(2, mj.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.rejectDemandeMJ() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
@@ -250,7 +274,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Personnage (nomPerso, dateNaissance, profession, portrait, idJoueur, idUnivers, idBiographie, idPersonnage) VALUES (?,?,?,?,?,?,?,?)");
+                    = conn.prepareStatement("INSERT INTO Personnage (nomPerso, dateNaissance, profession, portrait, idJoueur, idUnivers, idBiographie, idPersonnage, demandeMJ) VALUES (?,?,?,?,?,?,?,?,?)");
             st.setString(1, personnage.getNomPerso());
             st.setString(2, personnage.getDateNaiss());
             st.setString(3, personnage.getProfession());
@@ -259,6 +283,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             st.setInt(6, personnage.getUnivers().getId());
             st.setInt(7, personnage.getBiographie().getId());
             st.setInt(8, id);
+            st.setBoolean(9, personnage.isDemandeMJ());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.insert() " + e.getMessage(), e);
@@ -281,14 +306,14 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             conn = getConnection();
             PreparedStatement st
                     = conn.prepareStatement("UPDATE Personnage SET "
-                            + "nomPerso=?, dateNaissance=?, profession=?, portrait=?, idJoueur=?, idUnivers=?  "
+                            + "nomPerso=?, dateNaissance=?, profession=?, portrait=?, idJoueur=?, demandeMJ=?  "
                             + "WHERE idPersonnage=?");
             st.setString(1, personnage.getNomPerso());
             st.setString(2, personnage.getDateNaiss());
             st.setString(3, personnage.getProfession());
             st.setString(4, personnage.getPortrait());
             st.setInt(5, personnage.getOwner().getId());
-            st.setInt(6, personnage.getUnivers().getId());
+            st.setBoolean(6, personnage.isDemandeMJ());
             st.setInt(7, personnage.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {

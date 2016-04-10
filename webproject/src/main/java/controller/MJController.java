@@ -6,10 +6,9 @@
 package controller;
 
 import dao.DAOException;
-import dao.JoueurDAO;
+import dao.PersonnageDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,38 +19,41 @@ import javax.servlet.http.HttpServletResponse;
 import model.JoueurModel;
 import model.PersonnageModel;
 import validator.JoueurValidator;
+import validator.PersonnageValidator;
 import validator.ValidatorException;
 
 /**
  *
  * @author william
  */
-@WebServlet(name = "JoueurController", urlPatterns = {"/joueur"})
-public class JoueurController extends AbstractControllerBase {
-    private void showJoueur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet(name = "MJController", urlPatterns = {"/mj"})
+public class MJController extends AbstractControllerBase {
+
+    private void acceptDemandeMJ(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        JoueurModel joueur = super.getUser(request, response);
         try {
-            JoueurModel joueur = getUser(request, response);
-            Set<PersonnageModel> demandeursMJ = JoueurDAO.instance().getDemandeursMJ(joueur);
-            Set<PersonnageModel> persosMJ = JoueurDAO.instance().getPersonnagesManaged(joueur);
-            request.setAttribute("joueur", joueur);
-            request.setAttribute("demandeursMJ", demandeursMJ);
-            request.setAttribute("persosMJ", persosMJ);
-            request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            PersonnageDAO.instance().acceptDemandeMJ(perso, joueur);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
         }
     }
-    
-    private void newJoueur(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-    }
-    
-    private void editJoueur(HttpServletRequest request, HttpServletResponse response) {
+
+    private void rejectDemandeMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        JoueurModel joueur = super.getUser(request, response);
         
-    }
-    
-    private void deleteJoueur(HttpServletRequest request, HttpServletResponse response) {
-        
+        try {
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            PersonnageDAO.instance().rejectDemandeMJ(perso, joueur);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
     }
 
     /**
@@ -68,13 +70,7 @@ public class JoueurController extends AbstractControllerBase {
         String action = request.getParameter("action");
 
         if (action == null) {
-            this.showJoueur(request, response);
-        } else if (action.equals("NEW")) {
-            newJoueur(request, response);
-        } else if (action.equals("EDIT")) {
-            
-        } else if (action.equals("SHOW")) {
-            this.showJoueur(request, response);
+            super.invalidParameters(request, response);
         } else {
             super.invalidParameters(request, response);
         }
@@ -94,12 +90,11 @@ public class JoueurController extends AbstractControllerBase {
         String action = request.getParameter("action");
 
         if (action == null) {
-        } else if (action.equals("CREATE")) {
-            // Traitement spécifique modifier
-        } else if (action.equals("EDIT")) {
-            //Traitement spécifique supprimer 
-        } else if (action.equals("DELETE")) {
-            
+            super.invalidParameters(request, response);
+        } else if (action.equals("ACCEPT")) {
+            this.acceptDemandeMJ(request, response);
+        } else if (action.equals("REJECT")) {
+            this.rejectDemandeMJ(request, response);
         } else {
             super.invalidParameters(request, response);
         }

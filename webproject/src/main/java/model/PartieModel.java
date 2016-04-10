@@ -3,11 +3,12 @@ package model;
 import dao.DAOException;
 import loaders.JoueurLoader;
 import loaders.PersonnageLoader;
-import loaders.ResumeLoader;
+import loaders.ResumePersonnageLoader;
 import loaders.UniversLoader;
 
 import java.sql.Date;
 import java.util.Set;
+import loaders.ResumePartieLoader;
 
 /**
  * Created by william on 05/04/16.
@@ -22,7 +23,8 @@ public class PartieModel extends AbstractBaseModel {
     private UniversLoader univers;
     private JoueurLoader MJ;
     private PersonnageLoader personnages;
-    private ResumeLoader resume;
+    private ResumePartieLoader resumePartie;
+    private ResumePersonnageLoader resumePersonnage;
 
     public PartieModel(int id, String titrePartie, String résumé, String date, String lieu, boolean partieFinie) {
         super(id);
@@ -35,7 +37,8 @@ public class PartieModel extends AbstractBaseModel {
         univers = new UniversLoader();
         MJ = new JoueurLoader();
         personnages = new PersonnageLoader();
-        resume = new ResumeLoader();
+        resumePartie = new ResumePartieLoader();
+        resumePersonnage = new ResumePersonnageLoader();
     }
 
     public PartieModel(String titrePartie, String date, String lieu, String résumé, JoueurModel MJ, UniversModel univers) {
@@ -48,7 +51,8 @@ public class PartieModel extends AbstractBaseModel {
         this.univers = new UniversLoader(univers);
         this.MJ = new JoueurLoader(MJ);
         personnages = new PersonnageLoader();
-        resume = new ResumeLoader();
+        resumePartie = new ResumePartieLoader();
+        resumePersonnage = new ResumePersonnageLoader();
     }
 
     public String getTitrePartie() {
@@ -103,7 +107,11 @@ public class PartieModel extends AbstractBaseModel {
         return this.personnages.get(this);
     }
 
-    public ResumeModel getResume() throws DAOException {
-        return this.resume.get(this);
+    public ResumePartieModel getResume() throws DAOException {
+        return this.resumePartie.get(this);
+    }
+    
+    public Set<ResumePersonnageModel> getResumesPersonnage() throws DAOException {
+        return this.resumePersonnage.get(this);
     }
 }

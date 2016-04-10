@@ -43,6 +43,37 @@
         <input type="hidden" name="action" value="NEW" />
     </form>
 </div>
+    
+<div class="col-xs-12 col-md-6 col-lg-4">
+    <h2>Joueurs MJ</h2>
+    <ul>
+        <c:forEach items="${persosMJ}" var="perso">
+            <li>${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a></li>
+            </c:forEach>
+    </ul>
+</div>
+
+<div class="col-xs-12 col-md-6 col-lg-4">
+    <h2>Demandes MJ</h2>
+        ${error}
+    <ul>
+        <c:forEach items="${demandeursMJ}" var="perso">
+            <li>${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a></li>
+            <form action="mj" method="POST" accept-charset="UTF-8">
+                <input type="submit" value="Accepter" />
+                <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+                <input type="hidden" name="action" value="ACCEPT" />
+                <input type="hidden" name="idPerso" value="${perso.id}" />
+            </form>
+            <form action="mj" method="POST" accept-charset="UTF-8">
+                <input type="submit" value="Refuser" />
+                <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+                <input type="hidden" name="action" value="REJECT" />
+                <input type="hidden" name="idPerso" value="${perso.id}" />
+            </form>
+            </c:forEach>
+    </ul>
+</div>
 
 
 <jsp:include page="../include/foot.jsp" />

@@ -17,7 +17,7 @@ import model.BioInitialeModel;
 import model.BiographieModel;
 import model.EpisodeModel;
 import model.ParagrapheModel;
-import model.ResumeModel;
+import model.ResumePersonnageModel;
 import model.TransitionModel;
 
 /**
@@ -47,7 +47,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             if (rs.next()) {
                 type = rs.getString("typeEpisode");
                 if(type.equals("Resume")){
-                    result = new ResumeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                    result = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
                 }else if(type.equals("Bio Initiale")){
                     result = new BioInitialeModel(rs.getInt("idEpisode"));
                 }else if(type.equals("Transition")){
