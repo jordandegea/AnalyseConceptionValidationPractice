@@ -36,8 +36,21 @@ public class TransitionDAO extends EpisodeDAO{
 
     // Personal DAOs Methods
     public BiographieModel getBiographie(TransitionModel transition) throws DAOException{
-        // TODO: complete that
-        throw new DAOException("Not Implemented Yet");
+        BiographieModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT b.idBiographie  FROM Biographie b, Resume r WHERE b.idBioInitiale = r.idEpisode AND r.idEpisode= "+ transition.getId());
+            if (rs.next()) {
+                result = new BiographieModel(rs.getInt("idBiographie"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError ResumeDAO.getBiographie " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result; 
     }
     
     
