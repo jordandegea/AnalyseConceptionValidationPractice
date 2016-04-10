@@ -131,6 +131,11 @@ public class PartieController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
     }
+    
+    private void endPartie(HttpServletRequest request, HttpServletResponse response) {
+            int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+        
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -158,7 +163,7 @@ public class PartieController extends AbstractControllerBase {
             super.invalidParameters(request, response);
         }
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -178,6 +183,8 @@ public class PartieController extends AbstractControllerBase {
             this.createPartie(request, response);
         } else if (action.equals("UPDATE")) {
         } else if (action.equals("DELETE")) {
+        } else if (action.equals("END")) {
+            this.endPartie(request, response);
         } else if (action.equals("ENROLL")) {
             this.enrollPersonnage(request, response);
         } else {

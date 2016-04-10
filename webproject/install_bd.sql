@@ -55,16 +55,16 @@ CREATE TABLE Personnage(
 	idBiographie int REFERENCES Biographie(idBiographie)
 );
 
+CREATE TABLE ParticipationPartie(
+    idPersonnage REFERENCES Personnage(idPersonnage),
+    idPartie REFERENCES Partie(idPartie),
+    primary key (idPersonnage, idPartie)
+);
+
 CREATE TABLE PartieEnCours(
     idPersonnage REFERENCES Personnage(idPersonnage),
     idPartie REFERENCES Partie(idPartie),
     primary key (idPersonnage)
-);
-
-CREATE TABLE PartieTerminee(
-    idPersonnage REFERENCES Personnage(idPersonnage),
-    idPartie REFERENCES Partie(idPartie),
-    primary key (idPersonnage, idPartie)
 );
 
 CREATE TABLE ResumePersonnage(

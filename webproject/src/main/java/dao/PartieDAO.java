@@ -128,11 +128,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs;
-            if (!partie.isPartieFinie()) {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieEnCours pc WHERE pc.idPartie=" + partie.getId() + " AND p.idPersonnage=pc.idPersonnage");
-            } else {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieTerminee pt WHERE pt.idPartie=" + partie.getId() + " AND p.idPersonnage=pt.idPersonnage");
-            }
+            rs = st.executeQuery("SELECT p.* FROM ParticipationPartie pp, Personnage p WHERE pp.idPartie=" + partie.getId() + " AND p.idPersonnage=pp.idPersonnage");
             while (rs.next()) {
                 PersonnageModel perso
                         = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
