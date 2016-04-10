@@ -8,6 +8,23 @@
 \contentsline {subsection}{\numberline {2.2}Diagramme de classe logiciel}{6}
 \contentsline {subsection}{\numberline {2.3}Diagramme d'Etats-transitions}{6}
 \contentsline {section}{\numberline {3}Manuel Utilisateur}{7}
+\contentsline {subsection}{\numberline {3.1}Top Menu}{7}
+\contentsline {subsection}{\numberline {3.2}Login}{7}
+\contentsline {subsection}{\numberline {3.3}Profil}{7}
+\contentsline {subsection}{\numberline {3.4}Parties}{7}
+\contentsline {subsubsection}{\numberline {3.4.1}Cr\IeC {\'e}er une Partie}{7}
+\contentsline {subsubsection}{\numberline {3.4.2}Mes Parties}{7}
+\contentsline {subsubsection}{\numberline {3.4.3}Les Parties Disponibles}{7}
+\contentsline {subsubsection}{\numberline {3.4.4}Voir la Partie}{7}
+\contentsline {subsection}{\numberline {3.5}Personnages}{7}
+\contentsline {subsubsection}{\numberline {3.5.1}Cr\IeC {\'e}er un Personnage}{7}
+\contentsline {subsubsection}{\numberline {3.5.2}Modifier un Personnage}{7}
+\contentsline {subsubsection}{\numberline {3.5.3}Mes Personnages}{7}
+\contentsline {subsubsection}{\numberline {3.5.4}Les Personnages Disponibles}{7}
+\contentsline {subsubsection}{\numberline {3.5.5}Voir le Personnage}{7}
+\contentsline {subsection}{\numberline {3.6}MJ}{7}
+\contentsline {subsubsection}{\numberline {3.6.1}MJ : Les Demandes}{7}
+\contentsline {subsubsection}{\numberline {3.6.2}MJ : Les Joueurs}{7}
 \contentsline {section}{\numberline {4}Bilan}{8}
 \contentsline {subsection}{\numberline {4.1}Recherche de modeleurs UML}{8}
 \contentsline {subsection}{\numberline {4.2}Outil : LucidChart}{8}

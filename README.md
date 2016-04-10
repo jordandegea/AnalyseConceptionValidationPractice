@@ -22,6 +22,9 @@ Modifier les paramètres souhaités
 
 Ouvrir le fichier settings.xml et entrez vos identifiants Tomcat
 
+## SQL
+
+Dans votre base de données oracle, executez les lignes présentes dans install_bd.sql
 
 # Execution
 

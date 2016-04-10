@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 14:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 16:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -598,22 +598,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<images/classe/DiagrammeClasse.png, id=11, 532.99126pt x 560.0925pt>
-File: images/classe/DiagrammeClasse.png Graphic file (type png)
 
-<use images/classe/DiagrammeClasse.png>
-Package pdftex.def Info: images/classe/DiagrammeClasse.png used on input line 3
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./images/classe/DiagrammeCla
+sse.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
+owed
+<images/classe/DiagrammeClasse.pdf, id=11, 614.295pt x 794.97pt>
+File: images/classe/DiagrammeClasse.pdf Graphic file (type pdf)
+
+<use images/classe/DiagrammeClasse.pdf>
+Package pdftex.def Info: images/classe/DiagrammeClasse.pdf used on input line 3
 1.
-(pdftex.def)             Requested size: 483.69687pt x 508.309pt.
- [2 <./images/classe/DiagrammeClasse.png>] <images/utilisation/UserCU.png, id=1
-7, 493.24275pt x 370.38374pt>
+(pdftex.def)             Requested size: 483.69687pt x 625.9694pt.
+ [2 <./images/classe/DiagrammeClasse.pdf>] <images/utilisation/UserCU.png, id=2
+2, 493.24275pt x 370.38374pt>
 File: images/utilisation/UserCU.png Graphic file (type png)
 
 <use images/utilisation/UserCU.png>
 Package pdftex.def Info: images/utilisation/UserCU.png used on input line 42.
 (pdftex.def)             Requested size: 290.22107pt x 217.93674pt.
 
-<images/utilisation/JoueurCU.png, id=18, 497.30794pt x 451.6875pt>
+<images/utilisation/JoueurCU.png, id=23, 497.30794pt x 451.6875pt>
 File: images/utilisation/JoueurCU.png Graphic file (type png)
 
 <use images/utilisation/JoueurCU.png>
@@ -621,7 +625,7 @@ Package pdftex.def Info: images/utilisation/JoueurCU.png used on input line 48.
 
 (pdftex.def)             Requested size: 237.01411pt x 215.27057pt.
 
-<images/utilisation/MJCU.png, id=19, 505.89pt x 514.92375pt>
+<images/utilisation/MJCU.png, id=24, 505.89pt x 514.92375pt>
 File: images/utilisation/MJCU.png Graphic file (type png)
 
 <use images/utilisation/MJCU.png>
@@ -629,7 +633,7 @@ Package pdftex.def Info: images/utilisation/MJCU.png used on input line 49.
 (pdftex.def)             Requested size: 237.01411pt x 241.25204pt.
  [3 <./images/utilisation/UserCU.png> <./images/utilisation/JoueurCU.png> <./im
 ages/utilisation/MJCU.png>]
-<images/sequence/DS-OrganiserPartie.png, id=23, 487.8225pt x 448.52568pt>
+<images/sequence/DS-OrganiserPartie.png, id=28, 487.8225pt x 448.52568pt>
 File: images/sequence/DS-OrganiserPartie.png Graphic file (type png)
 
 <use images/sequence/DS-OrganiserPartie.png>
@@ -637,7 +641,7 @@ Package pdftex.def Info: images/sequence/DS-OrganiserPartie.png used on input l
 ine 58.
 (pdftex.def)             Requested size: 341.43306pt x 313.93161pt.
 
-<images/sequence/DS-ChangerMJ.png, id=24, 388.45125pt x 329.28018pt>
+<images/sequence/DS-ChangerMJ.png, id=29, 388.45125pt x 329.28018pt>
 File: images/sequence/DS-ChangerMJ.png Graphic file (type png)
 
 <use images/sequence/DS-ChangerMJ.png>
@@ -645,7 +649,7 @@ Package pdftex.def Info: images/sequence/DS-ChangerMJ.png used on input line 64
 .
 (pdftex.def)             Requested size: 341.43306pt x 289.43082pt.
 
-<images/sequence/DS-CreerPerso.png, id=25, 462.528pt x 448.52568pt>
+<images/sequence/DS-CreerPerso.png, id=30, 462.528pt x 448.52568pt>
 File: images/sequence/DS-CreerPerso.png Graphic file (type png)
 
 <use images/sequence/DS-CreerPerso.png>
@@ -654,7 +658,7 @@ Package pdftex.def Info: images/sequence/DS-CreerPerso.png used on input line 7
 (pdftex.def)             Requested size: 341.43306pt x 331.10991pt.
  [4 <./images/sequence/DS-OrganiserPartie.png> <./images/sequence/DS-ChangerMJ.
 png>] [5 <./images/sequence/DS-CreerPerso.png>] <images/sequence/ET-Personnage.
-png, id=32, 460.72125pt x 234.8775pt>
+png, id=37, 460.72125pt x 234.8775pt>
 File: images/sequence/ET-Personnage.png Graphic file (type png)
 
 <use images/sequence/ET-Personnage.png>
@@ -663,10 +667,10 @@ Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 8
 (pdftex.def)             Requested size: 483.69687pt x 246.58922pt.
  [6 <./images/sequence/ET-Personnage.png>] [7] [8] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 4672 strings out of 493089
- 62989 string characters out of 6134841
- 137178 words of memory out of 5000000
- 8042 multiletter control sequences out of 15000+600000
+ 4686 strings out of 493089
+ 63230 string characters out of 6134841
+ 141340 words of memory out of 5000000
+ 8056 multiletter control sequences out of 15000+600000
  16815 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,6n,30p,345b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -680,10 +684,10 @@ ve/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive
 5/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2015/
 texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on Rapport.pdf (8 pages, 308612 bytes).
+Output written on Rapport.pdf (8 pages, 296733 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
