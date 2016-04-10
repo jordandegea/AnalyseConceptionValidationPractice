@@ -5,31 +5,32 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css" />
-        <title>Enrôler un personnage</title>
+        <title>Trouver un MJ</title>
     </head>
     <body>
 
-        <h2>Enrôler un personnage</h2>
-        Sélectionnez un personnage à enrôler pour la partie "${partie.titrePartie}" :
-        
+        <h2>Trouver un MJ</h2>
+        Choisissez un MJ à qui proposer ce personnage:
+
         ${error}
-        <form action="partie" method="POST" accept-charset="UTF-8">
-            <select name="idPerso" >
-                <c:forEach items="${enrollable}" var="perso">
-                    <option value="${perso.id}">${perso.nomPerso}</option>
+        <form action="personnage" method="POST" accept-charset="UTF-8">
+            <select name="idMJ" >
+                <c:forEach items="${potentialMJ}" var="mj">
+                    <option value="${mj.id}">${mj.login}</option>
                 </c:forEach>
             </select><br/>
 
-            <input type="submit" value="Enregistrer" />
+            <input type="submit" value="Proposer" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-            <input type="hidden" name="action" value="ENROLL" />
+            <input type="hidden" name="action" value="ASKMJ" />
+            <input type="hidden" name="idPerso" value="${idPerso}" />
         </form>
 
-        <form action="partie" method="GET" accept-charset="UTF-8">
+        <form action="personnage" method="GET" accept-charset="UTF-8">
             <input type="submit" value="Retour" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
             <input type="hidden" name="action" value="SHOW" />
-            <input type="hidden" name="idPartie" value="${partie.id}" />
+            <input type="hidden" name="idPerso" value="${idPerso}" />
         </form>
     </body>
 </html>
