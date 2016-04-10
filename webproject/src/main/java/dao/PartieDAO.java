@@ -128,11 +128,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs;
-            if (!partie.isPartieFinie()) {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieEnCours pc WHERE pc.idPartie=" + partie.getId() + " AND p.idPersonnage=pc.idPersonnage");
-            } else {
-                rs = st.executeQuery("SELECT p.* FROM Personnage p, PartieTerminee pt WHERE pt.idPartie=" + partie.getId() + " AND p.idPersonnage=pt.idPersonnage");
-            }
+            rs = st.executeQuery("SELECT p.* FROM ParticipationPartie pp, Personnage p WHERE pp.idPartie=" + partie.getId() + " AND p.idPersonnage=pp.idPersonnage");
             while (rs.next()) {
                 PersonnageModel perso
                         = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
@@ -198,8 +194,27 @@ public class PartieDAO extends AbstractDataBaseDAO {
             st.setInt(1, perso.getId());
             st.setInt(2, partie.getId());
             st.executeUpdate();
+            st = conn.prepareStatement("INSERT INTO ParticipationPartie (idPersonnage, idPartie) VALUES (?,?)");
+            st.setInt(1, perso.getId());
+            st.setInt(2, partie.getId());
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.enrollPersonnage() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+    
+    public void endPartie(PartieModel partie) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("DELETE FROM PartieEnCours WHERE idPartie=?");
+            st.setInt(1, partie.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PartieDAO.endPartie() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }
