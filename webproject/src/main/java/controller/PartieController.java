@@ -115,8 +115,11 @@ public class PartieController extends AbstractControllerBase {
                 try {
                     PartieValidator.instance().enrollValidate(partie, perso);
                     PartieDAO.instance().enrollPersonnage(partie, perso);
+                    String contextPath = request.getContextPath();
+                    response.sendRedirect(response.encodeRedirectURL(contextPath + "/partie?action=SHOW&idPartie=" + partie.getId()));
                 } catch (ValidatorException ex) {
                     Set<PersonnageModel> enrollable = PartieDAO.instance().getEnrollablePersonnages(partie);
+                    request.setAttribute("error", ex.getMessage());
                     request.setAttribute("partie", partie);
                     request.setAttribute("enrollable", enrollable);
                     request.getRequestDispatcher("/WEB-INF/partie/enrollPersonnage.jsp").forward(request, response);

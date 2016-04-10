@@ -36,6 +36,8 @@ public class PersonnageModel extends AbstractBaseModel {
         univers = new UniversLoader();
         parties = new PartieLoader();
         MJ = new JoueurLoader();
+        partie = new PartieLoader();
+        biographie = new BiographieLoader();
     }
 
     public PersonnageModel(String nomPerso, String dateNaiss, String profession, String portrait, BioInitialeModel bioInitiale, JoueurModel Joueur, UniversModel univers) {
