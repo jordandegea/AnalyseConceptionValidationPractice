@@ -10,19 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.Set;
 import model.AbstractBaseModel;
-import model.BiographieModel;
 import model.EpisodeModel;
-import model.JoueurModel;
 import model.ParagrapheModel;
-import model.PartieModel;
-import model.ResumePersonnageModel;
-import model.TransitionModel;
 
 /**
  *

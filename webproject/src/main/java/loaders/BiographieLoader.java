@@ -5,8 +5,6 @@ import dao.DAOException;
 import dao.PersonnageDAO;
 import dao.ResumePersonnageDAO;
 import dao.TransitionDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.*;
 
 /**

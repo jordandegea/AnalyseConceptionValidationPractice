@@ -1,7 +1,6 @@
 package model;
 
 import dao.DAOException;
-import loaders.BiographieLoader;
 import loaders.PartieLoader;
 
 import java.sql.Date;

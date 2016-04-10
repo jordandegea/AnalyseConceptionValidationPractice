@@ -14,8 +14,6 @@ import java.util.Set;
 import model.AbstractBaseModel;
 import model.BioInitialeModel;
 import model.BiographieModel;
-import model.ResumePersonnageModel;
-import model.TransitionModel;
 
 /**
  *

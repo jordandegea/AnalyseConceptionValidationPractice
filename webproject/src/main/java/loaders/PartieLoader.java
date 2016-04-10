@@ -2,14 +2,11 @@ package loaders;
 
 import dao.DAOException;
 import dao.JoueurDAO;
-import dao.PartieDAO;
 import dao.PersonnageDAO;
 import dao.ResumePersonnageDAO;
 import model.*;
 
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by william on 05/04/16.

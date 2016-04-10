@@ -1,15 +1,8 @@
 package loaders;
 
-import dao.BiographieDAO;
 import dao.DAOException;
 import dao.PartieDAO;
-import model.BiographieModel;
 import model.PartieModel;
-import model.ResumePersonnageModel;
-
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.ResumePartieModel;
 
 /**
