@@ -17,6 +17,7 @@ public class PersonnageModel extends AbstractBaseModel {
     private String dateNaiss;
     private String profession;
     private String portrait;
+    private boolean demandeMJ;
     
     private JoueurLoader owner;
     private UniversLoader univers;
@@ -25,12 +26,13 @@ public class PersonnageModel extends AbstractBaseModel {
     private JoueurLoader MJ;
     private BiographieLoader biographie;
 
-    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait) {
+    public PersonnageModel(int id, String nomPerso, String dateNaiss, String profession, String portrait, boolean demandeMJ) {
         super(id);
         this.nomPerso = nomPerso;
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
+        this.demandeMJ = demandeMJ;
         
         owner = new JoueurLoader();
         univers = new UniversLoader();
@@ -45,13 +47,21 @@ public class PersonnageModel extends AbstractBaseModel {
         this.dateNaiss = dateNaiss;
         this.profession = profession;
         this.portrait = portrait;
-        
-        owner = new JoueurLoader(joueur);
+        this.demandeMJ = false;
+        this.owner = new JoueurLoader(joueur);
         this.univers = new UniversLoader(univers);
-        parties = new PartieLoader();
-        partie = new PartieLoader();
-        MJ = new JoueurLoader();
-        biographie = new BiographieLoader(bioInitiale);
+        this.parties = new PartieLoader();
+        this.partie = new PartieLoader();
+        this.MJ = new JoueurLoader();
+        this.biographie = new BiographieLoader(bioInitiale);
+    }
+
+    public boolean isDemandeMJ() {
+        return demandeMJ;
+    }
+
+    public void setDemandeMJ(boolean demandeMJ) {
+        this.demandeMJ = demandeMJ;
     }
 
     public String getNomPerso() {

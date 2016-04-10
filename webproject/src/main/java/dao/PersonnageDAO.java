@@ -144,7 +144,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         return result;
     }
     
-    public void setMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
+    public void askMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
         Connection conn = null;
         try {
             conn = getConnection();
@@ -158,8 +158,28 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
+        
+        perso.setDemandeMJ(true);
+        this.update(perso);
     }
     
+    public void leaveMJ(PersonnageModel perso) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("DELETE FROM MJ WHERE idPersonnage=?");
+            st.setInt(1, perso.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.delete() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        
+        perso.setDemandeMJ(false);
+        this.update(perso);
+    }
     
     // Override Methods    
     @Override
@@ -176,7 +196,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait")
+                        rs.getString("portrait"),
+                        rs.getBoolean("demandeMJ")
                 );
             }
         } catch (SQLException e) {
@@ -202,7 +223,8 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
                         rs.getString("nomPerso"), 
                         rs.getString("dateNaissance"), 
                         rs.getString("profession"), 
-                        rs.getString("portrait")
+                        rs.getString("portrait"),
+                        rs.getBoolean("demandeMJ")
                      );
                 result.add(ouvrage);
             }
@@ -259,7 +281,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             conn = getConnection();
             PreparedStatement st
                     = conn.prepareStatement("UPDATE Personnage SET "
-                            + "nomPerso=?, dateNaissance=?, profession=?, portrait=?, idJoueur=?, idUnivers=?, idPartie=?, idBiographie=? "
+                            + "nomPerso=?, dateNaissance=?, profession=?, portrait=?, idJoueur=?, idUnivers=?  "
                             + "WHERE idPersonnage=?");
             st.setString(1, personnage.getNomPerso());
             st.setString(2, personnage.getDateNaiss());
@@ -267,9 +289,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO{
             st.setString(4, personnage.getPortrait());
             st.setInt(5, personnage.getOwner().getId());
             st.setInt(6, personnage.getUnivers().getId());
-            st.setInt(7, personnage.getPartieEnCours().getId());
-            st.setInt(8, personnage.getBiographie().getId());
-            st.setInt(9, personnage.getId());
+            st.setInt(7, personnage.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PersonnageDAO.update() " + e.getMessage(), e);
