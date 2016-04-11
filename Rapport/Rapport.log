@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  10 APR 2016 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.11.16)  11 APR 2016 22:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,46 +662,93 @@ png, id=37, 460.72125pt x 234.8775pt>
 File: images/sequence/ET-Personnage.png Graphic file (type png)
 
 <use images/sequence/ET-Personnage.png>
-Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 8
-9.
+Package pdftex.def Info: images/sequence/ET-Personnage.png used on input line 9
+2.
 (pdftex.def)             Requested size: 483.69687pt x 246.58922pt.
  [6 <./images/sequence/ET-Personnage.png>] <images/manuel/login.png, id=41, 121
-1.52625pt x 335.2525pt>
+3.53375pt x 365.365pt>
 File: images/manuel/login.png Graphic file (type png)
 
 <use images/manuel/login.png>
-Package pdftex.def Info: images/manuel/login.png used on input line 140.
-(pdftex.def)             Requested size: 483.69687pt x 133.84796pt.
+Package pdftex.def Info: images/manuel/login.png used on input line 143.
+(pdftex.def)             Requested size: 483.69687pt x 145.63051pt.
 
-<images/manuel/register.png, id=43, 1208.515pt x 444.66125pt>
+<images/manuel/register.png, id=43, 1215.54124pt x 443.6575pt>
 File: images/manuel/register.png Graphic file (type png)
 
 <use images/manuel/register.png>
-Package pdftex.def Info: images/manuel/register.png used on input line 152.
-(pdftex.def)             Requested size: 483.69687pt x 177.9699pt.
- [7 <./images/manuel/login.png>] [8 <./images/manuel/register.png>] [9] (./Rapp
-ort.aux) ) 
+Package pdftex.def Info: images/manuel/register.png used on input line 157.
+(pdftex.def)             Requested size: 483.69687pt x 176.53917pt.
+ [7 <./images/manuel/login.png>]
+<images/manuel/profil.png, id=49, 1049.9225pt x 736.7525pt>
+File: images/manuel/profil.png Graphic file (type png)
+
+<use images/manuel/profil.png>
+Package pdftex.def Info: images/manuel/profil.png used on input line 166.
+(pdftex.def)             Requested size: 483.69687pt x 339.41615pt.
+
+<images/manuel/creerpartie.png, id=50, 1048.91875pt x 736.7525pt>
+File: images/manuel/creerpartie.png Graphic file (type png)
+
+<use images/manuel/creerpartie.png>
+Package pdftex.def Info: images/manuel/creerpartie.png used on input line 178.
+(pdftex.def)             Requested size: 483.69687pt x 339.74216pt.
+ [8 <./images/manuel/register.png> <./images/manuel/profil.png>]
+<images/manuel/voirpartie.png, id=56, 1045.9075pt x 732.7375pt>
+File: images/manuel/voirpartie.png Graphic file (type png)
+
+<use images/manuel/voirpartie.png>
+Package pdftex.def Info: images/manuel/voirpartie.png used on input line 198.
+(pdftex.def)             Requested size: 483.69687pt x 338.8746pt.
+ [9 <./images/manuel/creerpartie.png>]
+<images/manuel/creerpersonnage.png, id=62, 999.735pt x 669.50125pt>
+File: images/manuel/creerpersonnage.png Graphic file (type png)
+
+<use images/manuel/creerpersonnage.png>
+Package pdftex.def Info: images/manuel/creerpersonnage.png used on input line 2
+10.
+(pdftex.def)             Requested size: 483.69687pt x 323.9211pt.
+ [10 <./images/manuel/voirpartie.png>]
+<images/manuel/editerpersonnage.png, id=67, 1048.91875pt x 734.745pt>
+File: images/manuel/editerpersonnage.png Graphic file (type png)
+
+<use images/manuel/editerpersonnage.png>
+Package pdftex.def Info: images/manuel/editerpersonnage.png used on input line 
+220.
+(pdftex.def)             Requested size: 483.69687pt x 338.81644pt.
+ [11 <./images/manuel/creerpersonnage.png>] <images/manuel/voirpersonnage.png, 
+id=72, 382.42876pt x 504.88625pt>
+File: images/manuel/voirpersonnage.png Graphic file (type png)
+
+<use images/manuel/voirpersonnage.png>
+Package pdftex.def Info: images/manuel/voirpersonnage.png used on input line 23
+9.
+(pdftex.def)             Requested size: 142.26378pt x 187.8142pt.
+ [12 <./images/manuel/editerpersonnage.png> <./images/manuel/voirpersonnage.png
+>] [13] [14] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 4698 strings out of 493089
- 63518 string characters out of 6134841
- 141356 words of memory out of 5000000
- 8065 multiletter control sequences out of 15000+600000
- 16815 words of font info for 49 fonts, out of 8000000 for 9000
+ 4730 strings out of 493089
+ 64470 string characters out of 6134841
+ 141363 words of memory out of 5000000
+ 8090 multiletter control sequences out of 15000+600000
+ 17501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,6n,30p,366b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super
--t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx100
-0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on Rapport.pdf (9 pages, 410622 bytes).
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvi
+ps/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/cm-super/sfbx1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+cm-super/sfbx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm
+-super/sfcc1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-s
+uper/sfrm0700.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-sup
+er/sfrm1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super
+/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/s
+frm1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sft
+i1000.pfb>
+Output written on Rapport.pdf (14 pages, 916939 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
