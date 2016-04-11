@@ -11,10 +11,7 @@
     <li>Nom : ${personnage.nomPerso}</li>
     <li>Date de naissance : ${personnage.dateNaiss}</li>
     <li>Profession : 
-        ${personnage.profession}<a class="btn btn-warning" onclick="formularise(this, event, ${personnage.id}, 'modifier');"
-           href="controleur?action=getOuvrage&view=modifier&id=${ouvrage.id}">
-            modifier
-        </a>
+        ${personnage.profession}
     </li>
     <li>Univers : ${personnage.univers}</li>
     <li>MJ : 

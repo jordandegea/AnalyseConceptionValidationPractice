@@ -26,7 +26,7 @@ import model.TransitionModel;
 public class ParagrapheDAO extends AbstractDataBaseDAO{
     final private static ParagrapheDAO instanceUnique = new ParagrapheDAO();
 
-    static ParagrapheDAO instance() {
+    public static ParagrapheDAO instance() {
         return instanceUnique;
     }
 
@@ -66,7 +66,7 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
     
     // Override Methods
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
+    public ParagrapheModel get(int id) throws DAOException {
         ParagrapheModel result = null;
         Connection conn = null;
         try {
@@ -177,5 +177,46 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             closeConnection(conn);
         }
         return affectedRows ;
+    }
+    
+    public int updateVisibility(Object object) throws DAOException {
+        if (!(object instanceof ParagrapheModel)) {
+            throw new DAOException("Wrong object parameter in update, require ParagrapheModel");
+        }
+        int affectedRows = 0 ; 
+        ParagrapheModel paragraphe = (ParagrapheModel) object;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("UPDATE Paragraphe SET secret=? WHERE idParagraphe=?");
+            paragraphe.setSecret(!paragraphe.isSecret());
+            st.setBoolean(1, paragraphe.isSecret());
+            st.setInt(2, paragraphe.getId());
+            affectedRows = st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError ParagrapheDAO.updateVisibility() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return affectedRows ;
+    }
+    
+    public int getNumPerso(int id) throws DAOException {
+        int result = 0;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT p.idPersonnage FROM Paragraphe par, Personnage p, EpisodeBiographie eb WHERE p.idBiographie = eb.idBiographie AND eb.idEpisode =  par.idEpisode AND par.idParagraphe='" + id + "'");
+            if (rs.next()) {
+                result = rs.getInt("idPersonnage");
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError ParagrapheDAO.getNumPerso() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 }

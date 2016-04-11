@@ -71,6 +71,16 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
             s += pm.getContenu();
             s += "</p>";
             s += "</hr>";
+            // Bouton pour révéler le paragraphe
+            if (pm.isSecret()) {
+                s += "\n";
+                s += "<form action=\"personnage\" method=\"GET\" accept-charset=\"UTF-8\">\n" +
+                "    <input type=\"submit\" value=\"Révéler paragraphe\" />\n" +
+                "    <input type=\"hidden\" name=\"action\" value=\"REVEAL\" />\n" +
+                "    <input type=\"hidden\" name=\"idPar\" value=" + pm.getId()  +" /> " +
+                "</form> ";
+                
+            }
         }
         return s;
     }
