@@ -7,6 +7,7 @@ package controller;
 
 import dao.DAOException;
 import dao.JoueurDAO;
+import dao.ParagrapheDAO;
 import dao.PersonnageDAO;
 import dao.UniversDAO;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BioInitialeModel;
 import model.JoueurModel;
+import model.ParagrapheModel;
 import model.PersonnageModel;
 import model.UniversModel;
 import validator.PersonnageValidator;
@@ -170,6 +172,20 @@ public class PersonnageController extends AbstractControllerBase {
         }
 
     }
+    
+    private void revealParagraph (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPar = Integer.parseInt(request.getParameter("idPar"));
+            ParagrapheModel p =  ParagrapheDAO.instance().get(idPar);
+            int idPerso = ParagrapheDAO.instance().getNumPerso(idPar);
+            ParagrapheDAO.instance().updateVisibility(p);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+    }
+    }
+
     private void askMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
@@ -234,6 +250,7 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -259,7 +276,10 @@ public class PersonnageController extends AbstractControllerBase {
             this.transferPerso(request,response);
         } else if (action.equals("FINDMJ")) {
             this.findMJ(request, response);
-        } else {
+        } else if (action.equals("REVEAL")) {
+            this.revealParagraph(request, response);
+        }
+          else {
             super.invalidParameters(request, response);
         }
     }
