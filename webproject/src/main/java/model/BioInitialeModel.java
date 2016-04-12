@@ -15,21 +15,13 @@ public class BioInitialeModel extends EpisodeModel {
         super(id, new Date(0), false);
     }
     
-    public BioInitialeModel() {
-        super(new Date(0), false);
-        Set<ParagrapheModel> paras = new LinkedHashSet<>();
-        paras.add(new ParagrapheModel(false, "lorem ipsum", 1));
-    }
+//    public BioInitialeModel() {
+//        super(new Date(0), false);
+//        Set<ParagrapheModel> paras = new LinkedHashSet<>();
+//        paras.add(new ParagrapheModel(false, "lorem ipsum", 1));
+//    }
     
     public BioInitialeModel(ArrayList<String> paragraphes, ArrayList<Integer> access) {
-        super(new Date(0), false);
-        int i = 0;
-        Set<ParagrapheModel> paras = new LinkedHashSet<>();
-        for (String p : paragraphes) {
-            paras.add(new ParagrapheModel( (access.get(i)==0)?false:true, p, i));
-            i++;
-        }
-        
-        super.setParagraphes(paras);
+        super(new Date(0), false, paragraphes, access);
     }
 }

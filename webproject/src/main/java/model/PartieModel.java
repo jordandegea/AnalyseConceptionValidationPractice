@@ -122,4 +122,12 @@ public class PartieModel extends AbstractBaseModel {
         
         return s;
     }
+
+    public ResumePartieModel getResumePartie() throws DAOException {
+        return resumePartie.get(this);
+    }
+
+    public void setResumePartie(ResumePartieModel resumePartie) {
+        this.resumePartie.setObject(resumePartie);
+    }
 }

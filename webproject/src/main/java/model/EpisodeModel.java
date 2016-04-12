@@ -5,6 +5,8 @@ import dao.EpisodeDAO;
 import loaders.ParagrapheLoader;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -22,10 +24,34 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         this.date = date;
     }
 
-    public EpisodeModel(Date date, boolean ecritureEnCours) {
+    public EpisodeModel(Date date, boolean ecritureEnCours, ArrayList<String> paragraphes, ArrayList<Integer> access) {
         this.ecritureEnCours = ecritureEnCours;
-        paragraphes = new ParagrapheLoader();
+        this.paragraphes = new ParagrapheLoader();
         this.date = date;
+        
+        int i = 0;
+        Set<ParagrapheModel> paras = new LinkedHashSet<>();
+        for (String p : paragraphes) {
+            paras.add(new ParagrapheModel((access.get(i)==0), p, i));
+            i++;
+        }
+        
+        this.setParagraphes(paras);
+    }
+
+    public EpisodeModel(Date date, boolean ecritureEnCours, ArrayList<String> paragraphes) {
+        this.ecritureEnCours = ecritureEnCours;
+        this.paragraphes = new ParagrapheLoader();
+        this.date = date;
+        
+        int i = 0;
+        Set<ParagrapheModel> paras = new LinkedHashSet<>();
+        for (String p : paragraphes) {
+            paras.add(new ParagrapheModel(false, p, i));
+            i++;
+        }
+        
+        this.setParagraphes(paras);
     }
 
     public boolean isEcritureEnCours() {

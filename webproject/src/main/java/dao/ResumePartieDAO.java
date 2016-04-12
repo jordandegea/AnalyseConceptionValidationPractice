@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import model.AbstractBaseModel;
+import model.ParagrapheModel;
 import model.PartieModel;
 import model.ResumePartieModel;
 
@@ -95,7 +96,7 @@ public class ResumePartieDAO extends EpisodeDAO {
     @Override
     public int insert(Object object) throws DAOException {
         if (!(object instanceof ResumePartieModel)) {
-            throw new DAOException("Wrong object parameter in insert, require ResumeModel");
+            throw new DAOException("Wrong object parameter in insert, require ResumePartieModel");
         }
         int affectedRows = 0;
         int id = this.getId();
@@ -115,6 +116,11 @@ public class ResumePartieDAO extends EpisodeDAO {
             throw new DAOException("DBError " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
+        }
+        resume.setId(id);
+        for (ParagrapheModel p : resume.getParagraphes()) {
+            p.setEpisode(resume);
+            ParagrapheDAO.instance().insert(p);
         }
         
         resume.setId(id);
