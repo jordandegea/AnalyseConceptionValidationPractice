@@ -10,23 +10,23 @@ ${error}
 <form action="personnage" method="post" accept-charset="UTF-8">
     <div class="form-group">
         <label class="col-lg-2 control-label">Nom :</label>
-        <input class="form-control" type="text" name="nomPerso" value="${personnage.nomPerso}" requested />
+        <input class="form-control" type="text" name="nomPerso" value="${personnage.nomPerso}" required />
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Date de naissance :</label>
-        <input class="form-control" type="text" name="dateNaiss" value="${personnage.dateNaiss}" requested />
+        <input class="form-control" type="text" name="dateNaiss" value="${personnage.dateNaiss}" required />
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Profession :</label>
-        <input class="form-control" type="text" name="profession" value="${personnage.profession}" requested />
+        <input class="form-control" type="text" name="profession" value="${personnage.profession}" required />
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Portrait :</label>
-        <input class="form-control" type="file" name="portrait" requested />
+        <input class="form-control" type="file" name="portrait" required />
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Univers :</label>
-        <select class="form-control" name="univers" >
+        <select class="form-control" name="univers" required>
             <c:forEach items="${univers}" var="item">
                 <option value="${item.id}">${item.nom}</option>
             </c:forEach>
@@ -74,5 +74,7 @@ function addTextArea(){
         i = i+1;
 }
 </script>
+
+
 <jsp:include page="../include/foot.jsp" />
 

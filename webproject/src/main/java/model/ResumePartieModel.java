@@ -18,8 +18,10 @@ public class ResumePartieModel extends EpisodeModel {
         partie = new PartieLoader();
     }
     
-    public ResumePartieModel(Date date, ArrayList<String> paragraphes) {
+    public ResumePartieModel(Date date, ArrayList<String> paragraphes, PartieModel partie) {
         super(date, false, paragraphes);
+        
+        this.partie = new PartieLoader(partie);
     }
 
     public PartieModel getPartie() throws DAOException {

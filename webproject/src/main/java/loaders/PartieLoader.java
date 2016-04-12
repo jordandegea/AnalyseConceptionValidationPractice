@@ -12,6 +12,13 @@ import java.util.Set;
  * Created by william on 05/04/16.
  */
 public class PartieLoader extends AbstractLoader<PartieModel> {
+    public PartieLoader(PartieModel partie) {
+        super(partie);
+    }
+    
+    public PartieLoader() {
+        super();
+    }
 
     public Set<PartieModel> get(PersonnageModel personnage) throws DAOException {
         if (!isLoaded()) {

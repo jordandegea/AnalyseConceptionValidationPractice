@@ -18,7 +18,7 @@ ${error}
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Profession :</label>
-        <input class="form-control" type="text" name="profession" value="${personnage.profession}" requested />
+        <input class="form-control" type="text" name="profession" value="${personnage.profession}" required />
     </div>
     
     <input type="hidden" name="idPerso" value="${idPerso}" />

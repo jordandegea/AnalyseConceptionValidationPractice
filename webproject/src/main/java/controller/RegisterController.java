@@ -41,7 +41,7 @@ public class RegisterController extends AbstractControllerBase {
             JoueurValidator.instance().createValidate(joueur, confirm);
             JoueurDAO.instance().insert(joueur);
             request.getSession().setAttribute("idUser", joueur.getId());
-            response.sendRedirect("joueur?action=SHOW");
+            response.sendRedirect("joueur?action=SHOW&idJoueur="+joueur.getId());
         } catch (ValidatorException ex) {
             request.setAttribute("error", ex.getMessage());
             request.setAttribute("joueur", joueur);

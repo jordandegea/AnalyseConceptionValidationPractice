@@ -8,7 +8,8 @@
 
 ${error}
 <form action="resumePartie" method="post" accept-charset="UTF-8">
-    <input type="date" name="date">
+    Date (aaaa-mm-jj) : <input type="date" name="date" required><br/>
+    Entrez le résumé :<br/>
     <input type="button" name="ajout" id="ajout" value="Paragraphe +" onclick="addTextArea()"/>  
     
     <div id="ajout"></div>
@@ -16,6 +17,7 @@ ${error}
     <input class="btn btn-warning btn-block" type="submit" value="Enregistrer" />
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input  type="hidden" name="action" value="CREATE" />
+    <input type="hidden" name="idPartie" value="${idPartie}" />
 </form>
 
 <form action="partie" method="GET" accept-charset="UTF-8">
@@ -35,7 +37,6 @@ function addTextArea(){
         var saut2 = document.createElement("br");
         var label = document.createElement('label')
         label.htmlFor = "checkid";
-        label.appendChild(document.createTextNode('Paragraphe privé'));;
         var ajout = document.getElementById("ajout");
         ajout.parentNode.insertBefore(saut,ajout);
         ajout.parentNode.insertBefore(input,ajout);

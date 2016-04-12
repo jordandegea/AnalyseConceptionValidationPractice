@@ -12,7 +12,7 @@ public class ResumePartieLoader extends AbstractLoader<ResumePartieModel> {
 
     public ResumePartieModel get(PartieModel partie) throws DAOException {
         if (!isLoaded()) {
-            setObject(((PartieDAO) PartieModel.getDAO()).getResumePartie(partie));
+            setObject(PartieDAO.instance().getResumePartie(partie));
         }
 
         return getObject();

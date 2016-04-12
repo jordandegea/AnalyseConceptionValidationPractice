@@ -57,12 +57,15 @@ public abstract class AbstractControllerBase extends HttpServlet{
             throws IOException, ServletException {
     }
     
+    
     /**
      * Get the user corresponding to the login & password
      *
      * @param request
+     * @param response
      * @return
-     * @throws DAOException
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
     protected JoueurModel getUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JoueurModel joueur = null;

@@ -21,6 +21,13 @@ public class PartieValidator extends AbstractValidator<PartieModel> {
     }
     
     private PartieValidator(){};
+
+    @Override
+    public void deleteValidate(PartieModel object) throws DAOException, ValidatorException {
+        super.deleteValidate(object); //To change body of generated methods, choose Tools | Templates.
+        if (object.isPartieFinie())
+            throw new ValidatorException("Impossible de supprimer une partie terminée");
+    }
     
     public void enrollValidate(PartieModel partie, PersonnageModel perso) throws ValidatorException, DAOException {
         if (partie.isPartieFinie())
@@ -39,12 +46,20 @@ public class PartieValidator extends AbstractValidator<PartieModel> {
     protected void modelValidate(PartieModel object) throws DAOException, ValidatorException {
         if (object.getTitrePartie().length() > 256)
             throw new ValidatorException("Le titre doit faire moins de 256 caractères");
+        if (object.getTitrePartie().length() == 0)
+            throw new ValidatorException("Le titre ne peut être vide");
         if (object.getResumeInitial().length() > 2048)
             throw new ValidatorException("Le résumé de la situation initiale doit faire moins de 2048 caractères");
+        if (object.getResumeInitial().length() == 0)
+            throw new ValidatorException("Le résumé de la situation initiale ne peut être vide");
         if (object.getDate().length() > 128)
             throw new ValidatorException("La date doit faire moins de 128 caractères");
+        if (object.getDate().length() == 0)
+            throw new ValidatorException("La date ne peut être vide");
         if (object.getLieu().length() > 128)
             throw new ValidatorException("Le lieu doit faire moins de 128 caractères");
+        if (object.getLieu().length() == 0)
+            throw new ValidatorException("Le lieu ne peut être vide");
         if (object.getMJ() == null)
             throw new ValidatorException("La partie n'a pas de MJ");
         if (object.getUnivers() == null)

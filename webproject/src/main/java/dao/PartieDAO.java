@@ -82,11 +82,11 @@ public class PartieDAO extends AbstractDataBaseDAO {
             conn = getConnection();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * "
-                    + "FROM Partie p JOIN Resume r ON p.idPartie=r.idPartie "
-                    + "JOIN Episode e ON r.idEpisode=e.idEpisode "
+                    + "FROM Partie p "
+                    + "JOIN Episode e ON p.idResume=e.idEpisode "
                     + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='ResumePartie' ");
             if (rs.next()) {
-                result = new ResumePartieModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result = new ResumePartieModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -314,13 +314,14 @@ public class PartieDAO extends AbstractDataBaseDAO {
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("UPDATE Partie SET titrePartie=?, resumePartie=?, datePartie=?, lieu=?, termine=? WHERE idPartie=?");
+                    = conn.prepareStatement("UPDATE Partie SET titrePartie=?, resumePartie=?, datePartie=?, lieu=?, termine=?, idResume=? WHERE idPartie=?");
             st.setString(1, partie.getTitrePartie());
             st.setString(2, partie.getResumeInitial());
             st.setString(3, partie.getDate());
             st.setString(4, partie.getLieu());
             st.setBoolean(5, partie.isPartieFinie());
-            st.setInt(6, partie.getId());
+            st.setInt(6, partie.getResumePartie().getId());
+            st.setInt(7, partie.getId());
             affectedRows = st.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException("DBError PartieDAO.update() " + e.getMessage(), e);
@@ -342,6 +343,14 @@ public class PartieDAO extends AbstractDataBaseDAO {
             conn = getConnection();
             PreparedStatement st
                     = conn.prepareStatement("DELETE FROM Partie WHERE idPartie=?");
+            st.setInt(1, partie.getId());
+            st.executeUpdate();
+            
+            st = conn.prepareStatement("DELETE FROM PartieEnCours WHERE idPartie=?");
+            st.setInt(1, partie.getId());
+            st.executeUpdate();
+            
+            st = conn.prepareStatement("DELETE FROM ParticipationPartie WHERE idPartie=?");
             st.setInt(1, partie.getId());
             st.executeUpdate();
         } catch (SQLException e) {

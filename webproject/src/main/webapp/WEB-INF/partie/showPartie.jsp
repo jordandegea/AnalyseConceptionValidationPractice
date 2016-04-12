@@ -28,10 +28,17 @@
     <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
 
-<form action="resumePartie" method="POST" accept-charset="UTF-8">
+<form action="resumePartie" method="GET" accept-charset="UTF-8">
     <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir terminer cette partie ?')" value="Terminer partie et entrer résumé" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
     <input type="hidden" name="action" value="NEW" />
+    <input type="hidden" name="idPartie" value="${partie.id}" />
+</form>
+
+<form action="partie" method="POST" accept-charset="UTF-8">
+    <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette partie ?')" value="Annuler partie" />
+    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <input type="hidden" name="action" value="DELETE" />
     <input type="hidden" name="idPartie" value="${partie.id}" />
 </form>
 </c:if>

@@ -31,7 +31,6 @@ import validator.ValidatorException;
  */
 @WebServlet(name = "ResumePartieController", urlPatterns = {"/resumePartie"})
 public class ResumePartieController extends AbstractControllerBase {
-
     private void newResume(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idPartie = Integer.parseInt(request.getParameter("idPartie"));
         request.setAttribute("idPartie", idPartie);
@@ -41,20 +40,24 @@ public class ResumePartieController extends AbstractControllerBase {
     private void createResume(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idPartie = Integer.parseInt(request.getParameter("idPartie"));
         try {
+            EpisodeValidator.instance().dateValidate(request.getParameter("date"));
             Date date = Date.valueOf(request.getParameter("date"));
             PartieModel partie = PartieDAO.instance().get(idPartie);
 
             int i = 0;
             ArrayList<String> textareaList = new ArrayList<String>();
             while ((String) request.getParameter("textareaname" + i) != null) {
-                textareaList.add((String) request.getParameter("textareaname" + i));
+                String paragraphe = (String) request.getParameter("textareaname" + i);
+                if (paragraphe.length()>0)
+                    textareaList.add(paragraphe);
                 i++;
             }
 
-            ResumePartieModel resume = new ResumePartieModel(date, textareaList);
+            ResumePartieModel resume = new ResumePartieModel(date, textareaList, partie);
             EpisodeValidator.instance().createValidate(resume);
             ResumePartieDAO.instance().insert(resume);
-            this.endPartie(request, response, idPartie);
+            partie.setResumePartie(resume);
+            this.endPartie(request, response, partie);
         } catch (ValidatorException ex) {
             request.setAttribute("idPartie", idPartie);
             request.setAttribute("error", ex.getMessage());
@@ -65,9 +68,8 @@ public class ResumePartieController extends AbstractControllerBase {
 
     }
     
-    private void endPartie(HttpServletRequest request, HttpServletResponse response, int idPartie) throws IOException, ServletException {
+    private void endPartie(HttpServletRequest request, HttpServletResponse response, PartieModel partie) throws IOException, ServletException {
         try {
-            PartieModel partie = PartieDAO.instance().get(idPartie);
             PartieDAO.instance().endPartie(partie);
             String contextPath = request.getContextPath();
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/partie?action=SHOW&idPartie=" + partie.getId()));
@@ -114,6 +116,7 @@ public class ResumePartieController extends AbstractControllerBase {
         if (action == null) {
             super.invalidParameters(request, response);
         } else if (action.equals("CREATE")) {
+            this.createResume(request, response);
         } else {
             super.invalidParameters(request, response);
         }

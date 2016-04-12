@@ -175,6 +175,22 @@ public class PersonnageDAO extends AbstractDataBaseDAO {
         this.update(perso);
     }
 
+        public void askJoueurTransfer(PersonnageModel perso, JoueurModel j) throws DAOException {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("UPDATE Personnage SET idJoueur = ?  WHERE idPersonnage = ? ");
+            st.setInt(1, j.getId());
+            st.setInt(2, perso.getId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO.askJoueurTransfer() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+        
     public void leaveMJ(PersonnageModel perso) throws DAOException {
         Connection conn = null;
         try {

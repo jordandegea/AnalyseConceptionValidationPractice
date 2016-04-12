@@ -11,6 +11,8 @@ import dao.PersonnageDAO;
 import dao.UniversDAO;
 import java.io.*;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -139,6 +141,27 @@ public class PartieController extends AbstractControllerBase {
         }
     }
 
+    private void deletePartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPartie = Integer.parseInt(request.getParameter("idPartie"));
+        try {
+            PartieModel partie = PartieDAO.instance().get(idPartie);
+            try {
+                PartieValidator.instance().deleteValidate(partie);
+                PartieDAO.instance().delete(partie);
+
+                JoueurModel joueur = this.getUser(request, response);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+            } catch (ValidatorException ex) {
+                request.setAttribute("error", ex.getMessage());
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/partie?action=SHOW&idPartie=" + partie.getId()));
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+    }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -185,6 +208,7 @@ public class PartieController extends AbstractControllerBase {
             this.createPartie(request, response);
         } else if (action.equals("UPDATE")) {
         } else if (action.equals("DELETE")) {
+            this.deletePartie(request, response);
         } else if (action.equals("END")) {
             this.endPartie(request, response);
         } else if (action.equals("ENROLL")) {
