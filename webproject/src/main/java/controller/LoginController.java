@@ -36,8 +36,8 @@ public class LoginController extends AbstractControllerBase {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("userId") != null) {
-            int userId = Integer.parseInt((String) session.getAttribute("userId"));
+        if (session.getAttribute("idUser") != null) {
+            int userId = Integer.parseInt((String) session.getAttribute("idUser"));
             response.sendRedirect("joueur?action=SHOW");
         } else {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

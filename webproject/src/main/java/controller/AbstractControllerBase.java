@@ -57,6 +57,7 @@ public abstract class AbstractControllerBase extends HttpServlet{
             throws IOException, ServletException {
     }
     
+    
     /**
      * Get the user corresponding to the login & password
      *
