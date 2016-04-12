@@ -1,36 +1,32 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css" />
-        <title>Trouver un MJ</title>
-    </head>
-    <body>
 
-        <h2>Trouver un MJ</h2>
-        Choisissez un MJ Ã  qui proposer ce personnage:
+<jsp:include page="../include/head.jsp" >
+    <jsp:param name="title" value="Nouveau Personnage"/>
+</jsp:include>
 
-        ${error}
-        <form action="personnage" method="POST" accept-charset="UTF-8">
-            <select name="idMJ" >
-                <c:forEach items="${potentialMJ}" var="mj">
-                    <option value="${mj.id}">${mj.login}</option>
-                </c:forEach>
-            </select><br/>
 
-            <input type="submit" value="Proposer" />
-            <!-- Pour indiquer au contrÃ´leur quelle action faire, on utilise un champ cachÃ© -->
-            <input type="hidden" name="action" value="ASKMJ" />
-            <input type="hidden" name="idPerso" value="${idPerso}" />
-        </form>
+<h2>Trouver un MJ</h2>
+Choisissez un MJ à qui proposer ce personnage:
 
-        <form action="personnage" method="GET" accept-charset="UTF-8">
-            <input type="submit" value="Retour" />
-            <!-- Pour indiquer au contrÃ´leur quelle action faire, on utilise un champ cachÃ© -->
-            <input type="hidden" name="action" value="SHOW" />
-            <input type="hidden" name="idPerso" value="${idPerso}" />
-        </form>
-    </body>
-</html>
+${error}
+<form action="personnage" method="POST" accept-charset="UTF-8">
+    <select class="form-control" name="idMJ" >
+        <c:forEach items="${potentialMJ}" var="mj">
+            <option value="${mj.id}">${mj.login}</option>
+        </c:forEach>
+    </select><br/>
+
+    <input class="btn btn-primary btn-block col-xs-12 col-lg-6" type="submit" value="Proposer" />
+    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <input type="hidden" name="action" value="ASKMJ" />
+    <input type="hidden" name="idPerso" value="${idPerso}" />
+</form>
+
+<form action="personnage" method="GET" accept-charset="UTF-8">
+    <input class="btn btn-warning btn-block col-xs-12 col-lg-6" type="submit" value="Retour" />
+    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <input type="hidden" name="action" value="SHOW" />
+    <input type="hidden" name="idPerso" value="${idPerso}" />
+</form>
+
+<jsp:include page="../include/foot.jsp" />

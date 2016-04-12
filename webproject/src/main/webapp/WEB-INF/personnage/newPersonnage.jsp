@@ -74,5 +74,7 @@ function addTextArea(){
         i = i+1;
 }
 </script>
+
+
 <jsp:include page="../include/foot.jsp" />
 
