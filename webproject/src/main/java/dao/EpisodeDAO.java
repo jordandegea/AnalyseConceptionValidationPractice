@@ -93,7 +93,34 @@ public class EpisodeDAO extends AbstractDataBaseDAO{
         return affectedRows ;
     }
     
+    public int insertEpisodeBiographie(Object object, int n_bm) throws DAOException {
+        if (!(object instanceof EpisodeModel)) {
+            throw new DAOException("Wrong object parameter in insert, require EpisodeModel");
+        }
+        int affectedRows = 0 ;
+        int id = this.getId();
+        EpisodeModel episode = (EpisodeModel) object;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            
+            PreparedStatement st = 
+                    conn.prepareStatement("INSERT INTO EpisodeBiographie (idEpisode, idBiographie) VALUES (?,?)");
+            st.setInt(1, episode.getId());
+            st.setInt(2, n_bm);
+            affectedRows = st.executeUpdate();
 
+            if (affectedRows == 0) {
+                throw new DAOException("Creating BiographieEpisode failed, no rows affected.");
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("DBError EpisodeDAO.insert() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return affectedRows ;
+    }
     
     @Override
     public int update(Object object) throws DAOException {

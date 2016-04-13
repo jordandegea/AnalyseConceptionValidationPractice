@@ -32,7 +32,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         int i = 0;
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
-            paras.add(new ParagrapheModel((access.get(i)==0), p, i));
+            paras.add(new ParagrapheModel((access.get(i)==1), p, i));
             i++;
         }
         
@@ -101,7 +101,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
             if (pm.isSecret()) {
                 s += "\n";
                 s += "<form action=\"personnage\" method=\"GET\" accept-charset=\"UTF-8\">\n" +
-                "    <input type=\"submit\" value=\"Révéler paragraphe\" />\n" +
+                "    <input type=\"submit\" class=\"btn btn-primary btn-block\"   value=\"Révéler paragraphe\" />\n" +
                 "    <input type=\"hidden\" name=\"action\" value=\"REVEAL\" />\n" +
                 "    <input type=\"hidden\" name=\"idPar\" value=" + pm.getId()  +" /> " +
                 "</form> ";

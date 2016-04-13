@@ -46,6 +46,10 @@ public class BiographieModel extends AbstractBaseModel {
         return transitions.get(this);
     }
     
+    public void setTransitions(Set<TransitionModel> tm) {
+        transitions.setObjectSet(tm);
+    }
+    
     public Set<EpisodeModel> getFullBiographie() throws DAOException {
         Set<EpisodeModel> episodes = new TreeSet<>();
         episodes.add(this.getBioInitiale());
@@ -58,7 +62,6 @@ public class BiographieModel extends AbstractBaseModel {
         Set<EpisodeModel> episodes = this.getFullBiographie();
         String bio = ""; 
         int i = 0;
-        bio += "<u> Biographie initiale </u>";
         for(EpisodeModel e : episodes) {
            bio += e.getAllPart();
            i++;
@@ -70,7 +73,6 @@ public class BiographieModel extends AbstractBaseModel {
         Set<EpisodeModel> episodes = this.getFullBiographie();
         String bio = ""; 
         int i = 0;
-        bio += "<u> Biographie initiale </u>";
         for(EpisodeModel e : episodes) {
            bio += e.getAllPartPublic();
            i++;

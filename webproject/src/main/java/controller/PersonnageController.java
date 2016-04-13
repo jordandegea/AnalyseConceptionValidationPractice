@@ -116,7 +116,7 @@ public class PersonnageController extends AbstractControllerBase {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             BiographieModel bm = perso.getBiographie();
             EpisodeDAO.instance().insert(tm);
-            BiographieDAO.instance().update(bm);
+            EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
             String contextPath = request.getContextPath();
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
         } catch (DAOException ex) {

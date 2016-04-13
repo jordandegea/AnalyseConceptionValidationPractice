@@ -91,6 +91,7 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         } finally {
             closeConnection(conn);
         }
+        bio.setTransitions(result);
         return result;
     }
     
