@@ -80,20 +80,44 @@
 
 \subsection{Diagramme d'architecture MVC}
 
+L'architecture MVC complete étant gigantesque. Nous vous présentons comment nous avons organisé notre architecture. 
 Voici un exemple pour l'utilisation de l'ensemble \textbf{Partie} :
 La vue etant composé de HTML, nous n'avons pas de lien vers des JLabel, JButton, etc. 
-Afin d'alleger les heritages, interfaces, etc, nous préferrons ne pas les ajouter à ce diagrammes et vous montrer sur le diagramme de classe logiciel. 
+Afin d'alléger les heritages, les interfaces, etc, nous préferrons ne pas les ajouter à ce diagramme et vous montrer sur le diagramme de classe logiciel. 
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=12cm]{images/MVC/model1.png}  
+		\includegraphics[width=\textwidth]{images/MVC/model1.png}  
 		\caption{MVC pour Partie}
 	\end{center}
 \end{figure}
 
+
 \subsection{Diagramme de classe logiciel}
 
-Le nombre de classe étant conséquent, nous préférons vous montrez l'architecture générale de notre application. 
+Le nombre de classe étant conséquent, nous decoupons l'architecture en plusieurs diagrammes propres et en exemples. Dans un premier temps, voici l'architecture d'heritage.  
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/logiciel/arch1.png}  
+		\caption{Architecture pour Models et DAOs}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.49\textwidth]{images/logiciel/arch2.png}  
+		\includegraphics[width=0.49\textwidth]{images/logiciel/arch3.png}  
+		\caption{Architecture pour Loaders et Validator}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.49\textwidth]{images/logiciel/arch4.png}  
+		\caption{Architecture pour Models}
+	\end{center}
+\end{figure}
 
 
 \subsection{Diagramme d'Etats-transitions}
