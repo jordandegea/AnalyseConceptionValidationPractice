@@ -22,7 +22,7 @@ ${error}
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Portrait :</label>
-        <input class="form-control" type="file" name="portrait" required />
+        <input class="form-control" type="url" name="portrait" required placeholder="URL de l'image"/>
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Univers :</label>
@@ -32,10 +32,21 @@ ${error}
             </c:forEach>
         </select>
     </div>
-
-    <input type="button" name="ajout" id="ajout" value="Paragraphe +" onclick="addTextArea()"/>  
-    
-    <div id="ajout"></div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Biographie :</label>
+    </div>
+     <div class="form-group">
+        <input type="button" class="btn btn-primary" onClick="addTextArea()" value="Ajouter Un Paragraphe"/>
+        
+        <div id="ajout">
+            <br/>
+            <label class="col-lg-2 control-label"></label>
+            <div class="form-group">
+                <textarea class="form-control" name="paragraphe1" required></textarea>
+                <label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
+            </div>
+        </div>
+    </div>
     
     <input class="btn btn-warning btn-block" type="submit" value="Enregistrer" />
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
@@ -49,30 +60,13 @@ ${error}
 </form>
 
 <script type="text/javascript">
-    var i = 0;
-function addTextArea(){
-        var input = document.createElement("textarea");
-        input.id = "textareaid" + i;
-        input.name = "textareaname" + i;
-        var saut = document.createElement("br");
-        var saut2 = document.createElement("br");
-        var check = document.createElement ("input");
-        check.type = "checkbox";
-        check.value = 1;
-        check.id = "checkid" + i;
-        check.name = "checkname" + i;
-        var label = document.createElement('label')
-        label.htmlFor = "checkid";
-        label.appendChild(document.createTextNode('Paragraphe privé'));;
-        var ajout = document.getElementById("ajout");
-        ajout.parentNode.insertBefore(saut,ajout);
-        ajout.parentNode.insertBefore(input,ajout);
-        ajout.parentNode.insertBefore(saut2,ajout);
-        ajout.parentNode.insertBefore(check,ajout); 
-        ajout.parentNode.insertBefore(label,ajout);        
-        ajout.parentNode.insertBefore(saut,ajout);
-        i = i+1;
-}
+    var nbParagraphes=1;
+
+    function addTextArea(){
+            nbParagraphes=nbParagraphes+1;
+            $("#ajout").append('<label class="col-lg-2 control-label"></label><div class="form-group"><textarea class="form-control" name="paragraphe'+nbParagraphes+'" required></textarea><label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate'+nbParagraphes+'" name="isPrivate'+nbParagraphes+'" value="isPrivate'+nbParagraphes+'"> Paragraphe Privé</label></div>');
+
+    }
 </script>
 
 

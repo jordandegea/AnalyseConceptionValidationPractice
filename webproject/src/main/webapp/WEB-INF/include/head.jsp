@@ -8,7 +8,7 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cerulean/bootstrap.css" >
-
+        <script type="text/javascript" src="http://jquery.com/download/"></script>
         <style>
             .content{
                 margin-top: 50px;

@@ -47,13 +47,13 @@ public class PersonnageController extends AbstractControllerBase {
         String dateNaiss = (String) request.getParameter("dateNaiss");
         String profession = (String) request.getParameter("profession");
         String portrait = (String) request.getParameter("portrait");
-        int i = 0;
+        int i = 1;
         ArrayList<String> textareaList = new ArrayList<String>();
         ArrayList<Integer> checkList = new ArrayList<Integer>();
-        while ((String) request.getParameter("textareaname" + i) != null) {
-            textareaList.add((String) request.getParameter("textareaname" + i));
-            if (request.getParameter("checkname" + i) != null) {
-                checkList.add(Integer.parseInt(request.getParameter("checkname" + i)));
+        while ((String) request.getParameter("paragraphe" + i) != null) {
+            textareaList.add((String) request.getParameter("paragraphe" + i));
+            if (request.getParameter("isPrivate" + i) != null) {
+                checkList.add(1);
             } else {
                 checkList.add(0);
             }
