@@ -46,8 +46,8 @@ public class ResumePartieController extends AbstractControllerBase {
 
             int i = 0;
             ArrayList<String> textareaList = new ArrayList<String>();
-            while ((String) request.getParameter("textareaname" + i) != null) {
-                String paragraphe = (String) request.getParameter("textareaname" + i);
+            while ((String) request.getParameter("paragraphe" + i) != null) {
+                String paragraphe = (String) request.getParameter("paragraphe" + i);
                 if (paragraphe.length()>0)
                     textareaList.add(paragraphe);
                 i++;

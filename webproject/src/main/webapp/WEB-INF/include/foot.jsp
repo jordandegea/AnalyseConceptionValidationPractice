@@ -1,5 +1,5 @@
 </div>
-<footer class="footer">
+<footer >
     <div class="container">
         <p class="text-muted">Developed by DANTIGNY Raynald, DE GEA Jordan, DUCLOT William, RABOURG Simon</p>
     </div>
