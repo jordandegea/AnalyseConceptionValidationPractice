@@ -27,7 +27,7 @@
     <li>Biographie </li>
     ${personnage.biographie.getParagraphesBiographiePublic()}
 </ul>
-
+    
 <h2>Parties</h2>
 <ul>
     <c:forEach items="${personnages.parties}" var="partie">

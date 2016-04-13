@@ -41,6 +41,7 @@ public class BiographieModel extends AbstractBaseModel {
     public Set<ResumePersonnageModel> getResumes() throws DAOException {
         return resumes.get(this);
     }
+    
     public Set<TransitionModel> getTransition() throws DAOException {
         return transitions.get(this);
     }

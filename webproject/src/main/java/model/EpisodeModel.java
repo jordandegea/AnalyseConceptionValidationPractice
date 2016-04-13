@@ -22,7 +22,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         this.ecritureEnCours = ecritureEnCours;
         paragraphes = new ParagrapheLoader();
         this.date = date;
-    }
+    } 
 
     public EpisodeModel(Date date, boolean ecritureEnCours, ArrayList<String> paragraphes, ArrayList<Integer> access) {
         this.ecritureEnCours = ecritureEnCours;

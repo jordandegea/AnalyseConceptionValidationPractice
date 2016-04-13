@@ -38,12 +38,35 @@
     ${personnage.biographie.getParagraphesBiographieAll()}
 </ul>
 
+<!-- Ici saisie des épisodes -->
+<form action="personnage" method="GET" accept-charset="UTF-8">
+
+<h3> Nouvel Episode </h3> 
+    <div class="form-group">
+        <input type="button" class="btn btn-primary" onClick="addTextArea()" value="Ajouter Un Paragraphe"/>
+        <div id="ajout">
+            <br/>
+            <label class="col-lg-2 control-label"></label>
+            <div class="form-group">
+                <textarea class="form-control" name="paragraphe1" required></textarea>
+                <label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Valider  l'épisode de transition" />
+    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+    <input type="hidden" name="action" value="NEWTRANSI" />
+    <input type="hidden" name="idPerso" value="${personnage.id}" />
+</form>
+
 <h2>Parties</h2>
 <ul>
     <c:forEach items="${personnage.parties}" var="partie">
         <li>${partie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></li>
         </c:forEach>
 </ul>
+
 
 <form action="personnage" method="GET" accept-charset="UTF-8">
         <input type="submit" value="Transférer Personnage" />
@@ -60,6 +83,16 @@
 
 
 <script type="text/javascript" src="../public/js/formularise.js">
+</script>
+
+<script type="text/javascript">
+    var nbParagraphes=1;
+
+    function addTextArea(){
+            nbParagraphes=nbParagraphes+1;
+            $("#ajout").append('<label class="col-lg-2 control-label"></label><div class="form-group"><textarea class="form-control" name="paragraphe'+nbParagraphes+'" required></textarea><label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate'+nbParagraphes+'" name="isPrivate'+nbParagraphes+'" value="isPrivate'+nbParagraphes+'"> Paragraphe Privé</label></div>');
+
+    }
 </script>
 
 <jsp:include page="../include/foot.jsp" />

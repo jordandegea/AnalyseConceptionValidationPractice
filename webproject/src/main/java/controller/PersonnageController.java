@@ -5,22 +5,32 @@
  */
 package controller;
 
+import dao.BiographieDAO;
 import dao.DAOException;
+import dao.EpisodeDAO;
 import dao.JoueurDAO;
 import dao.ParagrapheDAO;
 import dao.PersonnageDAO;
+import dao.TransitionDAO;
 import dao.UniversDAO;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BioInitialeModel;
+import model.BiographieModel;
+import model.EpisodeModel;
 import model.JoueurModel;
 import model.ParagrapheModel;
 import model.PersonnageModel;
+import model.TransitionModel;
 import model.UniversModel;
 import validator.PersonnageValidator;
 import validator.ValidatorException;
@@ -82,6 +92,38 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
+    private void addTransition (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+  
+        ArrayList<String> textareaList = new ArrayList<String>();
+        ArrayList<Integer> checkList = new ArrayList<Integer>();
+        int i=1;
+
+        while ((String) request.getParameter("paragraphe" + i) != null) {
+            System.out.println((String) request.getParameter("paragraphe" + i)); 
+            textareaList.add((String) request.getParameter("paragraphe" + i));
+            if (request.getParameter("isPrivate" + i) != null) {
+                checkList.add(1);
+            } else {
+                checkList.add(0);
+            }
+            i++;
+        }
+        
+        EpisodeModel tm = new EpisodeModel(Date.valueOf(LocalDate.now()), false,textareaList, checkList);
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));    
+                
+        try {       
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            BiographieModel bm = perso.getBiographie();
+            EpisodeDAO.instance().insert(tm);
+            BiographieDAO.instance().update(bm);
+            String contextPath = request.getContextPath();
+            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void updatePersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String profession = (String) request.getParameter("profession");
         try {
@@ -282,6 +324,8 @@ public class PersonnageController extends AbstractControllerBase {
             this.findMJ(request, response);
         } else if (action.equals("REVEAL")) {
             this.revealParagraph(request, response);
+        } else if (action.equals("NEWTRANSI")) {
+            this.addTransition(request,response);
         } else {
             super.invalidParameters(request, response);
         }
