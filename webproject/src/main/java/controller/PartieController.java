@@ -71,11 +71,17 @@ public class PartieController extends AbstractControllerBase {
 
     private void showPartie(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            JoueurModel j = super.getUser(request, response);
             int idPartie = Integer.parseInt(request.getParameter("idPartie"));
             PartieModel partie = PartieDAO.instance().get(idPartie);
             if (partie != null) {
                 request.setAttribute("partie", partie);
-                request.getRequestDispatcher("/WEB-INF/partie/showPartie.jsp").forward(request, response);
+                // On regarde si le joueur qui demande accès à la page est le MJ
+                if (partie.getMJ().equals(j)) {
+                    request.getRequestDispatcher("/WEB-INF/partie/showPartie.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/WEB-INF/partie/showPartiePersonnage.jsp").forward(request, response);
+                }
             } else {
                 super.error404(request, response);
             }
