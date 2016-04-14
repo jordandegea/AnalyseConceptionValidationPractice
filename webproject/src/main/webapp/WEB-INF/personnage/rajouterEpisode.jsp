@@ -10,7 +10,7 @@
 
     <h3> Nouvel Episode </h3> 
     <div class="form-group">
-        <label name="dateLabel"> Date (jj/mm/aaaa) </label>
+        <label name="dateLabel"> Date (aaaa-mm-jj) </label>
             <input type="date" name="dateEpisode"/>
     </div>
     <br/>

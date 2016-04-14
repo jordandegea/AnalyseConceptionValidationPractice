@@ -83,7 +83,11 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
             
         EpisodeModel other = (EpisodeModel) t;
         
-        return this.getDate().compareTo(other.getDate());
+        int cmp = this.getDate().compareTo(other.getDate());
+        if (cmp == 0) {
+            return this.getId() - other.getId();
+        }
+        return cmp;
     }
     
     public static EpisodeDAO getDAO() {

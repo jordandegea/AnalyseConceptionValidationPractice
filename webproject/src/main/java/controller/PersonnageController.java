@@ -32,6 +32,7 @@ import model.ParagrapheModel;
 import model.PersonnageModel;
 import model.TransitionModel;
 import model.UniversModel;
+import validator.EpisodeValidator;
 import validator.PersonnageValidator;
 import validator.ValidatorException;
 
@@ -92,14 +93,14 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
-    private void addTransition (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-  
+    private void addTransition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
         ArrayList<String> textareaList = new ArrayList<String>();
         ArrayList<Integer> checkList = new ArrayList<Integer>();
-        int i=1;
+        int i = 1;
 
         while ((String) request.getParameter("paragraphe" + i) != null) {
-            System.out.println((String) request.getParameter("paragraphe" + i)); 
+            System.out.println((String) request.getParameter("paragraphe" + i));
             textareaList.add((String) request.getParameter("paragraphe" + i));
             if (request.getParameter("isPrivate" + i) != null) {
                 checkList.add(1);
@@ -108,11 +109,11 @@ public class PersonnageController extends AbstractControllerBase {
             }
             i++;
         }
-        
-        EpisodeModel tm = new EpisodeModel(Date.valueOf(LocalDate.now()), false,textareaList, checkList);
-        int idPerso = Integer.parseInt(request.getParameter("idPerso"));    
-                
-        try {       
+        try {
+            EpisodeValidator.instance().dateValidate(request.getParameter("dateEpisode"));
+        Date date = Date.valueOf(request.getParameter("dateEpisode"));
+        EpisodeModel tm = new EpisodeModel(date, false, textareaList, checkList);
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             BiographieModel bm = perso.getBiographie();
             EpisodeDAO.instance().insert(tm);
@@ -121,9 +122,11 @@ public class PersonnageController extends AbstractControllerBase {
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
         } catch (DAOException ex) {
             Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ValidatorException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void updatePersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String profession = (String) request.getParameter("profession");
         try {
@@ -182,7 +185,7 @@ public class PersonnageController extends AbstractControllerBase {
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageOther.jsp").forward(request, response);
             } // Si le personnage est au joueur
             else if (perso != null) {
-                if ( PersonnageDAO.instance().peutDemanderChangementMJ(perso) ){
+                if (PersonnageDAO.instance().peutDemanderChangementMJ(perso)) {
                     request.setAttribute("peutchangerdemj", "oui");
                 }
                 request.setAttribute("personnage", perso);
@@ -235,7 +238,7 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
-    private void saisiEpisode (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void saisiEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
@@ -251,7 +254,7 @@ public class PersonnageController extends AbstractControllerBase {
         }
 
     }
-        
+
     private void askMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
@@ -316,7 +319,7 @@ public class PersonnageController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
     }
-    
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -345,11 +348,10 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("REVEAL")) {
             this.revealParagraph(request, response);
         } else if (action.equals("NEWTRANSI")) {
-            this.addTransition(request,response);
+            this.addTransition(request, response);
         } else if (action.equals("NEWEP")) {
             this.saisiEpisode(request, response);
-        }
-        else {
+        } else {
             super.invalidParameters(request, response);
         }
     }
