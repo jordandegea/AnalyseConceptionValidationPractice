@@ -101,15 +101,42 @@
                             <input type="hidden" name="action" value="REJECT" />
                             <input type="hidden" name="idPerso" value="${perso.id}" />
                         </form>
-                    </center>
-                </div>
+                    </c:forEach>
+                </center>
             </div>
-            <br/>
-        </c:forEach>
+        </div>
+        <br/>
     </div>
-</div>
-</div>
-</div>
+    <div class="panel-group col-xs-12 col-md-6 col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><center><h2>Validation d'épisode</h2></center>
+            </div>
+            <div class="panel-body">
+                ${error}
+                <center>
+                    <c:forEach items="${demandesEpisode}" var="ep">
+                        ${perso.nomPerso} - <a href='personnage?action=VOIREP'>voir</a> 
+                        <br/>
+                        <form class="form-horizontal" action="mj"  method="POST" accept-charset="UTF-8">
+                            <input type="submit" class="btn btn-primary" value="Accepter" />
+                            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+                            <input type="hidden" class="btn btn-primary" name="action" value="ACCEPTEP" />
+                            <input type="hidden" name="idPerso" value="${perso.id}" />
+                        </form>
+                        <br/>
+                        <form class="form-horizontal" action="mj" method="POST" accept-charset="UTF-8">
+                            <input type="submit" class="btn btn-warning" value="Refuser" />
+                            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+                            <input type="hidden" name="action" value="REJECTEP" />
+                            <input type="hidden" name="idPerso" value="${perso.id}" />
+                        </form>
+                    </c:forEach>
+
+                </center>
+            </div>
+        </div>
+        <br/>
+    </div>
 </div>
 
 

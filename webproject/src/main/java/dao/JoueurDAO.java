@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+import model.EpisodeModel;
 import model.JoueurModel;
 import model.PartieModel;
 import model.PersonnageModel;
@@ -177,6 +178,38 @@ public class JoueurDAO extends AbstractDataBaseDAO {
             }
         } catch (SQLException e) {
             throw new DAOException("DBError JoueurDAO.getPersonnagesManaged() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
+    
+      public Set<EpisodeModel> getEpisodeDemande(JoueurModel joueur) throws DAOException {
+        Set<EpisodeModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("SELECT e.* "
+                            + "FROM Episode e, Personnage p, MJ m, EpisodeBiographie eb "
+                            + "WHERE m.idMJ = ? "
+                            + "AND e.validationMJ = ? "
+                            + "AND p.idPersonnage = m.idPersonnage"
+          //                  + "AND p.idBiographie = eb.idBiographie"
+              /*              + "AND eb.idEpisode = e.idEpisode" */);
+            st.setInt(1, joueur.getId());
+            st.setInt(2, 0);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                EpisodeModel episode
+                        = new EpisodeModel(rs.getInt("idEpisode"),
+                                rs.getDate("dateEpisode"),
+                                rs.getBoolean("validationJoueur"),
+                                rs.getBoolean("ValidationMJ"));
+                result.add(episode);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError JoueurDAO.getEpisodeDemande() " + e.getMessage(), e);
         } finally {
             closeConnection(conn);
         }

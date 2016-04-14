@@ -176,7 +176,13 @@ public class PersonnageController extends AbstractControllerBase {
 
     }
 
-    private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            JoueurModel j = super.getUser(request, response);
+                request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
+    }
+    
+        private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
@@ -357,7 +363,9 @@ public class PersonnageController extends AbstractControllerBase {
             this.addTransition(request, response);
         } else if (action.equals("NEWEP")) {
             this.saisiEpisode(request, response);
-        } else {
+        } else if (action.equals("VOIREP")){
+            this.showEpisode(request,response);
+        }else {
             super.invalidParameters(request, response);
         }
     }
