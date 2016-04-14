@@ -93,7 +93,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
     public String getAllPart() throws DAOException {
         String s="";
         for ( ParagrapheModel pm: this.getParagraphes() ){
-            s += "<p style=\"margin-left:20px\"> ";
+            s += "<p> ";
             s += pm.getContenu();
             s += "</p>";
             s += "</hr>";
@@ -115,7 +115,7 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         String s="";
         for ( ParagrapheModel pm: this.getParagraphes() ){
             if (!pm.isSecret()) {
-                s += "<p style=\"margin-left:20px\"> ";
+                s += "<p> ";
                 s += pm.getContenu();
                 s += "</p>";
                 s += "</hr>";

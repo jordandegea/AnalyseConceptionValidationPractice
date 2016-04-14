@@ -92,6 +92,7 @@
                                     <u>Episode du ${ep.getDate()}  </u> <br/>
                                         <c:forEach items="${ep.getParagraphes()}" var="p">
                                             ${p.contenu} 
+                                        <br/>
 
                                     </c:forEach>
                                 </c:forEach>
@@ -118,10 +119,10 @@
         <input type="button" class="btn btn-primary" onClick="addTextArea()" value="Ajouter Un Paragraphe"/>
         <div id="ajout">
             <br/>
-            <label class="col-lg-2 control-label"></label>
+            <label class="control-label"></label>
             <div class="form-group">
                 <textarea class="form-control" name="paragraphe1" required></textarea>
-                <label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
+                <label class="col-lg-4 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
             </div>
         </div>
     </div>
@@ -156,7 +157,7 @@
 
     function addTextArea() {
         nbParagraphes = nbParagraphes + 1;
-        $("#ajout").append('<label class="col-lg-2 control-label"></label><div class="form-group"><textarea class="form-control" name="paragraphe' + nbParagraphes + '" required></textarea><label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate' + nbParagraphes + '" name="isPrivate' + nbParagraphes + '" value="isPrivate' + nbParagraphes + '"> Paragraphe Privé</label></div>');
+        $("#ajout").append('<label class=" control-label"></label><div class="form-group"><textarea class="form-control" name="paragraphe' + nbParagraphes + '" required></textarea><label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate' + nbParagraphes + '" name="isPrivate' + nbParagraphes + '" value="isPrivate' + nbParagraphes + '"> Paragraphe Privé</label></div>');
     }
 </script>
 
