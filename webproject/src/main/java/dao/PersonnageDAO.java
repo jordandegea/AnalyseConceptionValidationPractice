@@ -126,7 +126,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO {
     }
 
     public Set<PartieModel> getParties(PersonnageModel personnage) throws DAOException {
-        
+
         Set<PartieModel> result = new HashSet<PartieModel>();
         Connection conn = null;
         try {
@@ -156,6 +156,27 @@ public class PersonnageDAO extends AbstractDataBaseDAO {
         return result;
     }
 
+    public boolean peutDemanderChangementMJ(PersonnageModel personnage) throws DAOException {
+        boolean result = true;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(
+                    "SELECT p.idPartie, p.titrePartie, p.resumePartie, p.datePartie, p.lieu, p.termine, p.idUnivers, p.idMJ "
+                    + "FROM Partie p, PartieEnCours pc "
+                    + "WHERE p.idPartie = pc.idPartie AND pc.idPersonnage =" + personnage.getId() + " AND p.termine = 0");
+            if (rs.next()) {
+                result = false;
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError PersonnageDAO peutDemanderChangementMJ() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
+    
     public void askMJ(PersonnageModel perso, JoueurModel mj) throws DAOException {
         Connection conn = null;
         try {
@@ -175,7 +196,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO {
         this.update(perso);
     }
 
-        public void askJoueurTransfer(PersonnageModel perso, JoueurModel j) throws DAOException {
+    public void askJoueurTransfer(PersonnageModel perso, JoueurModel j) throws DAOException {
         Connection conn = null;
         try {
             conn = getConnection();
@@ -190,7 +211,7 @@ public class PersonnageDAO extends AbstractDataBaseDAO {
             closeConnection(conn);
         }
     }
-        
+
     public void leaveMJ(PersonnageModel perso) throws DAOException {
         Connection conn = null;
         try {

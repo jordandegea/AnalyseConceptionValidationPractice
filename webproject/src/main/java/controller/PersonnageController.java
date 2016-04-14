@@ -182,6 +182,9 @@ public class PersonnageController extends AbstractControllerBase {
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageOther.jsp").forward(request, response);
             } // Si le personnage est au joueur
             else if (perso != null) {
+                if ( PersonnageDAO.instance().peutDemanderChangementMJ(perso) ){
+                    request.setAttribute("peutchangerdemj", "oui");
+                }
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnage.jsp").forward(request, response);
             } else {
