@@ -123,6 +123,17 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
         }
         return s;
     }
+        public String getAllPartWithoutButton() throws DAOException {
+        String s="";
+        for ( ParagrapheModel pm: this.getParagraphes() ){
+                s += "<p> ";
+                s += pm.getContenu();
+                s += "</p>";
+                s += "</hr>";
+        }
+        return s;
+    }
+    
     public void setParagraphes(Set<ParagrapheModel> paras){
         this.paragraphes.setObjectSet(paras);
     }

@@ -122,7 +122,7 @@
             <label class="control-label"></label>
             <div class="form-group">
                 <textarea class="form-control" name="paragraphe1" required></textarea>
-                <label class="col-lg-4 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
+                <label class="col-lg-2 control-label"></label><label><input type="checkbox" id="isPrivate1" name="isPrivate1" value="isPrivate1"> Paragraphe Privé</label>
             </div>
         </div>
     </div>
