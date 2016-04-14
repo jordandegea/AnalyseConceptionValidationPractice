@@ -57,16 +57,6 @@
                         <c:forEach items="${partie.personnages}" var="perso">
                             ${perso.nomPerso} - <a href='personnage?action=SHOW&idPerso=${perso.id}'>voir</a> <br/>
                         </c:forEach>
-
-
-                        <c:if test="${!partie.partieFinie}">
-                            <form action="partie" method="GET" accept-charset="UTF-8">
-                                <input type="submit" class="btn btn-primary" value="Ajouter personnage" />
-                                <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-                                <input type="hidden" name="action" value="ADDPERSO" />
-                                <input type="hidden" name="idPartie" value="${partie.id}" />
-                            </form>
-                        </c:if>
                     </center>
                 </div>
             </div>
@@ -74,23 +64,6 @@
     </div>
 </div>
 <br/>
-    <c:if test="${!partie.partieFinie}">
-        <form action="resumePartie" method="GET" accept-charset="UTF-8">
-            <input type="submit" class="btn btn-warning btn-block" onclick="return confirm('Êtes-vous sûr de vouloir terminer cette partie ?')" value="Terminer partie et entrer résumé" />
-            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-            <input type="hidden" name="action" value="NEW" />
-            <input type="hidden" name="idPartie" value="${partie.id}" />
-        </form>
-        <br/>
-        <form action="partie" method="POST" accept-charset="UTF-8">
-            <input type="submit" class="btn btn-warning btn-block" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette partie ?')" value="Annuler partie" />
-            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-            <input type="hidden" name="action" value="DELETE" />
-            <input type="hidden" name="idPartie" value="${partie.id}" />
-        </form>
-    </div>
-</c:if>
-
 <br/>
 <c:if test="${partie.partieFinie}">
     <div class="row">

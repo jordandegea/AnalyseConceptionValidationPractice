@@ -52,9 +52,9 @@ ${error}
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input  type="hidden" name="action" value="CREATE" />
 </form>
-
+<br/>
 <form action="joueur" method="GET" accept-charset="UTF-8">
-    <input class="fbtn btn-warning btn-block" type="submit" value="Retour" />
+    <input class="btn btn-warning btn-block" type="submit" value="Retour" />
     <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
     <input type="hidden" name="action" value="SHOW" />
 </form>
