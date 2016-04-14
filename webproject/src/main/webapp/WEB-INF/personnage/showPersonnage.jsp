@@ -53,7 +53,7 @@
                                     <c:choose>
                                         <c:when test="${peutchangerdemj != null}">
                                             <form action="personnage" method="POST" accept-charset="UTF-8">
-                                                <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir quitter ce MJ?')" value="Quitter ce MJ" />
+                                                <input class="btn btn-warning" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir quitter ce MJ?')" value="Quitter ce MJ" />
                                                 <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
                                                 <input type="hidden" name="action" value="LEAVEMJ" />
                                                 <input type="hidden" name="idPerso" value="${personnage.id}" />
@@ -135,7 +135,7 @@
 <br/>
 <form action="personnage" method="GET" accept-charset="UTF-8">
     <input type="submit" class="btn btn-warning btn-block" value="Transférer Personnage" />
-    
+
     <input type="hidden" name="action" value="TRANSFER" />
     <input type="hidden" name="idPerso" value="${personnage.id}" />
 </form>
