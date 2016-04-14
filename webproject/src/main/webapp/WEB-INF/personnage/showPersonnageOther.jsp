@@ -13,7 +13,7 @@
 <div class="row">
     <div class="panel-group col-xd-12 col-lg-6 col-lg-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading"><center><img class="img-circle" src="${personnage.portrait}" alt="${personnage.portrait}"/></center>
+            <div class="panel-heading"><center><img width="128px" height="128px"  class="img-circle" src="${personnage.portrait}" alt="${personnage.portrait}"/></center>
             </div>
             <div class="panel-body">
                 <div class="form-horizontal">

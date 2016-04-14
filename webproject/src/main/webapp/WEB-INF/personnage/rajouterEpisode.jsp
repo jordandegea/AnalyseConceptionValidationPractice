@@ -24,8 +24,9 @@
         </div>
     </div>
 <div class="form-group">
-
-    <input type="submit" class="btn btn-primary" value="Valider  l'épisode de transition" />
+    <label class="col-lg-2 control-label">  </label> <label><input type="checkbox" name="validationEpisode" id="validationEpisode" />     Validation definitive </label>
+    <br/>
+    <input type="submit" class="btn btn-primary" value="Sauvegarder l'épisode de transition" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
     <input type="hidden" name="action" value="NEWTRANSI" />
     <input type="hidden" name="idPerso" value="${personnage.id}" />
