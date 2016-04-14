@@ -10,6 +10,7 @@
 
     <h3> Nouvel Episode </h3> 
     <div class="form-group">
+        ${error} <br/>
         <label name="dateLabel"> Date (aaaa-mm-jj) </label>
             <input type="date" name="dateEpisode"/>
     </div>

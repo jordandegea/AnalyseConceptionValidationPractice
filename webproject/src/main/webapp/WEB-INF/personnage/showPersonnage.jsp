@@ -104,7 +104,20 @@
                                 <br/>
                                 <u>Episode du ${ep.getDate()}  </u> <br/>
                                     <c:forEach items="${ep.getParagraphes()}" var="p">
-                                        ${p.contenu} 
+                                        <c:if test="${p.isSecret()}">
+                                        <div class="text-warning">
+                                            <p> ${p.getContenu()} </p> </hr>
+                                        </div>
+                                        <form action="personnage" method="GET" accept-charset="UTF-8">
+                                            <input type="submit" class="btn btn-primary"   value="Révéler" paragraphe />
+                                            <input type="hidden" name="action" value="REVEAL" />
+                                            <input type="hidden" name="idPar" value=" + pm.getId()  +" /> 
+                                        </form> 
+                                        <br/>
+                                    </c:if>
+                                    <c:if test="${!p.isSecret()}">
+                                        ${p.contenu}
+                                    </c:if>
                                     <br/>
 
                                 </c:forEach>

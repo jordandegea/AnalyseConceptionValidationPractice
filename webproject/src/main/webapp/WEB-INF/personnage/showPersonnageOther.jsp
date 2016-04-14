@@ -83,7 +83,9 @@
                                     <br/>
                                     <u>Episode du ${ep.getDate()}  </u> <br/>
                                         <c:forEach items="${ep.getParagraphes()}" var="p">
+                                        <c:if test="${!p.isSecret()}">
                                             ${p.contenu} 
+                                        </c:if>
                                         <br/>
 
                                     </c:forEach>

@@ -93,7 +93,7 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
-    private void addTransition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void addTransition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ArrayList<String> textareaList = new ArrayList<String>();
         ArrayList<Integer> checkList = new ArrayList<Integer>();
@@ -109,20 +109,26 @@ public class PersonnageController extends AbstractControllerBase {
             }
             i++;
         }
-        try {
-            EpisodeValidator.instance().dateValidate(request.getParameter("dateEpisode"));
-        Date date = Date.valueOf(request.getParameter("dateEpisode"));
-        EpisodeModel tm = new EpisodeModel(date, false, textareaList, checkList);
         int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        try {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
-            BiographieModel bm = perso.getBiographie();
-            EpisodeDAO.instance().insert(tm);
-            EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
-            String contextPath = request.getContextPath();
-            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+            try {
+                EpisodeValidator.instance().dateValidate(request.getParameter("dateEpisode"));
+                Date date = Date.valueOf(request.getParameter("dateEpisode"));
+                EpisodeModel tm = new EpisodeModel(date, false, false, textareaList, checkList);
+
+                BiographieModel bm = perso.getBiographie();
+                EpisodeDAO.instance().insert(tm);
+                EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+            } catch (ValidatorException ex) {
+                request.setAttribute("error", ex.getMessage());
+                request.setAttribute("personnage", perso);
+                request.setAttribute("idPerso", idPerso);
+                request.getRequestDispatcher("/WEB-INF/personnage/rajouterEpisode.jsp").forward(request, response);
+            }
         } catch (DAOException ex) {
-            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ValidatorException ex) {
             Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
