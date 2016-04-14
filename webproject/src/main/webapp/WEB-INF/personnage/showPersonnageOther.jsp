@@ -2,7 +2,12 @@
     <jsp:param name="title" value="Personnage ${personnage.nomPerso}"/>
 </jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<br/>
+<form action="joueur" method="GET" accept-charset="UTF-8">
+    <input type="submit" class="btn btn-primary" value="Retour" />
+    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
+    <input type="hidden" name="action" value="SHOW" />
+</form>
 
 <h2><center>Personnage ${personnage.nomPerso}</center></h2>
 <div class="row">
@@ -66,8 +71,14 @@
                             </label>
 
                             <i>
-                                ${personnage.biographie.getParagraphesBiographiePublic()} 
                                 <hr/>
+                                <c:forEach items="${personnage.biographie.getBioInit()}" var="ep">
+                                    <c:forEach items="${ep.getParagraphes()}" var="par">
+                                        <c:if test="${!par.isSecret()}">
+                                            <p> ${par.getContenu()} </p> </hr>
+                                        </c:if>
+                                    </c:forEach> 
+                                </c:forEach> 
                                 <c:forEach items="${personnage.biographie.getTransition()}" var="ep">
                                     <br/>
                                     <u>Episode du ${ep.getDate()}  </u> <br/>
@@ -92,14 +103,6 @@
         </div>
     </div>
 </div>
-<!-- Ici saisie des épisodes -->
-<br/>
-<form action="joueur" method="GET" accept-charset="UTF-8">
-    <input type="submit" class="btn btn-primary btn-block" value="Retour" />
-    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
-    <input type="hidden" name="action" value="SHOW" />
-</form>
-
 
 <script type="text/javascript" src="../public/js/formularise.js">
 </script>

@@ -2,7 +2,12 @@
     <jsp:param name="title" value="Personnage ${personnage.nomPerso}"/>
 </jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<br/>
+<form action="joueur" method="GET" accept-charset="UTF-8">
+    <input type="submit" class="btn btn-primary" value="Retour" />
+    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
+    <input type="hidden" name="action" value="SHOW" />
+</form>
 
 <h2><center>Personnage ${personnage.nomPerso}</center></h2>
 <div class="row">
@@ -12,38 +17,29 @@
             </div>
             <div class="panel-body">
                 <div class="form-horizontal">
-                    <center>
                         <label>
                             Nom : 
                         </label>
                         ${personnage.nomPerso} 
                 </div>
-                </center>
                 <div class="form-horizontal">
-                    <center>
                         <label>
                             Date de naissance : 
                         </label>
                         ${personnage.dateNaiss}
-                    </center>
                 </div>
                 <div class="form-horizontal">
-                    <center>
                         <label>
                             Profession : 
                         </label>
                         ${personnage.profession}
-                    </center>
                 </div>
                 <div class="form-horizontal">
-                    <center>
                         <label>
                             Univers : 
                         </label>
                         ${personnage.univers}
-                    </center>
                     <div class="form-horizontal">
-                        <center>
                             <label>
                                 MJ : 
                             </label>
@@ -56,18 +52,26 @@
 
                                 </c:otherwise>
                             </c:choose>
-                        </center>
                     </div>
                     <hr/>
                     <div class="form-horizontal">
-                        <center>
                             <label>
                                 Biographie Initiale
                             </label>
 
                             <i>
-                                ${personnage.biographie.getParagraphesBiographieAllWithoutButton()} 
-                                <hr/>
+                                <c:forEach items="${personnage.biographie.getBioInit()}" var="ep">
+                                    <c:forEach items="${ep.getParagraphes()}" var="par">
+                                        <c:if test="${par.isSecret()}">
+                                            <div class="text-warning">
+                                                <p> ${par.getContenu()} </p> 
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${!par.isSecret()}">
+                                            <p> ${par.getContenu()} </p> 
+                                        </c:if>
+                                    </c:forEach> 
+                                </c:forEach>                             <hr/>
                                 <c:forEach items="${personnage.biographie.getTransition()}" var="ep">
                                     <br/>
                                     <u>Episode du ${ep.getDate()}  </u> <br/>
@@ -78,13 +82,10 @@
                                     </c:forEach>
                                 </c:forEach>
                             </i>
-                        </center>
                         <hr/>
-                        <center>
                             <h2>Parties</h2>
                             <c:forEach items="${personnage.parties}" var="partie">
                                 <label>${partie} - <a href='partie?action=SHOW&idPartie=${partie.id}'>voir</a></label>
-                            </center>
                         </c:forEach>
                     </div>
                 </div>
@@ -93,12 +94,6 @@
     </div>
 </div>
 <!-- Ici saisie des épisodes -->
-<br/>
-<form action="joueur" method="GET" accept-charset="UTF-8">
-    <input type="submit" class="btn btn-primary btn-block" value="Retour" />
-    <!-- Pour indiquer au contr?leur quelle action faire, on utilise un champ cach? -->
-    <input type="hidden" name="action" value="SHOW" />
-</form>
 
 
 <script type="text/javascript" src="../public/js/formularise.js">

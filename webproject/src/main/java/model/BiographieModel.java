@@ -58,37 +58,11 @@ public class BiographieModel extends AbstractBaseModel {
         return episodes;
     }
     
-    public String getParagraphesBiographieAll() throws DAOException {
-        Set<EpisodeModel> episodes = this.getFullBiographie();
-        String bio = ""; 
-        int i = 0;
-        for(EpisodeModel e : episodes) {
-           bio += e.getAllPart();
-           i++;
-        }
-        return bio;
+    public Set<EpisodeModel> getBioInit() throws DAOException {
+        Set<EpisodeModel> episodes = new TreeSet<>();
+        episodes.add(this.getBioInitiale());
+        return episodes;
     }
-    
-      public String getParagraphesBiographiePublic() throws DAOException {
-        Set<EpisodeModel> episodes = this.getFullBiographie();
-        String bio = ""; 
-        int i = 0;
-        for(EpisodeModel e : episodes) {
-           bio += e.getAllPartPublic();
-           i++;
-        }
-        return bio;
-    }
-    
-    public String getParagraphesBiographieAllWithoutButton() throws DAOException {
-        Set<EpisodeModel> episodes = this.getFullBiographie();
-        String bio = ""; 
-        int i = 0;
-        for(EpisodeModel e : episodes) {
-           bio += e.getAllPartWithoutButton();
-           i++;
-        }
-        return bio;
-    }
+
       
 }

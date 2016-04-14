@@ -235,6 +235,23 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
+    private void saisiEpisode (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            if (perso != null) {
+                request.setAttribute("personnage", perso);
+                request.setAttribute("idPerso", idPerso);
+                request.getRequestDispatcher("/WEB-INF/personnage/rajouterEpisode.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+
+    }
+        
     private void askMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
@@ -299,7 +316,7 @@ public class PersonnageController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
     }
-
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -329,7 +346,10 @@ public class PersonnageController extends AbstractControllerBase {
             this.revealParagraph(request, response);
         } else if (action.equals("NEWTRANSI")) {
             this.addTransition(request,response);
-        } else {
+        } else if (action.equals("NEWEP")) {
+            this.saisiEpisode(request, response);
+        }
+        else {
             super.invalidParameters(request, response);
         }
     }
