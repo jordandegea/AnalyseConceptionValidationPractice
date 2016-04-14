@@ -21,7 +21,8 @@ CREATE TABLE Joueur(
 CREATE TABLE Episode(
 	idEpisode int primary key,
 	dateEpisode date,
-	ecritureEnCours integer, -- booléen
+	validationJoueur integer, -- booléen
+	validationMJ integer, --booleen
 	typeEpisode varchar(200),
 	CONSTRAINT chk_typeEpisode CHECK (typeEpisode IN ('Bio Initiale', 'Transition', 'ResumePersonnage', 'ResumePartie'))
 );
@@ -101,5 +102,3 @@ INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Tran
 
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'william.duclot@gmail.com');
-
-INSERT INTO Personnage (
