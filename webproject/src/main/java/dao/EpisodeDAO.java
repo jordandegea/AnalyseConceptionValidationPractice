@@ -154,6 +154,9 @@ public class EpisodeDAO extends AbstractDataBaseDAO {
         }
         int affectedRows = 0;
         EpisodeModel episode = (EpisodeModel) object;
+        for (ParagrapheModel p : episode.getParagraphes()) {
+            ParagrapheDAO.instance().delete(p);
+        }
         Connection conn = null;
         try {
             conn = getConnection();

@@ -113,26 +113,10 @@
             </div>
             <div class="panel-body">
                 ${error}
-                <center>
                     <c:forEach items="${demandesEpisode}" var="ep">
                         ${ep.id} - ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}'>voir</a> 
                         <br/>
-                        <form class="form-horizontal" action="mj"  method="POST" accept-charset="UTF-8">
-                            <input type="submit" class="btn btn-primary" value="Accepter" />
-                            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-                            <input type="hidden" class="btn btn-primary" name="action" value="ACCEPTEP" />
-                            <input type="hidden" name="idPerso" value="${perso.id}" />
-                        </form>
-                        <br/>
-                        <form class="form-horizontal" action="mj" method="POST" accept-charset="UTF-8">
-                            <input type="submit" class="btn btn-warning" value="Refuser" />
-                            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-                            <input type="hidden" name="action" value="REJECTEP" />
-                            <input type="hidden" name="idPerso" value="${perso.id}" />
-                        </form>
                     </c:forEach>
-
-                </center>
             </div>
         </div>
         <br/>

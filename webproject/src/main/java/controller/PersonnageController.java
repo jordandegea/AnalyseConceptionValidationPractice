@@ -110,13 +110,17 @@ public class PersonnageController extends AbstractControllerBase {
             i++;
         }
         int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        boolean validate = false;
+        if (request.getParameter("validationEpisode") != null) {
+            validate = true;
+        }
         try {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
             try {
                 EpisodeValidator.instance().dateValidate(request.getParameter("dateEpisode"));
                 Date date = Date.valueOf(request.getParameter("dateEpisode"));
                 EpisodeModel tm = new EpisodeModel(date, false, false, textareaList, checkList);
-
+                tm.setValidJoueur(validate);
                 BiographieModel bm = perso.getBiographie();
                 EpisodeDAO.instance().insert(tm);
                 EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
@@ -179,7 +183,7 @@ public class PersonnageController extends AbstractControllerBase {
     private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idEpisode = Integer.parseInt(request.getParameter("idEpisode"));
         try {
-            EpisodeModel ep =  (EpisodeModel)EpisodeDAO.instance().get(idEpisode);
+            EpisodeModel ep = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
             request.setAttribute("episode", ep);
             JoueurModel j = super.getUser(request, response);
             request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
@@ -241,6 +245,41 @@ public class PersonnageController extends AbstractControllerBase {
             super.erreurBD(request, response, ex);
         }
 
+    }
+
+    private void doValidMJ(HttpServletRequest request, HttpServletResponse response) {
+        int idEpisode = Integer.parseInt((String) request.getParameter("idEp"));
+        try {
+            EpisodeModel epm = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            epm.setValidMJ(true);
+            EpisodeDAO.instance().update(epm);
+            try {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+            } catch (IOException ex) {
+                Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void doRefuseMJ(HttpServletRequest request, HttpServletResponse response) {
+        int idEpisode = Integer.parseInt((String) request.getParameter("idEp"));
+        try {
+            EpisodeModel epm = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            epm.setValidMJ(false);
+            epm.setValidJoueur(false);
+
+            EpisodeDAO.instance().delete(epm);
+            try {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+            } catch (IOException ex) {
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void revealParagraph(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -367,6 +406,10 @@ public class PersonnageController extends AbstractControllerBase {
             this.revealParagraph(request, response);
         } else if (action.equals("NEWTRANSI")) {
             this.addTransition(request, response);
+        } else if (action.equals("VALIDERTRANSI")) {
+            this.doValidMJ(request, response);
+        } else if (action.equals("REFUSERTRANSI")) {
+            this.doRefuseMJ(request, response);
         } else if (action.equals("NEWEP")) {
             this.saisiEpisode(request, response);
         } else if (action.equals("VOIREP")) {

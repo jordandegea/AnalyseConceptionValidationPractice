@@ -21,12 +21,22 @@
             <textarea class="form-control" name="paragraphe"  required> ${par.contenu} </textarea>
         </div>
     </c:forEach>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Valider l'épisode de transition" />
-        <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-        <input type="hidden" name="action" value="VALIDERTRANSI" />
-        <input type="hidden" name="idPerso" value="${personnage.id}" />
-    </div>
+    <form>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Valider l'épisode de transition" />
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <input type="hidden" name="action" value="VALIDERTRANSI" />
+            <input type="hidden" name="idEp" value="${episode.id}" />
+        </div>
+    </form>
+    <form>
+        <div class="form-group">
+            <input type="submit" class="btn btn-warning" value="Refuser l'épisode de transition" />
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <input type="hidden" name="action" value="REFUSERTRANSI" />
+            <input type="hidden" name="idEp" value="${episode.id}" />
+        </div>
+    </form>
 </form>
 
 <jsp:include page="../include/foot.jsp" />
