@@ -12,17 +12,17 @@
     <div class="form-group">
         ${error} <br/>
         <label name="dateLabel"> Date :</label>
-        <label name="dateValue" value="${episode.date}">
+        <label name="dateValue" > ${episode.date} </label>
     </div>
 
     <br/>
     <c:forEach items="${episode.getParagraphes()}" var="par">
         <div class="form-group">
-            <textarea class="form-control" name="paragraphe" value="${par.contenu}" required></textarea>
+            <textarea class="form-control" name="paragraphe"  required> ${par.contenu} </textarea>
         </div>
     </c:forEach>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Valider'épisode de transition" />
+        <input type="submit" class="btn btn-primary" value="Valider l'épisode de transition" />
         <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
         <input type="hidden" name="action" value="VALIDERTRANSI" />
         <input type="hidden" name="idPerso" value="${personnage.id}" />
