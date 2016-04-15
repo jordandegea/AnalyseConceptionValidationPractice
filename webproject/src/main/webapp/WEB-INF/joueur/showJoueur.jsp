@@ -115,7 +115,7 @@
                 ${error}
                 <center>
                     <c:forEach items="${demandesEpisode}" var="ep">
-                        ${perso.nomPerso} - <a href='personnage?action=VOIREP'>voir</a> 
+                        ${perso.nomPerso} - <a href='personnage?action=VOIREP&idPerso=${perso.id}'>voir</a> 
                         <br/>
                         <form class="form-horizontal" action="mj"  method="POST" accept-charset="UTF-8">
                             <input type="submit" class="btn btn-primary" value="Accepter" />

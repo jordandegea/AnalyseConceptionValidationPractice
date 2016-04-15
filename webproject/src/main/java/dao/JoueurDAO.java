@@ -194,9 +194,9 @@ public class JoueurDAO extends AbstractDataBaseDAO {
                             + "FROM Episode e, Personnage p, MJ m, EpisodeBiographie eb "
                             + "WHERE m.idMJ = ? "
                             + "AND e.validationMJ = ? "
-                            + "AND p.idPersonnage = m.idPersonnage"
-          //                  + "AND p.idBiographie = eb.idBiographie"
-              /*              + "AND eb.idEpisode = e.idEpisode" */);
+                            + "AND p.idPersonnage = m.idPersonnage "
+                            + "AND p.idBiographie = eb.idBiographie "
+                            + "AND eb.idEpisode = e.idEpisode");
             st.setInt(1, joueur.getId());
             st.setInt(2, 0);
             ResultSet rs = st.executeQuery();
