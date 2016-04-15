@@ -169,7 +169,7 @@ public class EpisodeDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public EpisodeModel get(int id) throws DAOException {
+    public AbstractBaseModel get(int id) throws DAOException {
         EpisodeModel result = null;
         Connection conn = null;
         try {

@@ -179,7 +179,7 @@ public class PersonnageController extends AbstractControllerBase {
     private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idEpisode = Integer.parseInt(request.getParameter("idEpisode"));
         try {
-            EpisodeModel ep =  EpisodeDAO.instance().get(idEpisode);
+            EpisodeModel ep =  (EpisodeModel)EpisodeDAO.instance().get(idEpisode);
             request.setAttribute("episode", ep);
             JoueurModel j = super.getUser(request, response);
             request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
