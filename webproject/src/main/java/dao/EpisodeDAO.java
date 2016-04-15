@@ -169,8 +169,22 @@ public class EpisodeDAO extends AbstractDataBaseDAO {
     }
 
     @Override
-    public AbstractBaseModel get(int id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EpisodeModel get(int id) throws DAOException {
+        EpisodeModel result = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode=" + id);
+            if (rs.next()) {
+                result = new EpisodeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError EpisodeDAO.getParagraphes() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
     }
 
     @Override

@@ -11,23 +11,23 @@
     <h3> Nouvel Episode </h3> 
     <div class="form-group">
         ${error} <br/>
-        <label name="dateLabel"> Date (aaaa-mm-jj) </label>
-            <input type="date" name="dateEpisode" value="${date}"/>
+        <label name="dateLabel"> Date :</label>
+        <label name="dateValue" value="${episode.date}">
     </div>
+
     <br/>
-    <input type="button" class="btn btn-primary" onClick="addTextArea()" value="Ajouter Un Paragraphe"/>
-    <div id="ajout">
-            <div class="form-group">
-            <label value="${contenu}" class="form-control" name="paragraphe1" required></label>
+    <c:forEach items="${episode.getParagraphes()}" var="par">
+        <div class="form-group">
+            <textarea class="form-control" name="paragraphe" value="${par.contenu}" required></textarea>
         </div>
+    </c:forEach>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Valider'épisode de transition" />
+        <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+        <input type="hidden" name="action" value="VALIDERTRANSI" />
+        <input type="hidden" name="idPerso" value="${personnage.id}" />
     </div>
-<div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Valider'épisode de transition" />
-    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-    <input type="hidden" name="action" value="VALIDERTRANSI" />
-    <input type="hidden" name="idPerso" value="${personnage.id}" />
-</div>
 </form>
-    
+
 <jsp:include page="../include/foot.jsp" />
 

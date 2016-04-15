@@ -177,12 +177,18 @@ public class PersonnageController extends AbstractControllerBase {
     }
 
     private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        int idEpisode = Integer.parseInt(request.getParameter("idEpisode"));
+        try {
+            EpisodeModel ep =  EpisodeDAO.instance().get(idEpisode);
+            request.setAttribute("episode", ep);
             JoueurModel j = super.getUser(request, response);
-                request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-        private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
@@ -363,9 +369,9 @@ public class PersonnageController extends AbstractControllerBase {
             this.addTransition(request, response);
         } else if (action.equals("NEWEP")) {
             this.saisiEpisode(request, response);
-        } else if (action.equals("VOIREP")){
-            this.showEpisode(request,response);
-        }else {
+        } else if (action.equals("VOIREP")) {
+            this.showEpisode(request, response);
+        } else {
             super.invalidParameters(request, response);
         }
     }
