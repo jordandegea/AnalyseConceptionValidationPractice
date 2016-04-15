@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="panel-group col-xd-12 col-md-6 col-lg-4">
+    <div class="panel-group col-xs-12 col-md-6 col-lg-4">
         <div class="panel panel-default">
 
             <div class="panel-heading"><center><h2>Mes parties</h2></center>
