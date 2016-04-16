@@ -89,7 +89,8 @@
                                         <form action="personnage" method="GET" accept-charset="UTF-8">
                                             <input type="submit" class="btn btn-primary"   value="Révéler" paragraphe />
                                             <input type="hidden" name="action" value="REVEAL" />
-                                            <input type="hidden" name="idPar" value=" + pm.getId()  +" /> 
+                                            <input type="hidden" name="idPar" value="${par.getId()}" /> 
+                                            <input type="hidden" name="idPerso" value=" ${personnage.id}" /> 
                                         </form> 
                                         <br/>
                                     </c:if>  
@@ -111,7 +112,8 @@
                                         <form action="personnage" method="GET" accept-charset="UTF-8">
                                             <input type="submit" class="btn btn-primary"   value="Révéler" paragraphe />
                                             <input type="hidden" name="action" value="REVEAL" />
-                                            <input type="hidden" name="idPar" value=" + pm.getId()  +" /> 
+                                            <input type="hidden" name="idPar" value="${p.getId()}" /> 
+                                            <input type="hidden" name="idPerso" value=" ${personnage.id}" /> 
                                         </form> 
                                         <br/>
                                     </c:if>

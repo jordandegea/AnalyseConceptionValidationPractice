@@ -283,8 +283,8 @@ public class PersonnageController extends AbstractControllerBase {
     }
 
     private void revealParagraph(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idPar = Integer.parseInt((String)request.getParameter("idPar"));
         try {
-            int idPar = Integer.parseInt(request.getParameter("idPar"));
             ParagrapheModel p = ParagrapheDAO.instance().get(idPar);
             int idPerso = ParagrapheDAO.instance().getNumPerso(idPar);
             ParagrapheDAO.instance().updateVisibility(p);
@@ -418,7 +418,7 @@ public class PersonnageController extends AbstractControllerBase {
             super.invalidParameters(request, response);
         }
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
