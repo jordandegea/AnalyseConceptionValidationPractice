@@ -118,15 +118,13 @@
                 <c:forEach items="${demandesEpisode}" var="ep" varStatus="status">
                     <c:if test="${(count % 2) == 0}">
                         <span class="text-info"> ${ep.nomPerso} </span> 
-                        <br/>
-                                        <c:set var="persoid" value="${ep.id}" scope="page" />
-
+                        <c:set var="persoid" value="${ep.id}" scope="page" />
                     </c:if>
                     <c:if test="${!((count % 2) == 0)}">
                         <span class="text-warning">${ep.id} </span>   ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}&idPerso=${persoid}'>voir</a> 
                     </c:if>
                     <c:set var="count" value="${count + 1}" scope="page"/>
-
+                    <br/>
                 </c:forEach>
             </div>
         </div>
