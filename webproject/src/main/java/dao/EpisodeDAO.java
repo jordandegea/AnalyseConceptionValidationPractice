@@ -189,6 +189,25 @@ public class EpisodeDAO extends AbstractDataBaseDAO {
         }
         return result;
     }
+    
+    public Set<EpisodeModel> getEpModifiables(int id) throws DAOException {
+        Set<EpisodeModel> result = new LinkedHashSet<EpisodeModel>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Episode e, Personnage p, EpisodeBiographie eb WHERE p.idBiographie = eb.idBiographie AND eb.idEpisode = E.idEpisode AND idPersonnage =" + id + " AND e.validationJoueur = 0 and e.validationMJ = 0 ORDER BY dateEpisode");
+            while (rs.next()) {
+                EpisodeModel em = new EpisodeModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
+                result.add(em);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError EpisodeDAO.getParagraphes() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
 
     @Override
     public Set<? extends AbstractBaseModel> getAll() throws DAOException {

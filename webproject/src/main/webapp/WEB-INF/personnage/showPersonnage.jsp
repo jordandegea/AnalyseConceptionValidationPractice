@@ -138,7 +138,19 @@
 </div>
 <br/>
 <div class="form-horizontal">
+    <h2> Vos épisodes sauvegardés et non soumis </h2>
+    <form action="partie" method="POST" accept-charset="UTF-8">
+        <select class="form-control" name="idPerso" required>
+            <c:forEach items="${epModif}" var="ep">
+                <option value="${ep}">${ep.id}</option>
+            </c:forEach>
+        </select><br/>
 
+        <input class="btn btn-primary"type="submit" value="Modifier l'épisode" />
+        <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+        <input type="hidden" name="action" value="MODIFEPI" />
+    </form>
+    <br/>
     <form action="personnage" method="GET" accept-charset="UTF-8">
         <input type="submit" class="btn btn-primary" value="Saisir un nouvel episode" />
         <input type="hidden" name="action" value="NEWEP" />

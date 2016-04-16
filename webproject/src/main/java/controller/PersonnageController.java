@@ -197,10 +197,12 @@ public class PersonnageController extends AbstractControllerBase {
 
     private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
-            JoueurModel j = super.getUser(request, response);
+            Set<EpisodeModel> modifiables = EpisodeDAO.instance().getEpModifiables(idPerso);            JoueurModel j = super.getUser(request, response);
             // Si c'est le maitre du jeu.
+            request.setAttribute("epModif", modifiables);
             if (j.equals(perso.getMJ())) {
                 request.setAttribute("personnage", perso);
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageMJ.jsp").forward(request, response);
