@@ -13,8 +13,8 @@ public class ResumePersonnageModel extends EpisodeModel {
     private PartieLoader partie;
     private BiographieLoader biographie;
 
-    public ResumePersonnageModel(int id, Date date, boolean ecritureEnCours) {
-        super(id, date, ecritureEnCours);
+    public ResumePersonnageModel(int id, Date date, boolean validationJoueur, boolean validationMJ) {
+        super(id, date, validationJoueur, validationMJ);
         
         partie = new PartieLoader();
         biographie = new BiographieLoader();

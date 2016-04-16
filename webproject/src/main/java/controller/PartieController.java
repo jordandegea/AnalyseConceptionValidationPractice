@@ -80,7 +80,7 @@ public class PartieController extends AbstractControllerBase {
                 if (partie.getMJ().equals(j)) {
                     request.getRequestDispatcher("/WEB-INF/partie/showPartie.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("/WEB-INF/partie/showPartiePersonnage.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/partie/showPartieHorsMJ.jsp").forward(request, response);
                 }
             } else {
                 super.error404(request, response);

@@ -65,7 +65,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "JOIN Episode e ON r.idEpisode=e.idEpisode "
                     + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='ResumePersonnage' ");
             while (rs.next()) {
-                result.add(new ResumePersonnageModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours")));
+                result.add(new ResumePersonnageModel(rs.getInt("e.idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ") ));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -86,7 +86,7 @@ public class PartieDAO extends AbstractDataBaseDAO {
                     + "JOIN Episode e ON p.idResume=e.idEpisode "
                     + "WHERE p.idPartie='" + partie.getId() + "' AND typeEpisode='ResumePartie' ");
             if (rs.next()) {
-                result = new ResumePartieModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result = new ResumePartieModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);

@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class BioInitialeModel extends EpisodeModel {
     public BioInitialeModel(int id) {
-        super(id, new Date(0), false);
+        super(id, new Date(0), false, false);
     }
     
 //    public BioInitialeModel() {
@@ -22,6 +22,6 @@ public class BioInitialeModel extends EpisodeModel {
 //    }
     
     public BioInitialeModel(ArrayList<String> paragraphes, ArrayList<Integer> access) {
-        super(new Date(0), false, paragraphes, access);
+        super(new Date(0), false, false, paragraphes, access);
     }
 }

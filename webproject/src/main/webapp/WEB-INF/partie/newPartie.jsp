@@ -27,27 +27,38 @@ ${error}
         </div>
     </div>
     <div class="form-group">
+        <div class="row">
         <label class="col-lg-2 control-label">Univers :</label>
         <select class="form-control col-lg-10" name="univers" required>
             <c:forEach items="${univers}" var="item">
                 <option value="${item.id}">${item.nom}</option>
             </c:forEach>
         </select>
+        </div>
     </div>
     <div class="form-group">
+            <div class="row">
         <label class="col-lg-2 control-label">Résumé de la situation initiale :</label>
         <textarea class="form-control col-lg-10" name="resumeInitial" required >${partie.resumeInitial}</textarea>
     </div>
-
-    <input class="btn btn-primary btn-block" type="submit" value="Enregistrer" />
-    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-    <input  type="hidden" name="action" value="CREATE" />
+    </div>
+    <br/>
+    <div class="row">
+            <input class="btn btn-primary btn-block" type="submit" value="Enregistrer" />
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <input  type="hidden" name="action" value="CREATE" />
+    </div>
 </form>
+<br/>
 
 <form action="joueur" method="GET" accept-charset="UTF-8">
-    <input class="btn btn-warning btn-block" type="submit" value="Retour" />
-    <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
-    <input type="hidden" name="action" value="SHOW" />
+    <div class="row">
+        <div class="form-group">
+            <input class="btn btn-warning btn-block" type="submit" value="Retour" />
+            <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
+            <input type="hidden" name="action" value="SHOW" />
+        </div>
+    </div>
 </form>
 
 

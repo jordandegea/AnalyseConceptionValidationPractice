@@ -32,6 +32,7 @@ import model.ParagrapheModel;
 import model.PersonnageModel;
 import model.TransitionModel;
 import model.UniversModel;
+import validator.EpisodeValidator;
 import validator.PersonnageValidator;
 import validator.ValidatorException;
 
@@ -92,14 +93,14 @@ public class PersonnageController extends AbstractControllerBase {
         }
     }
 
-    private void addTransition (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-  
+    private void addTransition(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ArrayList<String> textareaList = new ArrayList<String>();
         ArrayList<Integer> checkList = new ArrayList<Integer>();
-        int i=1;
+        int i = 1;
 
         while ((String) request.getParameter("paragraphe" + i) != null) {
-            System.out.println((String) request.getParameter("paragraphe" + i)); 
+            System.out.println((String) request.getParameter("paragraphe" + i));
             textareaList.add((String) request.getParameter("paragraphe" + i));
             if (request.getParameter("isPrivate" + i) != null) {
                 checkList.add(1);
@@ -108,22 +109,34 @@ public class PersonnageController extends AbstractControllerBase {
             }
             i++;
         }
-        
-        EpisodeModel tm = new EpisodeModel(Date.valueOf(LocalDate.now()), false,textareaList, checkList);
-        int idPerso = Integer.parseInt(request.getParameter("idPerso"));    
-                
-        try {       
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+        boolean validate = false;
+        if (request.getParameter("validationEpisode") != null) {
+            validate = true;
+        }
+        try {
             PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
-            BiographieModel bm = perso.getBiographie();
-            EpisodeDAO.instance().insert(tm);
-            EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
-            String contextPath = request.getContextPath();
-            response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+            try {
+                EpisodeValidator.instance().dateValidate(request.getParameter("dateEpisode"));
+                Date date = Date.valueOf(request.getParameter("dateEpisode"));
+                EpisodeModel tm = new EpisodeModel(date, false, false, textareaList, checkList);
+                tm.setValidJoueur(validate);
+                BiographieModel bm = perso.getBiographie();
+                EpisodeDAO.instance().insert(tm);
+                EpisodeDAO.instance().insertEpisodeBiographie(tm, bm.getId());
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/personnage?action=SHOW&idPerso=" + idPerso));
+            } catch (ValidatorException ex) {
+                request.setAttribute("error", ex.getMessage());
+                request.setAttribute("personnage", perso);
+                request.setAttribute("idPerso", idPerso);
+                request.getRequestDispatcher("/WEB-INF/personnage/rajouterEpisode.jsp").forward(request, response);
+            }
         } catch (DAOException ex) {
             Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void updatePersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String profession = (String) request.getParameter("profession");
         try {
@@ -167,6 +180,18 @@ public class PersonnageController extends AbstractControllerBase {
 
     }
 
+    private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idEpisode = Integer.parseInt(request.getParameter("idEpisode"));
+        try {
+            EpisodeModel ep = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            request.setAttribute("episode", ep);
+            JoueurModel j = super.getUser(request, response);
+            request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void showPersonnage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPerso = Integer.parseInt(request.getParameter("idPerso"));
@@ -182,7 +207,7 @@ public class PersonnageController extends AbstractControllerBase {
                 request.getRequestDispatcher("/WEB-INF/personnage/showPersonnageOther.jsp").forward(request, response);
             } // Si le personnage est au joueur
             else if (perso != null) {
-                if ( PersonnageDAO.instance().peutDemanderChangementMJ(perso) ){
+                if (PersonnageDAO.instance().peutDemanderChangementMJ(perso)) {
                     request.setAttribute("peutchangerdemj", "oui");
                 }
                 request.setAttribute("personnage", perso);
@@ -222,6 +247,41 @@ public class PersonnageController extends AbstractControllerBase {
 
     }
 
+    private void doValidMJ(HttpServletRequest request, HttpServletResponse response) {
+        int idEpisode = Integer.parseInt((String) request.getParameter("idEp"));
+        try {
+            EpisodeModel epm = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            epm.setValidMJ(true);
+            EpisodeDAO.instance().update(epm);
+            try {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+            } catch (IOException ex) {
+                Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void doRefuseMJ(HttpServletRequest request, HttpServletResponse response) {
+        int idEpisode = Integer.parseInt((String) request.getParameter("idEp"));
+        try {
+            EpisodeModel epm = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            epm.setValidMJ(false);
+            epm.setValidJoueur(false);
+
+            EpisodeDAO.instance().delete(epm);
+            try {
+                String contextPath = request.getContextPath();
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
+            } catch (IOException ex) {
+            }
+        } catch (DAOException ex) {
+            Logger.getLogger(PersonnageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void revealParagraph(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idPar = Integer.parseInt(request.getParameter("idPar"));
@@ -233,6 +293,23 @@ public class PersonnageController extends AbstractControllerBase {
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);
         }
+    }
+
+    private void saisiEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idPerso = Integer.parseInt(request.getParameter("idPerso"));
+            PersonnageModel perso = PersonnageDAO.instance().get(idPerso);
+            if (perso != null) {
+                request.setAttribute("personnage", perso);
+                request.setAttribute("idPerso", idPerso);
+                request.getRequestDispatcher("/WEB-INF/personnage/rajouterEpisode.jsp").forward(request, response);
+            } else {
+                super.error404(request, response);
+            }
+        } catch (DAOException ex) {
+            super.erreurBD(request, response, ex);
+        }
+
     }
 
     private void askMJ(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -328,7 +405,15 @@ public class PersonnageController extends AbstractControllerBase {
         } else if (action.equals("REVEAL")) {
             this.revealParagraph(request, response);
         } else if (action.equals("NEWTRANSI")) {
-            this.addTransition(request,response);
+            this.addTransition(request, response);
+        } else if (action.equals("VALIDERTRANSI")) {
+            this.doValidMJ(request, response);
+        } else if (action.equals("REFUSERTRANSI")) {
+            this.doRefuseMJ(request, response);
+        } else if (action.equals("NEWEP")) {
+            this.saisiEpisode(request, response);
+        } else if (action.equals("VOIREP")) {
+            this.showEpisode(request, response);
         } else {
             super.invalidParameters(request, response);
         }

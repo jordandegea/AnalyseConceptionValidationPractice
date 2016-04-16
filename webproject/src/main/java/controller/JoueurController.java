@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.EpisodeModel;
 import model.JoueurModel;
 import model.PersonnageModel;
 
@@ -27,9 +28,11 @@ public class JoueurController extends AbstractControllerBase {
             JoueurModel joueur = getUser(request, response);
             Set<PersonnageModel> demandeursMJ = JoueurDAO.instance().getDemandeursMJ(joueur);
             Set<PersonnageModel> persosMJ = JoueurDAO.instance().getPersonnagesManaged(joueur);
+            Set<EpisodeModel> episodesMJ = JoueurDAO.instance().getEpisodeDemande(joueur);
             request.setAttribute("joueur", joueur);
             request.setAttribute("demandeursMJ", demandeursMJ);
             request.setAttribute("persosMJ", persosMJ);
+            request.setAttribute("demandesEpisode", episodesMJ);
             request.getRequestDispatcher("/WEB-INF/joueur/showJoueur.jsp").forward(request, response);
         } catch (DAOException ex) {
             super.erreurBD(request, response, ex);

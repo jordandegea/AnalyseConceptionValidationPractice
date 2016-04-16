@@ -13,54 +13,66 @@ import java.util.Set;
  * Created by william on 05/04/16.
  */
 public class EpisodeModel extends AbstractBaseModel implements Comparable {
-    private boolean ecritureEnCours;
+
+    private boolean validationJoueur;
+    private boolean validationMJ;
     private ParagrapheLoader paragraphes;
     private Date date;
 
-    public EpisodeModel(int id, Date date, boolean ecritureEnCours) {
+    public EpisodeModel(int id, Date date, boolean validationJoueur, boolean validationMJ) {
         super(id);
-        this.ecritureEnCours = ecritureEnCours;
+        this.validationJoueur = validationJoueur;
+        this.validationMJ = validationMJ;
         paragraphes = new ParagrapheLoader();
         this.date = date;
-    } 
+    }
 
-    public EpisodeModel(Date date, boolean ecritureEnCours, ArrayList<String> paragraphes, ArrayList<Integer> access) {
-        this.ecritureEnCours = ecritureEnCours;
+    public EpisodeModel(Date date, boolean validationJoueur, boolean validationMJ, ArrayList<String> paragraphes, ArrayList<Integer> access) {
+        this.validationJoueur = validationJoueur;
+        this.validationMJ = validationMJ;
         this.paragraphes = new ParagrapheLoader();
         this.date = date;
-        
+
         int i = 0;
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
-            paras.add(new ParagrapheModel((access.get(i)==1), p, i));
+            paras.add(new ParagrapheModel((access.get(i) == 1), p, i));
             i++;
         }
-        
+
         this.setParagraphes(paras);
     }
 
-    public EpisodeModel(Date date, boolean ecritureEnCours, ArrayList<String> paragraphes) {
-        this.ecritureEnCours = ecritureEnCours;
-        this.paragraphes = new ParagrapheLoader();
+    public EpisodeModel(Date date, boolean validationJoueur, boolean validationMJ, ArrayList<String> paragraphes) {
+        this.validationJoueur = validationJoueur;
+        this.validationMJ = validationMJ;        this.paragraphes = new ParagrapheLoader();
         this.date = date;
-        
+
         int i = 0;
         Set<ParagrapheModel> paras = new LinkedHashSet<>();
         for (String p : paragraphes) {
             paras.add(new ParagrapheModel(false, p, i));
             i++;
         }
-        
+
         this.setParagraphes(paras);
     }
 
-    public boolean isEcritureEnCours() {
-        return ecritureEnCours;
+    public boolean isValidJoueur() {
+        return validationJoueur;
     }
 
-    public void setEcritureEnCours(boolean ecritureEnCours) {
-        this.ecritureEnCours = ecritureEnCours;
+    public void setValidJoueur(boolean validationJoueur) {
+        this.validationJoueur = validationJoueur;
     }
+     public boolean isValidMJ() {
+        return validationMJ;
+    }
+
+    public void setValidMJ(boolean validationMJ) {
+        this.validationMJ = validationMJ;
+    }
+
 
     public Set<ParagrapheModel> getParagraphes() throws DAOException {
         return paragraphes.get(this);
@@ -76,54 +88,27 @@ public class EpisodeModel extends AbstractBaseModel implements Comparable {
 
     @Override
     public int compareTo(Object t) {
-        if (t == null)
+        if (t == null) {
             throw new NullPointerException();
-        if (!(t instanceof EpisodeModel))
+        }
+        if (!(t instanceof EpisodeModel)) {
             throw new ClassCastException();
-            
+        }
+
         EpisodeModel other = (EpisodeModel) t;
-        
-        return this.getDate().compareTo(other.getDate());
+
+        int cmp = this.getDate().compareTo(other.getDate());
+        if (cmp == 0) {
+            return this.getId() - other.getId();
+        }
+        return cmp;
     }
-    
+
     public static EpisodeDAO getDAO() {
         return EpisodeDAO.instance();
     }
-    
-    public String getAllPart() throws DAOException {
-        String s="";
-        for ( ParagrapheModel pm: this.getParagraphes() ){
-            s += "<p style=\"margin-left:20px\"> ";
-            s += pm.getContenu();
-            s += "</p>";
-            s += "</hr>";
-            // Bouton pour révéler le paragraphe
-            if (pm.isSecret()) {
-                s += "\n";
-                s += "<form action=\"personnage\" method=\"GET\" accept-charset=\"UTF-8\">\n" +
-                "    <input type=\"submit\" class=\"btn btn-primary btn-block\"   value=\"Révéler paragraphe\" />\n" +
-                "    <input type=\"hidden\" name=\"action\" value=\"REVEAL\" />\n" +
-                "    <input type=\"hidden\" name=\"idPar\" value=" + pm.getId()  +" /> " +
-                "</form> ";
-                
-            }
-        }
-        return s;
-    }
-    
-    public String getAllPartPublic() throws DAOException {
-        String s="";
-        for ( ParagrapheModel pm: this.getParagraphes() ){
-            if (!pm.isSecret()) {
-                s += "<p style=\"margin-left:20px\"> ";
-                s += pm.getContenu();
-                s += "</p>";
-                s += "</hr>";
-            }
-        }
-        return s;
-    }
-    public void setParagraphes(Set<ParagrapheModel> paras){
+
+    public void setParagraphes(Set<ParagrapheModel> paras) {
         this.paragraphes.setObjectSet(paras);
     }
 }

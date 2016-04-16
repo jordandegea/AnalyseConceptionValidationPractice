@@ -60,10 +60,10 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='ResumePersonnage' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
+            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.validationJoueur, e.validationMJ FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='ResumePersonnage' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
             while (rs.next()) {
                 ResumePersonnageModel resume
-                        = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                        = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ") );
                 result.add(resume);
             }
         } catch (SQLException e) {
@@ -80,10 +80,10 @@ public class BiographieDAO extends AbstractDataBaseDAO{
         try {
             conn = getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.ecritureEnCours FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='Transition' AND e.idEpisode=eb.idEpisode AND eb.idBiographie="+bio.getId());
+            ResultSet rs = st.executeQuery("SELECT e.idEpisode, e.dateEpisode, e.validationJoueur, e.validationMJ FROM EpisodeBiographie eb, Episode e WHERE e.typeEpisode='Transition' AND e.idEpisode=eb.idEpisode AND e.validationJOUEUR=1 AND e.validationMJ=1 AND eb.idBiographie="+bio.getId());
             while (rs.next()) {
                 TransitionModel resume
-                        = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                        = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
                 result.add(resume);
             }
         } catch (SQLException e) {

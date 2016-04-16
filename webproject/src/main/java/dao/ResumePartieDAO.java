@@ -63,7 +63,7 @@ public class ResumePartieDAO extends EpisodeDAO {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE idEpisode='" + id + "' AND typeEpisode='ResumePartie' ");
             if (rs.next()) {
-                result = new ResumePartieModel(id, rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                result = new ResumePartieModel(id, rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
             }
         } catch (SQLException e) {
             throw new DAOException("DBError " + e.getMessage(), e);
@@ -82,7 +82,7 @@ public class ResumePartieDAO extends EpisodeDAO {
             ResultSet rs = st.executeQuery("SELECT * FROM Episode WHERE typeEpisode='ResumePartie' ");
             while (rs.next()) {
                 ResumePartieModel ouvrage
-                        = new ResumePartieModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                        = new ResumePartieModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
                 result.add(ouvrage);
             }
         } catch (SQLException e) {
@@ -105,11 +105,12 @@ public class ResumePartieDAO extends EpisodeDAO {
         try {
             conn = getConnection();
             PreparedStatement st
-                    = conn.prepareStatement("INSERT INTO Episode (ecritureEnCours, typeEpisode, dateEpisode, idEpisode) VALUES (?,?,?,?)");
-            st.setBoolean(1, resume.isEcritureEnCours());
-            st.setString(2, "ResumePartie");
-            st.setDate(3, resume.getDate());
-            st.setInt(4, id);
+                    = conn.prepareStatement("INSERT INTO Episode (validationJoueur, validationMJ, typeEpisode, dateEpisode, idEpisode) VALUES (?,?,?,?,?)");
+            st.setBoolean(1, resume.isValidJoueur());
+            st.setBoolean(2, resume.isValidMJ());
+            st.setString(3, "ResumePartie");
+            st.setDate(4, resume.getDate());
+            st.setInt(5, id);
             affectedRows = st.executeUpdate();
 
         } catch (SQLException e) {

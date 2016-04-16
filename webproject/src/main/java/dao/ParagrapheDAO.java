@@ -46,11 +46,11 @@ public class ParagrapheDAO extends AbstractDataBaseDAO{
             if (rs.next()) {
                 type = rs.getString("typeEpisode");
                 if(type.equals("Resume")){
-                    result = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                    result = new ResumePersonnageModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
                 }else if(type.equals("Bio Initiale")){
                     result = new BioInitialeModel(rs.getInt("idEpisode"));
                 }else if(type.equals("Transition")){
-                    result = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("ecritureEnCours"));
+                    result = new TransitionModel(rs.getInt("idEpisode"), rs.getDate("dateEpisode"), rs.getBoolean("validationJoueur"), rs.getBoolean("validationMJ"));
                 }else{
                     throw new DAOException("DBError : Episode Error");
                 }

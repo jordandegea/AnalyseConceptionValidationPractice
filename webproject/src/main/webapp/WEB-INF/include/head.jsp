@@ -33,7 +33,7 @@
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a  class="navbar-brand">RolePlay Manager</a>
+                    <a  class="navbar-brand" href="joueur?action=SHOW" >RolePlay Manager</a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -49,18 +49,6 @@
                         <%
                         } else {
                         %>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                                <li><a href="../default/">Default</a></li>
-                                <li class="divider"></li>
-                                <li><a href="../cerulean/">Cerulean</a></li>
-                                <li><a href="../cosmo/">Cosmo</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../help/">Help</a>
-                        </li>
                         <%
                             }
                         %>

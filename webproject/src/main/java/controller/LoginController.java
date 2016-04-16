@@ -37,7 +37,7 @@ public class LoginController extends AbstractControllerBase {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("idUser") != null) {
-            int userId = Integer.parseInt((String) session.getAttribute("idUser"));
+            int userId =  (int) session.getAttribute("idUser");
             response.sendRedirect("joueur?action=SHOW");
         } else {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
