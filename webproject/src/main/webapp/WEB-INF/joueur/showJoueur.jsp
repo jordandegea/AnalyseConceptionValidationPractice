@@ -114,7 +114,7 @@
             <div class="panel-body">
                 ${error}
                     <c:forEach items="${demandesEpisode}" var="ep">
-                        ${ep.id} - ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}'>voir</a> 
+                        <div class="text-info"> ${ep.id} </div>  ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}'>voir</a> 
                         <br/>
                     </c:forEach>
             </div>

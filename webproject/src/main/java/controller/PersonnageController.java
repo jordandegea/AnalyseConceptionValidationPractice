@@ -271,7 +271,7 @@ public class PersonnageController extends AbstractControllerBase {
             epm.setValidMJ(false);
             epm.setValidJoueur(false);
 
-            EpisodeDAO.instance().delete(epm);
+            EpisodeDAO.instance().update(epm);
             try {
                 String contextPath = request.getContextPath();
                 response.sendRedirect(response.encodeRedirectURL(contextPath + "/joueur?action=SHOW"));
@@ -418,7 +418,7 @@ public class PersonnageController extends AbstractControllerBase {
             super.invalidParameters(request, response);
         }
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *

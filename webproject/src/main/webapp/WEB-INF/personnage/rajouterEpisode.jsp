@@ -25,7 +25,7 @@
         </div>
     </div>
 <div class="form-group">
-    <label class="col-lg-2 control-label">  </label> <label><input type="checkbox" name="validationEpisode" id="validationEpisode" />     Validation definitive </label>
+    <label class="col-lg-2 control-label">  </label> <label><input type="checkbox" name="validationEpisode" id="validationEpisode" /> Envoyer l'épisode au MJ pour validation </label>
     <br/>
     <input type="submit" class="btn btn-primary" value="Sauvegarder l'épisode de transition" />
     <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->
