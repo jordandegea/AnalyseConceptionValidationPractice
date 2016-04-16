@@ -100,6 +100,6 @@ INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Azeroth');
 INSERT INTO Univers (idUnivers, nomUnivers) VALUES (id.nextval, 'Fondation, Trantor');
 
 INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'william', 'william', 'william.duclot@gmail.com');
-INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'william.duclot@gmail.com');
+INSERT INTO Joueur (idJoueur, login, mdp, email) VALUES (id.nextval, 'simon', 'simon', 'simon.rabourg@gmail.com');
 
 INSERT INTO Personnage (
