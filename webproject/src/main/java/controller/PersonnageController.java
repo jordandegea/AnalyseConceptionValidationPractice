@@ -182,9 +182,12 @@ public class PersonnageController extends AbstractControllerBase {
 
     private void showEpisode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idEpisode = Integer.parseInt(request.getParameter("idEpisode"));
+        int idPerso = Integer.parseInt(request.getParameter("idPerso"));
         try {
+            PersonnageModel pers = PersonnageDAO.instance().get(idPerso);
             EpisodeModel ep = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
             request.setAttribute("episode", ep);
+            request.setAttribute("personnage", pers);
             JoueurModel j = super.getUser(request, response);
             request.getRequestDispatcher("/WEB-INF/personnage/presenterEpisode.jsp").forward(request, response);
         } catch (DAOException ex) {
@@ -249,8 +252,22 @@ public class PersonnageController extends AbstractControllerBase {
 
     private void doValidMJ(HttpServletRequest request, HttpServletResponse response) {
         int idEpisode = Integer.parseInt((String) request.getParameter("idEp"));
+               int i = 1;
+        ArrayList<String> textareaList = new ArrayList<String>();
+       while ((String) request.getParameter(Integer.toString(i)) != null) {
+            textareaList.add((String) request.getParameter(Integer.toString(i)));
+            i++;
+        }
+
         try {
             EpisodeModel epm = (EpisodeModel) EpisodeDAO.instance().get(idEpisode);
+            i =0;
+            for (ParagrapheModel pm : epm.getParagraphes()) {
+                pm.setContenu(textareaList.get(i));
+                pm.setEpisode(epm);
+                ParagrapheDAO.instance().update(pm);
+                i++;
+            }
             epm.setValidMJ(true);
             EpisodeDAO.instance().update(epm);
             try {

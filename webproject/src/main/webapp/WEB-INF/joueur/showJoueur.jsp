@@ -113,10 +113,21 @@
             </div>
             <div class="panel-body">
                 ${error}
-                    <c:forEach items="${demandesEpisode}" var="ep">
-                        <div class="text-info"> ${ep.id} </div>  ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}'>voir</a> 
+                <c:set var="count" value="0" scope="page" />
+
+                <c:forEach items="${demandesEpisode}" var="ep" varStatus="status">
+                    <c:if test="${(count % 2) == 0}">
+                        <span class="text-info"> ${ep.nomPerso} </span> 
                         <br/>
-                    </c:forEach>
+                                        <c:set var="persoid" value="${ep.id}" scope="page" />
+
+                    </c:if>
+                    <c:if test="${!((count % 2) == 0)}">
+                        <span class="text-warning">${ep.id} </span>   ${ep.date} - <a href='personnage?action=VOIREP&idEpisode=${ep.id}&idPerso=${persoid}'>voir</a> 
+                    </c:if>
+                    <c:set var="count" value="${count + 1}" scope="page"/>
+
+                </c:forEach>
             </div>
         </div>
         <br/>

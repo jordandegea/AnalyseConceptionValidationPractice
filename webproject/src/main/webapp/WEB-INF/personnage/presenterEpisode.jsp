@@ -8,20 +8,24 @@
 <!-- Ici saisie des épisodes -->
 <form action="personnage" method="GET" accept-charset="UTF-8">
 
-    <h3> Nouvel Episode </h3> 
+    <h3> Episode à valider  </h3> 
     <div class="form-group">
         ${error} <br/>
-        <label name="dateLabel"> Date :</label>
+        Personnage : <label name="perso"> ${personnage.nomPerso} </label> <br/>
+        Appartient à : <label name="proprio">${personnage.getOwner().login} </label> <br/>
+        Date :
         <label name="dateValue" > ${episode.date} </label>
     </div>
 
     <br/>
-    <c:forEach items="${episode.getParagraphes()}" var="par">
-        <div class="form-group">
-            <textarea class="form-control" name="paragraphe"  required> ${par.contenu} </textarea>
-        </div>
-    </c:forEach>
+    <c:set var="count" value="1" scope="page" />
     <form>
+        <c:forEach items="${episode.getParagraphes()}" var="par">
+            <div class="form-group">
+                <textarea class="form-control" name="${count}"  required> ${par.contenu} </textarea>
+            </div>
+            <c:set var="count" value="${count + 1}" scope="page"/>
+        </c:forEach>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Valider l'épisode de transition" />
             <!-- Pour indiquer au contrôleur quelle action faire, on utilise un champ caché -->

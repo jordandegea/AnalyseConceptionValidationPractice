@@ -197,7 +197,8 @@ public class JoueurDAO extends AbstractDataBaseDAO {
                             + "AND e.validationJoueur = ? "
                             + "AND p.idPersonnage = m.idPersonnage "
                             + "AND p.idBiographie = eb.idBiographie "
-                            + "AND eb.idEpisode = e.idEpisode");
+                            + "AND eb.idEpisode = e.idEpisode " +
+                            " ORDER BY e.idEpisode");
             st.setInt(1, joueur.getId());
             st.setInt(2, 0);
             st.setInt(3, 1);
@@ -209,6 +210,38 @@ public class JoueurDAO extends AbstractDataBaseDAO {
                                 rs.getBoolean("validationJoueur"),
                                 rs.getBoolean("ValidationMJ"));
                 result.add(episode);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("DBError JoueurDAO.getEpisodeDemande() " + e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+        return result;
+    }
+      
+      public Set<PersonnageModel> getEpisodePersonnageDemande(JoueurModel joueur) throws DAOException {
+        Set<PersonnageModel> result = new HashSet<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement st
+                    = conn.prepareStatement("SELECT p.* "
+                            + "FROM Episode e, Personnage p, MJ m, EpisodeBiographie eb "
+                            + "WHERE m.idMJ = ? "
+                            + "AND e.validationMJ = ? "
+                            + "AND e.validationJoueur = ? "
+                            + "AND p.idPersonnage = m.idPersonnage "
+                            + "AND p.idBiographie = eb.idBiographie "
+                            + "AND eb.idEpisode = e.idEpisode " +
+                            " ORDER BY e.idEpisode");
+            st.setInt(1, joueur.getId());
+            st.setInt(2, 0);
+            st.setInt(3, 1);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                PersonnageModel perso
+                        = new PersonnageModel(rs.getInt("idPersonnage"), rs.getString("nomPerso"), rs.getString("dateNaissance"), rs.getString("profession"), rs.getString("portrait"), rs.getBoolean("demandeMJ"));
+                result.add(perso);
             }
         } catch (SQLException e) {
             throw new DAOException("DBError JoueurDAO.getEpisodeDemande() " + e.getMessage(), e);
