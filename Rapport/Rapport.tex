@@ -80,10 +80,10 @@
 
 \subsection{Diagramme d'architecture MVC}
 
-L'architecture MVC complete étant gigantesque. Nous vous présentons comment nous avons organisé notre architecture. 
+L'architecture MVC complète étant gigantesque. Nous vous présentons comment nous avons organisé notre architecture. 
 Voici un exemple pour l'utilisation de l'ensemble \textbf{Partie} :
-La vue etant composé de HTML, nous n'avons pas de lien vers des JLabel, JButton, etc. 
-Afin d'alléger les heritages, les interfaces, etc, nous préferrons ne pas les ajouter à ce diagramme et vous montrer sur le diagramme de classe logiciel. 
+La vue étant composé de HTML, nous n'avons pas de lien vers des JLabel, JButton, etc. 
+Afin d'alléger les héritages, les interfaces, etc, nous préférons ne pas les ajouter à ce diagramme et vous montrer sur le diagramme de classe logiciel. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -95,7 +95,7 @@ Afin d'alléger les heritages, les interfaces, etc, nous préferrons ne pas les 
 
 \subsection{Diagramme de classe logiciel}
 
-Le nombre de classe étant conséquent, nous decoupons l'architecture en plusieurs diagrammes propres et en exemples. Dans un premier temps, voici l'architecture d'heritage.  
+Le nombre de classes étant conséquent, nous découpons l'architecture en plusieurs diagrammes propres et en exemples. Dans un premier temps, voici l'architecture d'héritage.  
 
 \begin{figure}[H]
 	\begin{center}
@@ -120,7 +120,7 @@ Le nombre de classe étant conséquent, nous decoupons l'architecture en plusieu
 \end{figure}
 
 Maintenant, voici l'exemple d'utilisation des différentes classes par rapport à "Partie". 
-La view n'a pas été ajouté. Simplement car chaque méthode de "PartieController" appelle une page .jsp comme expliqué précédement. 
+La view n'a pas été ajouté. Simplement car chaque méthode de "PartieController" appelle une page .jsp comme expliqué précédemment. 
 
 
 \begin{figure}[H]
@@ -148,8 +148,8 @@ Chaque page ou fonctionnalité est indiqué en tant que section.
 \subsection{Top Menu}
 \label{MUTopMenu}
 
-Le menu affiché en haut de chaque page permet d'accéder rapidement aux différentes fonctions de l'application. Lorsque vous n'êtes pas connecté et quelque soit la page demandé, vous serez redirigé vers la page de Connextion(\ref{MUConnexion}). De cette page, vous pourrez aussi aller à la page d'Inscription(\ref{MUInscription})
-Voici les liens menant aux fonctionnalités lorsque vous etes connecté :
+Le menu affiché en haut de chaque page permet d'accéder rapidement aux différentes fonctions de l'application. Lorsque vous n'êtes pas connecté et quelque soit la page demandée, vous serez redirigé vers la page de Connexion(\ref{MUConnexion}). De cette page, vous pourrez aussi aller à la page d'Inscription(\ref{MUInscription})
+Voici les liens menant aux fonctionnalités lorsque vous êtes connecté :
 \begin{itemize}
 	\item Mon profil (\ref{MUProfil})
 	\item Parties
@@ -302,7 +302,7 @@ Vous pouvez voir la liste des personnages sur votre page de profil.
 \label{MUAjouterMJPersonnage}
 
 
-Sur la page "Voir le Personnage", vous avez un bouton Proposer à un MJ. Ce bouton vous redirige sur cette page. 
+Sur la page "Voir le Personnage", vous avez un bouton "Proposer à un MJ". Ce bouton vous redirige sur cette page. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -338,7 +338,7 @@ La page profil ressemble à cette image lorsqu'une personne vous demande comme M
 
 Depuis la page d'un personnage, une fois que l'utilisateur possède un MJ, il peut rentrer des épisodes en cliquant sur "Saisir un nouvel Episode".
 
-L'utilisateur peut alors saisir des paragraphes, les rendre privés, et en rajouter, voici la page qui représente la saisie d'épisode.
+L'utilisateur peut alors saisir des paragraphes, les rendre privés, et en rajouter, voici la page qui représente la saisie d'épisodes.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=\textwidth]{images/manuel/saisiepisode.png}  
@@ -392,8 +392,6 @@ La page de profil vous montre tous les joueurs vous ayant comme MJ.
 
 \section{Bilan}
 
-%Bilan sur les outils de modélisation utilisés, en particulier les problèmes rencontrés, ainsi que les solutions trouvées. Il vous est demandé dans cette partie de bien préciser les logiciels, en particulier les modeleurs UML que vous avez utilisés.
-
 \subsection{Recherche de modeleurs UML}
 
 Nous avons fait une courte recherche de modeleurs, mais aucun de ceux proposés spécialement en tant que Modeleur ne nous convenait. Nous nous sommes donc dirigé vers un outil que nous connaissons : LucidChart. LucidChart est un outil connecté à GoogleDrive permettant de faire des schémas, d'UML entre autre. 
@@ -406,13 +404,15 @@ Nous avons utilisé LucidChart pour :
 	\item Diagramme de classe d'analyse
 	\item Diagramme de séquence système
 	\item Cas d'utilisation
+	\item Diagramme de classe logiciel
+	\item Diagramme MVC
 \end{itemize}
 
 Difficultés : C'est pratique car c'est personnalisable mais pas forcement adapté pour l'UML. L'utilisation n'est pas simple et intuitive. 
 
 \subsection{IDE : Netbeans}
 
-Nous avons tous utilisé Netbeans pour le développement. L'avantage d'avoir le même IDE est qu'il est plus facile d'aider un collègue lors d'un problème. Etant habitué à cet IDE, nous pouvions développer rapidement. 
+Nous avons tous utilisé Netbeans pour le développement. L'avantage d'avoir le même IDE est qu'il est plus facile d'aider un collègue lors d'un problème. Étant habitué à cet IDE, nous pouvions développer rapidement. 
 
 \subsection{Tomcat8 / JDBC}
 
@@ -426,6 +426,11 @@ TexMaker est, selon nous, le meilleur éditeur graphique de contenu \LaTeX.
 \subsection{Versionning : GIT}
 
 Le système de version "de base" pour les projets. Hebergé sur Gitlab.com. 
+
+
+\subsection{Projet}
+
+Nous nous sommes rendus compte que le développement de l'application était bien plus facile et plus naturel que d'habitude. En effet, grâce à l'effort de conception avant le développement, nous avons réfléchi à "comment" organiser nos classes et comment les utiliser. 
 
 
 
