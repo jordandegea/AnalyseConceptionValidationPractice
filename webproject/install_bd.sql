@@ -34,7 +34,7 @@ CREATE TABLE Partie(
 	datePartie varchar(128),
 	lieu varchar(128),
 	termine integer, -- booléen
-	idResume int REFERENCES Episode(idEpisode),
+	idResume REFERENCES Episode(idEpisode),
 	idUnivers REFERENCES Univers(idUnivers),
 	idMJ REFERENCES Joueur(idJoueur)
 );
